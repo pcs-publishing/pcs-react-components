@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { Form, Input, InputProps } from 'semantic-ui-react'
 import { getFilenameInfo } from '../../../util/filename'
 
-interface FilenameFieldProps {
+export interface FilenameFieldProps {
   value: string
   label?: string
   inputProps?: InputProps

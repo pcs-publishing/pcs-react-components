@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { ColumnDefinition } from '../../definitions'
-import styled from 'styled-components'
+import styled from '../../theme-styled'
 import { Table } from 'semantic-ui-react'
 import { formatColumnValue } from '../../services/FormatColumnService'
 import { contextMenu } from 'react-contexify'
@@ -21,8 +21,6 @@ interface DataRowProps<T, U> {
   allowContextMenu?: (record: T) => boolean
   mapContextMenuProps?: (record: T) => { [key: string]: any }
   onRowDoubleClick?: (record: T) => void
-  hoverColors?: RowColor
-  selectedColors?: RowColor
 }
 
 const Cell = styled(Table.Cell)<{ padding?: number }>`
@@ -30,11 +28,9 @@ const Cell = styled(Table.Cell)<{ padding?: number }>`
     _.isNumber(props.padding) ? `padding: ${props.padding}px !important;` : ''}
 `
 
-const TableRow = styled(Table.Row)<{ selected: boolean, $hoverColors?: RowColor, $selectedColors?: RowColor }>`
+const TableRow = styled(Table.Row)<{ selected: boolean }>`
   :hover {
-    background-color: ${(props) =>
-      props.$hoverColors?.background || '#ddd'};
-    color: ${(props) => props.$hoverColors?.text || '#333'};
+    background-color: rgba(0, 0, 0, 0.05)
   }
 
   ${(props) => {
@@ -42,8 +38,8 @@ const TableRow = styled(Table.Row)<{ selected: boolean, $hoverColors?: RowColor,
       return ''
     }
     return `
-      background-color: ${props.$selectedColors?.background || '#3498db'} !important;
-      color: ${props.$selectedColors?.text || 'white'} !important;
+      background-color: ${props.theme.colors.primary} !important;
+      color: ${props.theme.colors.text.onPrimary} !important;
     `
   }}
 `
@@ -122,8 +118,6 @@ const DataRow = <T extends any, U extends string>(
       onClick={onClick}
       onContextMenu={onContextMenu}
       onDoubleClick={onDoubleClick}
-      $hoverColors={props.hoverColors}
-      $selectedColors={props.selectedColors}
     >
       {columnDefinitions.map((columnDefinition, index) => {
         const value = formatColumnValue(record, columnDefinition, index)

@@ -1,17 +1,17 @@
 import React, { useMemo, useState, useCallback } from 'react'
-import DataGrid from './DataGrid'
+import DataGrid, { DataGridProps } from './DataGrid'
 import _ from 'lodash'
 import faker from 'faker'
 import styled from 'styled-components'
 import { ColumnDefinition, PageInfo, SortDirection } from '../../definitions'
 
 export default {
-  title: 'Data Grid',
+  title: 'Data/Data Grid',
   component: DataGrid
 }
 
 const GridContainer = styled.div`
-  height: 95vh;
+  height: 500px;
   width: 100%;
 `
 
@@ -35,7 +35,7 @@ const columnDefinitions: ColumnDefinition<Record>[] = [{
     key: 'phone'
 }]
 
-const Template = () => {
+const Template = (props: DataGridProps<Record, never>) => {
   const [pageInfo, setPageInfo] = useState<PageInfo>({
     page: 1,
     pageSize: 20,
@@ -60,7 +60,7 @@ const Template = () => {
 
 
   return <GridContainer>
-    <DataGrid data={data} columnDefinitions={columnDefinitions} onPageInfoChange={onPageInfoChange} onSortChange={onSortChange} pageInfo={pageInfo}/>
+    <DataGrid {...props} data={data} columnDefinitions={columnDefinitions} onPageInfoChange={onPageInfoChange} onSortChange={onSortChange} pageInfo={pageInfo} idField="id"/>
   </GridContainer>
 
  }
@@ -74,8 +74,8 @@ Basic.args = {
 }
 
 function generateTestData() {
-  return _.times(125, () => ({
-    id: faker.random.number(),
+  return _.times(125, (i: number) => ({
+    id: i,
     name: faker.name.findName(),
     product: faker.commerce.product(),
     email: faker.internet.email(),

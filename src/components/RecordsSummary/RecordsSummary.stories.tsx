@@ -2,7 +2,7 @@ import React from 'react'
 import RecordsSummary from './RecordsSummary';
 
 export default {
-  title: 'Records Summary',
+  title: 'Data/Records Summary',
   component: RecordsSummary,
   argTypes: { onRefreshClick: { action: 'onRefreshClick' }}
 }

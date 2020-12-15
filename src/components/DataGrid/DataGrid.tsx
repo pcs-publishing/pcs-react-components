@@ -12,7 +12,8 @@ import {
   ColumnDefinition,
   SortDirection,
   SelectionMode,
-  PageInfo
+  PageInfo,
+  SubType
 } from '../../definitions'
 
 import { Table } from 'semantic-ui-react'
@@ -42,7 +43,7 @@ export interface DataGridProps<T, U> {
   pageInfo?: PageInfo
   onPageInfoChange?: (pageInfo: PageInfo) => void
   onSelectedRecordsChange?: (selectedRecords: T[]) => void
-  idField?: string
+  idField: keyof SubType<T, string | number>
   loading?: boolean
   onDoubleClickRow?: (record: T) => void
   onRefreshClick?: () => void

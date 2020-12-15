@@ -1,6 +1,7 @@
 import { FlattenSimpleInterpolation } from 'styled-components'
 
 export interface Theme {
+  name: string
   colors: {
     base: string
     primary: string
@@ -9,6 +10,10 @@ export interface Theme {
       onPrimary: string
     }
   }
+  backgrounds: {
+    main: FlattenSimpleInterpolation,
+    offset: FlattenSimpleInterpolation
+  },
   border: FlattenSimpleInterpolation
   dragOverOutline: FlattenSimpleInterpolation
 }

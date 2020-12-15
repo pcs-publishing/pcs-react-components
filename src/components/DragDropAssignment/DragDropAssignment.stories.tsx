@@ -1,5 +1,4 @@
 import React from 'react'
-import { SubType } from '../../definitions';
 import styled from '../../theme-styled'
 import Swatch from '../Styled/Swatch';
 import DragDropAssignment from './DragDropAssignment';

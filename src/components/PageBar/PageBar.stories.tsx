@@ -2,7 +2,7 @@ import React from 'react'
 import PageBar from './PageBar'
 
 export default {
-  title: 'Page Bar',
+  title: 'Data/Page Bar',
   component: PageBar,
       argTypes: { onRefreshClick: { action: 'onRefreshClick' }, onPageInfoChange: { action: 'onPageInfoChange' }}
 }
