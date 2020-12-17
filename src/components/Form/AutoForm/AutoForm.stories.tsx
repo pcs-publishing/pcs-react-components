@@ -10,7 +10,7 @@ export default {
 }
 
 const Container = styled.div`
-  max-width: 300px;
+  max-width: 350px;
 `
 
 
@@ -59,6 +59,10 @@ Example.args = {
       key: 'filename',
       label: 'Filename',
       type: 'filename'
+    }, {
+      key: 'holiday',
+      label: 'Holiday Date Range',
+      type: 'daterange'
     }],
   compact: false,
   size: 'normal',
@@ -66,6 +70,7 @@ Example.args = {
     title: 'Mr',
     forename: 'Bob',
     surname: 'Kerman',
-    filename: 'image.jpg'
+    filename: 'image.jpg',
+    admin: false
   }
 }

@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { SelectionMode } from '../definitions'
+
 interface RecordSelectionOptions<T> {
   records: T[]
   idField: keyof T
@@ -12,7 +13,7 @@ export interface SelectedRecordOptions {
 }
 interface RecordSelectionReturn<T> {
   selectedRecords: T[]
-  selectRecord: (record: T, options: SelectedRecordOptions) => void
+  selectRecord: (record: T, options?: SelectedRecordOptions) => void
   isRecordSelected: (record: T) => boolean
   clearSelected: () => void
 }
@@ -32,11 +33,11 @@ export default function useRecordSelection<T>(
   )
 
   const selectRecord = useCallback(
-    (selectedRecord: T, options: SelectedRecordOptions) => {
-      const selectionModeToUse = !!options.isMultiSelect
+    (selectedRecord: T, options?: SelectedRecordOptions) => {
+      const selectionModeToUse = !!options?.isMultiSelect
         ? selectionMode
         : 'single'
-      const forceSelection = options.forceSelection
+      const forceSelection = options?.forceSelection
 
       setSelectedRecords((currentSelection) => {
         const newSelection = getNewSelection(

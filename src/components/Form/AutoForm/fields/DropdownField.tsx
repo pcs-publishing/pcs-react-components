@@ -25,7 +25,7 @@ const DropdownField = (props: FieldProps) => {
         fluid
         labeled
         selection
-        defaultValue={defaultValue}
+        defaultValue={defaultValue as string | number}
         onChange={onValueChange}
         clearable={true}
         error={error ? true : false}

@@ -1,6 +1,7 @@
 import { WeekDay } from '../../../definitions'
+import { DateRangeOptions } from '../DateRange'
 
-export type FormFieldValue = string | number | boolean | WeekDay
+export type FormFieldValue = string | number | boolean | WeekDay | DateRangeOptions | undefined
 
 export type FormFieldType =
   | 'text'
@@ -11,6 +12,8 @@ export type FormFieldType =
   | 'filename'
   | 'date'
   | 'time'
+  | 'daterange'
+
 export type FormFieldInputType = 'text' | 'number' | 'password'
 
 export type FormValue = { [key: string]: FormFieldValue }

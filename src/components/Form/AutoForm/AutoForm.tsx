@@ -9,6 +9,8 @@ import TimeField from './fields/TimeField'
 import styled from 'styled-components'
 import FilenameFormField from './fields/FilenameFormField'
 import { AutoFormProps, FieldDefinition, FormFieldSetter, FormFieldValue, FormValue } from './definitions'
+import { DateRangeOptions } from '../DateRange'
+import DateRange from '../DateRange'
 
 const ButtonContainer = styled.div`
   margin-top: 10px;
@@ -99,6 +101,8 @@ function generateField(
       return generateDateField(field, formValue, setFormValue)
     case 'time':
       return generateTimeField(field, formValue, setFormValue)
+    case 'daterange':
+      return generateDateRangeField(field, formValue, setFormValue)
 
     default:
       return null
@@ -239,6 +243,16 @@ function generateFileNameField(
       allValues={formValue}
     />
   )
+}
+
+function generateDateRangeField(
+  field: FieldDefinition,
+  formValue: FormValue,
+  setFormValue: FormFieldSetter
+): ReactNode {
+  const value = (formValue[field.key] as unknown) as DateRangeOptions | undefined
+  const onChange = (value: DateRangeOptions | undefined) => setFormValue(field.key, value)
+  return <DateRange value={value} label={field.label} onChange={onChange} />
 }
 
 function validateForm(

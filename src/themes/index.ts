@@ -1,5 +1,7 @@
 import defaultTheme from './defaultTheme'
+import alternateTheme from './alternateTheme'
 
 export default {
-  'Default Theme': defaultTheme
+  'Default Theme': defaultTheme,
+  'Alternate Theme': alternateTheme
 }

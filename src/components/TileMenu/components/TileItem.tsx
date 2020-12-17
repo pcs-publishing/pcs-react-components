@@ -18,7 +18,7 @@ const TileItemContainer = styled(Box)<{ width?: number}>`
     i,
     div {
       color: ${(props) =>
-        props.theme.colors.text} !important;
+        props.theme.colors.text.onPrimary} !important;
     }
   }
 `

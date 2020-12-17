@@ -8,7 +8,7 @@ export default {
 
 const Template = (props: FilePreviewProps) => <FilePreview {...props} />
 
-const Example = Template.bind({})
+export const Example = Template.bind({})
 
 Example.args = {
   previewImageUrl: 'https://media.giphy.com/media/fXVqtkPWPcGk8WXmdn/giphy.gif',
