@@ -53,4 +53,11 @@ export type SubType<Base, Condition> = Pick<
   {
     [Key in keyof Base]: Base[Key] extends Condition ? Key : never
   }[keyof Base]
->
+  >
+
+export interface ProcessingState {
+  running: boolean
+  error?: string
+  totalSteps?: number
+  currentStep?: number
+}

@@ -6,7 +6,7 @@ import { useContextMenu } from 'react-contexify'
 export default {
   title: 'Context Menu',
   component: ContextMenu,
-  argTypes: { onAction: { action: 'action' }}
+  argTypes: { onAction: { action: 'action' } }
 }
 
 const StyledDiv = styled.div`
@@ -17,8 +17,6 @@ const StyledDiv = styled.div`
   height: 200px;
   padding: 20px;
 `
-
-
 
 export const Basic = () => {
   const items: ContextMenuItem<string>[] = [{
@@ -38,10 +36,10 @@ export const Basic = () => {
     text: 'Fast-Forward',
     icon: 'forward'
   }]
-  
-    const { show } = useContextMenu({
-      id: 'menuId'
-    })
+
+  const { show } = useContextMenu({
+    id: 'menuId'
+  })
 
 
   return <div>
@@ -51,7 +49,7 @@ export const Basic = () => {
 }
 
 export const DisabledItem = () => {
-  const items: ContextMenuItem<string>[]  = [{
+  const items: ContextMenuItem<string>[] = [{
     action: 'up',
     text: 'Turn Up',
     icon: 'volume up'
@@ -61,14 +59,14 @@ export const DisabledItem = () => {
     disabled: true,
     icon: 'volume down'
   }]
-  
+
   const menuId = 'second-story'
-  
+
   const { show } = useContextMenu({
     id: menuId
   })
-  
-  return  <div>
+
+  return <div>
     <ContextMenu id={menuId} items={items} onAction={(action) => console.log(action)} />
     <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
   </div>
