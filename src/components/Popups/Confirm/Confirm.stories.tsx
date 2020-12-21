@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Confirm, { ConfirmProps } from './Confirm'
-import { Button } from 'semantic-ui-react'
+import Button from '../../Button'
 
 export default {
   title: 'Popups/Confirm',
@@ -37,10 +37,10 @@ Custom.args = {
 export const Component = Default.bind({})
 
 Component.args = {
-    title: 'Message as a component',
+  title: 'Message as a component',
   message: (
     <div>
       <img src="https://media4.giphy.com/media/Sw6fiilaRDWz7KW5x5/giphy.gif" alt="gif" />
-  </div>)
+    </div>)
 }
 

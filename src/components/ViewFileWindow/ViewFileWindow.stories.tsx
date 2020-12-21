@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ViewFileWindow, { ViewFileWindowProps } from './ViewFileWindow'
-import { Button } from 'semantic-ui-react'
+import Button from '../Button'
 
 export default {
   title: 'View File Window',

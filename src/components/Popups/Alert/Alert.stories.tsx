@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Alert, { AlertProps } from './Alert'
-import { Button } from 'semantic-ui-react'
+import Button from '../../Button'
 
 export default {
   title: 'Popups/Alert',

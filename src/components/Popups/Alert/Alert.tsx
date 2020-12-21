@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, Header, Button } from 'semantic-ui-react'
+import { Modal, Header } from 'semantic-ui-react'
+import Button from '../../Button'
 import { isString } from 'lodash'
 import useCallOnEnterUp from '../../../hooks/useCallOnEnterUp'
 

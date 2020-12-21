@@ -1,5 +1,6 @@
-import React, { useState, ChangeEvent } from 'react'
-import { Modal, TextArea, Button } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Modal, TextArea } from 'semantic-ui-react'
+import Button from '../../Button'
 import styled from '../../../theme-styled'
 
 
@@ -11,7 +12,7 @@ const CustomTextArea = styled(TextArea) <{ height: number }>`
   padding: 10px;
 `
 
-interface TextAreaModalProps {
+export interface TextAreaModalProps {
   header: string,
   height?: number
   placeholder?: string
@@ -45,7 +46,7 @@ const TextAreaModal = (props: TextAreaModalProps) => {
         <Button onClick={handleSubmit} primary>
           Submit
         </Button>
-        <Button secondary onClick={props.close}>
+        <Button onClick={props.close}>
           Cancel
         </Button>
       </Modal.Actions>

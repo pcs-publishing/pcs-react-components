@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PdfViewerWindow, { PdfViewerWindowProps } from './PdfViewerWindow';
-import { Button } from 'semantic-ui-react'
+import Button from '../Button'
 
 export default {
   title: 'Pdf Viewer Window',
@@ -11,7 +11,7 @@ const Template = (props: PdfViewerWindowProps) => {
   const [open, setOpen] = useState(false)
 
   return <>
-    <Button content="Open Window" onClick={() => setOpen(true)}/>
+    <Button content="Open Window" onClick={() => setOpen(true)} />
     <PdfViewerWindow open={open} close={() => setOpen(false)} {...props} />
   </>
 }

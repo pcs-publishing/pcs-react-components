@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'semantic-ui-react'
+import Button from '../../Button'
 import TextAreaModal, { TextAreaModalProps } from './TextAreaModal'
 
 export default {
@@ -10,9 +10,9 @@ export default {
 
 export const Example = (props: TextAreaModalProps) => {
   const [open, setOpen] = useState(false)
-  const handleSubmit = (...args) => {
+  const handleSubmit = (value: string) => {
     setOpen(false)
-    props.onSubmit(...args)
+    props.onSubmit(value)
   }
 
   return <>

@@ -2,7 +2,8 @@ import React, { useCallback } from 'react'
 import { DateRange } from 'react-date-range'
 import useTheme from '../../../hooks/useTheme'
 import styled from '../../../theme-styled'
-import { Form, Button } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
+import Button from '../../Button'
 import { startOfDay, endOfDay } from 'date-fns'
 import { isValidDate } from '../../../util/date'
 
@@ -80,8 +81,8 @@ const DateRangeFilter = (props: DateRangeProps) => {
             color="red"
             onClick={clearDates}
             content="Clear Selected Date Range"
-            />
-          </div>
+          />
+        </div>
       ) : null}
       <StyledDateRange
         ranges={[dateRange]}

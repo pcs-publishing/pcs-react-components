@@ -3,12 +3,12 @@ import LoadingMask, { LoadingMaskProps } from './LoadingMask'
 import styled from 'styled-components'
 
 export default {
-  title: 'LoadingMask',
+  title: 'Loading Mask',
   component: LoadingMask
 }
 
 const TextContainer = styled.div`
-  background-color: cornflowerblue;
+  background-color: #3b4558;
   padding: 20px;
   margin: 10px;
   height: 300px;
@@ -27,6 +27,6 @@ const Template = (props: LoadingMaskProps) => {
 export const Example = Template.bind({})
 
 Example.args = {
-  active: false,
+  active: true,
   message: 'Loading'
 }
