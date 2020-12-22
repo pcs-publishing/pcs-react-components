@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
+import SingleFileComponent from './SingleFileComponent'
 import FileViewer from './FileViewer'
 import FileViewerWindow, { FileViewerWindowProps } from './FileViewerWindow'
-import CenteredImage from '../Image/CenteredImage';
 import { Button } from 'semantic-ui-react'
 
-
 export default {
-  title: 'FileViewer',
+  title: 'File Viewer',
   component: FileViewer,
   argTypes: { onUpload: { action: 'upload' }, onDeleteClick: { action: 'delete' } }
 }
 
 interface TestFileRecord {
   src: string,
-  title: string
+  title: string,
+  mimeType: string
 }
 
 export const Window = (props: FileViewerWindowProps<TestFileRecord>) => {
@@ -56,10 +56,18 @@ Window.args = {
     'https://media0.giphy.com/media/NQK5mbOyUBPFK/200.gif',
     'https://i.kym-cdn.com/photos/images/newsfeed/001/021/949/a40.gif'
   ]),
-  singleFileComponent: (props: { record: TestFileRecord }) => <CenteredImage maxWidth={300} maxHeight={300} src={props.record.src} title={props.record.title} alt={props.record.title} />,
+  singleFileComponent: (props: { record: TestFileRecord }) => {
+    return <SingleFileComponent {...props}
+      previewUrl={props.record.src}
+      downloadUrl={props.record.src}
+      mimeType={props.record.mimeType}
+      title={props.record.title}
+      editFields={[]} />
+  }
+  ,
   loading: false
 }
 
 function generateTestRecordsFromSrcs(srcs: string[]): TestFileRecord[] {
-  return srcs.map((src, index) => ({ src, title: index.toString() }))
+  return srcs.map((src, index) => ({ src, title: `GIF ${index + 1}`, mimeType: 'image/gif' }))
 }

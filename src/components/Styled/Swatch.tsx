@@ -1,6 +1,6 @@
 import styled from '../../theme-styled'
 
-interface SwatchProps {
+export interface SwatchProps {
   color: string
   size?: number
   circle?: boolean

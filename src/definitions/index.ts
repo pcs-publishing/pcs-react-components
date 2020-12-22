@@ -15,7 +15,7 @@ export type WeekDay =
   | 'Saturday'
   | 'Sunday'
 
-  export type ColumnValueType =
+export type ColumnValueType =
   | 'date'
   | 'datetime'
   | 'user'
@@ -44,7 +44,6 @@ export interface PageInfo {
   totalRecords: number
 }
 
-
 export type SelectionMode = 'single' | 'multi'
 
 // https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c
@@ -53,7 +52,7 @@ export type SubType<Base, Condition> = Pick<
   {
     [Key in keyof Base]: Base[Key] extends Condition ? Key : never
   }[keyof Base]
-  >
+>
 
 export interface ProcessingState {
   running: boolean
