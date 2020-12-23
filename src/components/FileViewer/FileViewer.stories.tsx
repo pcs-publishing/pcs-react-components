@@ -62,6 +62,7 @@ Window.args = {
       downloadUrl={props.record.src}
       mimeType={props.record.mimeType}
       title={props.record.title}
+      filename={props.record.title}
       editFields={[]} />
   }
   ,

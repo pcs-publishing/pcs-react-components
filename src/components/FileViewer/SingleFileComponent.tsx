@@ -200,7 +200,7 @@ const SingleFileComponent = <T extends any>(
 export default SingleFileComponent
 
 function getMainContent<T>(
-  props: SingleFileComponentProps<T>,
+  props: SingleFileComponentExtendedProps<T>,
   openButton: React.ReactElement | null,
   switchToEditMode: () => void,
   canEdit: boolean
