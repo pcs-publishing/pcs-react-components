@@ -41,18 +41,18 @@ describe('useRecordSelection', () => {
     const item1Button = screen.getByTestId('item-1')
     const item2Button = screen.getByTestId('item-2')
 
-    expect(item1Button.firstChild.nodeValue).toBe('NOT SELECTED')
-    expect(item2Button.firstChild.nodeValue).toBe('NOT SELECTED')
+    expect(item1Button?.firstChild?.nodeValue).toBe('NOT SELECTED')
+    expect(item2Button?.firstChild?.nodeValue).toBe('NOT SELECTED')
 
-    item1Button.click()
+    item1Button?.click()
 
-    expect(item1Button.firstChild.nodeValue).toBe('SELECTED')
-    expect(item2Button.firstChild.nodeValue).toBe('NOT SELECTED')
+    expect(item1Button?.firstChild?.nodeValue).toBe('SELECTED')
+    expect(item2Button?.firstChild?.nodeValue).toBe('NOT SELECTED')
 
-    item2Button.click()
+    item2Button?.click()
 
-    expect(item1Button.firstChild.nodeValue).toBe('NOT SELECTED')
-    expect(item2Button.firstChild.nodeValue).toBe('SELECTED')
+    expect(item1Button?.firstChild?.nodeValue).toBe('NOT SELECTED')
+    expect(item2Button?.firstChild?.nodeValue).toBe('SELECTED')
 
     expect(mock).toBeCalledWith([{ id: 1 }])
   })
