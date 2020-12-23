@@ -8,7 +8,7 @@
 export function getFilenameInfo(
   filename: string
 ): { name: string; extension: string } {
-  filename = filename ?? ''
+  filename = filename || ''
   const index = filename.lastIndexOf('.')
   let name = filename
   let extension = ''

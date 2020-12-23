@@ -1,4 +1,4 @@
-import ViewFileWindow, { FileRecord } from './ViewFileWindow'
+import ViewFileWindow, { FileRecord as FileRecordType } from './ViewFileWindow'
 
-export type { FileRecord }
+export type FileRecord = FileRecordType
 export default ViewFileWindow

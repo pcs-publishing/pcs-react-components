@@ -11,7 +11,7 @@ import {
 import CenteredImage from '../Image/CenteredImage'
 import { getFilenameInfo } from '../../util/filename'
 import AutoForm from '../Form/AutoForm'
-import { FormValue } from '../Form/AutoForm/definitions'
+import { FieldDefinition, FormValue } from '../Form/AutoForm/definitions'
 import { SingleFileComponentProps } from '.'
 
 const FileCard = styled.div<{ selected: boolean }>`
@@ -71,8 +71,23 @@ const StyledCenteredImage = styled(CenteredImage)`
   }
 `
 
+export interface SingleFileComponentExtendedProps<T> extends SingleFileComponentProps<T> {
+  title: string
+  filename: string
+  previewUrl?: string
+  downloadUrl: string
+  mimeType: string
+  editFields?: FieldDefinition[]
+  textContent?: string
+  onSelectionChange?: (selected: boolean) => void
+  maxImageHeight?: number
+  maxImageWidth?: number
+  text?: [{ label: string; value: string; className?: string }]
+  allowDelete?: boolean
+}
+
 const SingleFileComponent = <T extends any>(
-  props: SingleFileComponentProps<T>
+  props: SingleFileComponentExtendedProps<T>
 ) => {
   const {
     filename,

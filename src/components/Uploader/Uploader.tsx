@@ -104,7 +104,7 @@ const Uploader = (props: UploaderProps) => {
     <>
       <UploadContainer
         className={props.className}
-        size={props.size ?? 80}
+        size={props.size || 80}
         width={props.width}
         border={props.border}
         {...getRootProps()}

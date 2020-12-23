@@ -18,18 +18,6 @@ interface BaseFileViewerProps<T> {
 
 export interface SingleFileComponentProps<T> extends BaseFileViewerProps<T> {
   record: T
-  title: string
-  filename?: string
-  previewUrl?: string
-  downloadUrl?: string
-  mimeType: string
-  editFields?: FieldDefinition[]
-  textContent?: string
-  onSelectionChange?: (selected: boolean) => void
-  maxImageHeight?: number
-  maxImageWidth?: number
-  text?: [{ label: string; value: string; className?: string }]
-  allowDelete?: boolean
 }
 
 export type SingleFileComponent<T> = FunctionComponent<
