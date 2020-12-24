@@ -3,7 +3,7 @@ import { SemanticICONS, Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { Menu, Item } from 'react-contexify'
 
-import 'react-contexify/dist/ReactContexify.css';
+
 
 const StyledMenu = styled(Menu)`
   border-radius: 3px;

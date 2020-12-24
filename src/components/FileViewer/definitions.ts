@@ -1,8 +1,4 @@
-import FileViewer from './FileViewer'
-import FileViewerWindow from './FileViewerWindow'
-import { FunctionComponent } from 'react'
-import SingleFileComponent from './SingleFileComponent'
-import { FieldDefinition } from '../Form/AutoForm/definitions'
+import { FunctionComponent } from 'react';
 
 interface BaseFileViewerProps<T> {
   onEdit?: (record: Partial<T>) => void
@@ -42,5 +38,3 @@ export interface FileViewerGridProps<T> extends BaseFileViewerProps<T> {
   singleFileComponent: SingleFileComponent<T>
   onDeleteClick?: (record: T) => void
 }
-
-export default { FileViewer, FileViewerWindow, SingleFileComponent }

@@ -12,7 +12,7 @@ import CenteredImage from '../Image/CenteredImage'
 import { getFilenameInfo } from '../../util/filename'
 import AutoForm from '../Form/AutoForm'
 import { FieldDefinition, FormValue } from '../Form/AutoForm/definitions'
-import { SingleFileComponentProps } from '.'
+import { SingleFileComponentProps } from './definitions'
 
 const FileCard = styled.div<{ selected: boolean }>`
   margin: 10px !important;
@@ -238,7 +238,7 @@ function getMainContent<T>(
             compact
             size="small"
             color="red"
-            onClick={() => props.onDeleteClick(props.record)}
+            onClick={() => props.onDeleteClick && props.onDeleteClick(props.record)}
           >
             <Icon name="trash" />
             Delete

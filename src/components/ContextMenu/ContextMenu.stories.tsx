@@ -3,6 +3,8 @@ import ContextMenu, { ContextMenuItem } from './ContextMenu';
 import styled from 'styled-components'
 import { useContextMenu } from 'react-contexify'
 
+import 'react-contexify/dist/ReactContexify.css';
+
 export default {
   title: 'Context Menu',
   component: ContextMenu,

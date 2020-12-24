@@ -7,8 +7,7 @@ import Button from '../../Button'
 import { startOfDay, endOfDay } from 'date-fns'
 import { isValidDate } from '../../../util/date'
 
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
+
 import { DateRangeOptions, DateRangeProps } from '.'
 
 const StyledDateRange = styled(DateRange)`
@@ -22,8 +21,8 @@ const StyledClearButton = styled(Button)`
 `
 
 interface DateRangeValue {
-  startDate: Date | null
-  endDate: Date | null
+  startDate: Date | undefined
+  endDate: Date | undefined
   key: string
 }
 
@@ -32,8 +31,8 @@ const DateRangeFilter = (props: DateRangeProps) => {
   const RANGE_KEY = 'selection'
 
   const dateRange: DateRangeValue = {
-    startDate: propsValue?.start ? startOfDay(propsValue.start) : null,
-    endDate: propsValue?.end ? endOfDay(propsValue.end) : null,
+    startDate: propsValue?.start ? startOfDay(propsValue.start) : undefined,
+    endDate: propsValue?.end ? endOfDay(propsValue.end) : undefined,
     key: RANGE_KEY
   }
 
@@ -49,8 +48,8 @@ const DateRangeFilter = (props: DateRangeProps) => {
     (ranges) => {
       let { startDate: startRaw, endDate: endRaw } = ranges[RANGE_KEY]
 
-      let start: Date | null = null
-      let end: Date | null = null
+      let start: Date | undefined = undefined
+      let end: Date | undefined = undefined
 
       if (!isValidDate(endRaw)) {
         endRaw = startRaw

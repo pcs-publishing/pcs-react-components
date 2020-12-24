@@ -1,9 +1,12 @@
 import React, { useState, useCallback } from 'react'
 import { useDropzone, DropzoneOptions, FileRejection } from 'react-dropzone'
 import styled from '../../theme-styled'
-import { FileUpload, FileUploadStatus } from '.'
 import UploadGrid from './components/UploadGrid'
 import { isEmpty } from 'lodash'
+import { FileUpload, FileUploadStatus } from './definitions'
+
+
+
 
 export interface UploaderProps {
   onDrop: (file: File) => Promise<void>

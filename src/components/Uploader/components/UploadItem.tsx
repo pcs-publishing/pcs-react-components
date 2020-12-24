@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { Segment, Icon, SemanticICONS, SemanticCOLORS } from 'semantic-ui-react'
-import { FileUpload, FileUploadStatus } from '..'
+import { FileUpload, FileUploadStatus } from '../definitions'
 import styled from '../../../theme-styled'
 
 interface UploadItemProps {

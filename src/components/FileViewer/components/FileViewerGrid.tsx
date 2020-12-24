@@ -1,8 +1,8 @@
 import React from 'react'
-import { FileViewerGridProps } from '..'
 import styled from '../../../theme-styled'
 import { Segment, Header, Icon } from 'semantic-ui-react'
 import LoadingMask from '../../LoadingMask'
+import { FileViewerGridProps } from '../definitions'
 
 const Container = styled.div`
   display: flex;

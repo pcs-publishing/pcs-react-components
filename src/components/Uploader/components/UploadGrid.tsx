@@ -1,8 +1,8 @@
 import React from 'react'
-import { FileUpload } from '..'
 import UploadItem from './UploadItem'
 import { Segment } from 'semantic-ui-react'
 import styled from '../../../theme-styled'
+import { FileUpload } from '../definitions'
 
 interface UploadGridProps {
   uploads: FileUpload[]

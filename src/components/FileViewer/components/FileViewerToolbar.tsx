@@ -1,7 +1,7 @@
 import React from 'react'
-import { FileViewerToolbarProps } from '..'
 import FileUploader from './FileUploader'
 import styled from '../../../theme-styled'
+import { FileViewerToolbarProps } from '../definitions'
 
 const Container = styled.div`
   padding: 5px 10px 0px 10px;

@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import AutoForm from './AutoForm'
 import { AutoFormProps } from './definitions';
 
-export default { 
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+
+export default {
   title: 'Form/AutoForm',
   component: AutoForm,
-  argTypes: { onSave: { action: 'save'}, onCancel: { action: 'cancel'} }
+  argTypes: { onSave: { action: 'save' }, onCancel: { action: 'cancel' } }
 }
 
 const Container = styled.div`
@@ -28,42 +31,42 @@ Example.args = {
     label: 'Title',
     type: 'dropdown',
     required: true,
-    options: ['Mr', 'Miss', 'Ms', 'Dr', 'Mx'].map(v => ({ key: v, text: v, value: v}))
+    options: ['Mr', 'Miss', 'Ms', 'Dr', 'Mx'].map(v => ({ key: v, text: v, value: v }))
   }, {
     key: 'forename',
     label: 'Forename',
     type: 'text',
     required: true
-    }, {
-      key: 'surname',
-      label: 'Surname',
-      type: 'text',
-      required: true
-    }, {
-      key: 'dob',
-      label: 'Date of Birth',
-      type: 'date'
-    }, {
-      key: 'colour',
-      label: 'Favorite Colour',
-      type: 'color'
-    }, {
-      key: 'start',
-      label: 'Start Time',
-      type: 'time'
-    }, {
-      key: 'admin',
-      label: 'Is Admin',
-      type: 'boolean'
-    }, {
-      key: 'filename',
-      label: 'Filename',
-      type: 'filename'
-    }, {
-      key: 'holiday',
-      label: 'Holiday Date Range',
-      type: 'daterange'
-    }],
+  }, {
+    key: 'surname',
+    label: 'Surname',
+    type: 'text',
+    required: true
+  }, {
+    key: 'dob',
+    label: 'Date of Birth',
+    type: 'date'
+  }, {
+    key: 'colour',
+    label: 'Favorite Colour',
+    type: 'color'
+  }, {
+    key: 'start',
+    label: 'Start Time',
+    type: 'time'
+  }, {
+    key: 'admin',
+    label: 'Is Admin',
+    type: 'boolean'
+  }, {
+    key: 'filename',
+    label: 'Filename',
+    type: 'filename'
+  }, {
+    key: 'holiday',
+    label: 'Holiday Date Range',
+    type: 'daterange'
+  }],
   compact: false,
   size: 'normal',
   defaultValue: {
