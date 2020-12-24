@@ -4,7 +4,7 @@ import { Icon, Header } from 'semantic-ui-react'
 import styled from '../../../theme-styled'
 import Box from '../../Styled/Box'
 
-const TileItemContainer = styled(Box)<{ width?: number}>`
+const TileItemContainer = styled(Box) <{ width?: number }>`
   width: ${props => props.width || 300}px;
   height: 150px;
   text-align: center;
@@ -18,7 +18,7 @@ const TileItemContainer = styled(Box)<{ width?: number}>`
     i,
     div {
       color: ${(props) =>
-        props.theme.colors.text.onPrimary} !important;
+    props.theme.colors.text.onPrimary} !important;
     }
   }
 `
@@ -26,13 +26,13 @@ const TileItemContainer = styled(Box)<{ width?: number}>`
 const StyledHeader = styled(Header)``
 
 const TileItem = (props: TileItemProps) => {
-   const { name, icon, description, path, width, onClick } = props
+  const { name, icon, description, path, width, onClick } = props
 
   const handleClick = useCallback(() => {
-    onClick({ name, path })
+    if (onClick) onClick({ name, path })
   }, [onClick, name, path])
 
-    return (
+  return (
     <TileItemContainer onClick={handleClick} width={width}>
       <StyledHeader icon color="grey">
         <Icon name={icon} />
