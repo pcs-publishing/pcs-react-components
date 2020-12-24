@@ -5,14 +5,14 @@ export interface TileItemProps {
   name: string
   description: string
   icon: SemanticICONS
-  onClick: (item: { name: string; path?: string }) => void
+  onClick?: (item: { name: string; path?: string }) => void
   path?: string
   width?: number
 }
 
 export interface TileMenuProps {
   items: TileItemProps[]
-  onItemClick: (item: { name: string; path?: string }) => void
+  onItemClick?: (item: { name: string; path?: string }) => void
   tileItemWidth?: number
 }
 

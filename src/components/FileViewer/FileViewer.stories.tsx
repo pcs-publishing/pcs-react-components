@@ -63,6 +63,7 @@ Window.args = {
       mimeType={props.record.mimeType}
       title={props.record.title}
       filename={props.record.title}
+      text={[{ label: 'Text Label', value: 'Example Value' }, { label: 'Text Label2', value: 'Example Value2' }]}
       editFields={[]} />
   }
   ,

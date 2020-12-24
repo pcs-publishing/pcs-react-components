@@ -82,7 +82,7 @@ export interface SingleFileComponentExtendedProps<T> extends SingleFileComponent
   onSelectionChange?: (selected: boolean) => void
   maxImageHeight?: number
   maxImageWidth?: number
-  text?: [{ label: string; value: string; className?: string }]
+  text?: { label: string; value: string; className?: string }[]
   allowDelete?: boolean
 }
 
