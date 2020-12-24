@@ -39,6 +39,7 @@ import C_SplitButton from './components/SplitButton'
 import C_Box from './components/Styled/Box'
 import C_FlexContainer from './components/Styled/FlexContainer'
 import C_Swatch from './components/Styled/Swatch'
+import C_DrawerArea from './components/Styled/DrawerArea'
 import C_SummaryValue from './components/SummaryValue'
 import C_TileMenu from './components/TileMenu'
 import C_Uploader from './components/Uploader'
@@ -106,6 +107,7 @@ export const SplitButton = C_SplitButton
 export const Box = C_Box
 export const FlexContainer = C_FlexContainer
 export const Swatch = C_Swatch
+export const DrawerArea = C_DrawerArea
 export const SummaryValue = C_SummaryValue
 export const TileMenu = C_TileMenu
 export const Uploader = C_Uploader
