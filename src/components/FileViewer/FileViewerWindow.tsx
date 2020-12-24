@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '../../theme-styled'
 import { Modal } from 'semantic-ui-react'
-import  { FileViewerProps } from '.'
+import { FileViewerProps } from './definitions'
 import FileViewer from './FileViewer'
 
 const ModalContent = styled(Modal.Content)`

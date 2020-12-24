@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import FileViewerToolbar from './components/FileViewerToolbar'
 import FileViewerGrid from './components/FileViewerGrid'
-import { FileViewerProps } from '.'
+import { FileViewerProps } from './definitions'
 import ViewFileWindow, { FileRecord } from '../ViewFileWindow'
 import Confirm from '../Popups/Confirm'
 
