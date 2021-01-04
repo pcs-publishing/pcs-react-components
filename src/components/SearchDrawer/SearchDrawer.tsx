@@ -75,7 +75,7 @@ export default SearchDrawer
 
 function getFilterComponents<T, U extends string>(filterDefinitions: FilterDefinition<T, U>[], singleFilterChangeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>, getFilterComponent?: GetFilterComponentFn<T, U>): ReactElement[] {
   return filterDefinitions.map(filterDefinition => {
-    let filter: ReactElement | undefined
+    let filter: ReactElement | null = null
     if (getFilterComponent) {
       filter = getFilterComponent(filterDefinition, singleFilterChangeHandler, currentFilter)
     }

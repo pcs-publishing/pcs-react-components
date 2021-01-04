@@ -26,7 +26,7 @@ export type GetFilterComponentFn<T, U extends string> = (
   filterDefinition: FilterDefinition<T, U>,
   singleFilterChangeHandler: SingleFilterChangeHandler<T>,
   currentFilter: Partial<T>
-) => ReactElement
+) => ReactElement | null
 
 export type FilterValue =
   | string
