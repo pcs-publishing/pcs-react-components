@@ -14,5 +14,7 @@ export default {
       sourcemap: true
     }
   ],
+  cache: false,
+  clean: true,
   plugins: [peerDepsExternal(), resolve(), commonjs(), typescript()]
 };
