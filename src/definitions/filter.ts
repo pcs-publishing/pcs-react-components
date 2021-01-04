@@ -1,5 +1,7 @@
 import { ReactElement } from 'react'
 
+export type InputType = 'textfield' | 'daterange' | 'format'
+
 export interface FilterDefinition<Filter, FilterType extends string> {
   type: FilterType
   name: keyof Filter
@@ -7,6 +9,7 @@ export interface FilterDefinition<Filter, FilterType extends string> {
   label?: string
   icon?: string
   mask?: string
+  inputType?: string
   format?: (
     filterDefinition: FilterDefinition<Filter, FilterType>
   ) => JSX.Element
