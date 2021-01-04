@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal } from 'semantic-ui-react'
 import styled from '../../../theme-styled'
 
-interface TextViewerProps {
+export interface TextViewerProps {
   name: string
   textContent?: string
   onClose: () => void
@@ -13,7 +13,7 @@ const Text = styled.p`
   white-space: pre-line;
 `
 
-const StyledModal = styled(Modal)<{ width?: string }>`
+const StyledModal = styled(Modal) <{ width?: string }>`
   ${(props) => (props.width ? `width: ${props.width} !important` : '')};
 `
 

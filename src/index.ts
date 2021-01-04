@@ -44,6 +44,7 @@ import C_SummaryValue from './components/SummaryValue'
 import C_TileMenu from './components/TileMenu'
 import C_Uploader from './components/Uploader'
 import C_ViewFileWindow from './components/ViewFileWindow'
+import C_TextViewer from './components/ViewFileWindow/components/TextViewer'
 //#endregion
 
 //#region hook imports
@@ -112,6 +113,7 @@ export const SummaryValue = C_SummaryValue
 export const TileMenu = C_TileMenu
 export const Uploader = C_Uploader
 export const ViewFileWindow = C_ViewFileWindow
+export const TextViewer = C_TextViewer
 //#endregion
 
 //#region hook exports

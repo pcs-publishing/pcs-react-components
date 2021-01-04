@@ -44,6 +44,5 @@ export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputT
         currentFilter={filter}
       />
     </Container>
-
   )
 }
