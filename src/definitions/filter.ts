@@ -1,16 +1,14 @@
 import { ReactElement } from 'react'
 
-export type InputType = 'textfield' | 'daterange' | 'format'
-
-export interface FilterDefinition<Filter, ExtendedInputType extends string> {
-  type: ExtendedInputType
+export interface FilterDefinition<Filter, FilterType extends string> {
+  type: FilterType
   name: keyof Filter
   queryName?: string
   label?: string
   icon?: string
   mask?: string
   format?: (
-    filterDefinition: FilterDefinition<Filter, ExtendedInputType>
+    filterDefinition: FilterDefinition<Filter, FilterType>
   ) => JSX.Element
 }
 

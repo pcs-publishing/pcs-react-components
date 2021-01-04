@@ -4,8 +4,7 @@ import { capitalize } from 'lodash'
 
 import {
   SingleFilterChangeHandler,
-  FilterDefinition,
-  InputType
+  FilterDefinition
 } from '../../../definitions/filter'
 import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
 

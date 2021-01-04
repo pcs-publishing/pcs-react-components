@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react'
 import {
   FilterDefinition,
-  SingleFilterChangeHandler,
-  InputType
+  SingleFilterChangeHandler
 } from '../../../definitions/filter'
 import DateRange, { DateRangeOptions } from '../../Form/DateRange'
 

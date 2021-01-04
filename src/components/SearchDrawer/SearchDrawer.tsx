@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { Form } from 'semantic-ui-react'
-import { FilterDefinition, GetFilterComponentFn, InputType, SingleFilterChangeHandler } from '../../definitions/filter';
+import { FilterDefinition, GetFilterComponentFn, SingleFilterChangeHandler } from '../../definitions/filter';
 import styled from '../../theme-styled'
 import CollapsiblePanel from '../CollapsiblePanel'
 import Box from '../Styled/Box'

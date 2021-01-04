@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FilterDefinition, InputType, FilterValue, DateRange } from '../../definitions/filter'
+import { FilterDefinition, FilterValue, DateRange } from '../../definitions/filter'
 import SearchDrawer, { SearchDrawerProps } from './SearchDrawer'
 import styled from '../../theme-styled'
 
@@ -18,10 +18,10 @@ const Container = styled.div`
   height: 700px;
 `
 
-export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputType>) => {
+export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, 'textfield' | 'daterange'>) => {
   const [filter, setFilter] = useState<Partial<ExampleFilter>>({})
 
-  const filterDefinitions: FilterDefinition<ExampleFilter, InputType>[] = [{
+  const filterDefinitions: FilterDefinition<ExampleFilter, 'textfield' | 'daterange'>[] = [{
     type: 'textfield',
     name: 'identifier',
   }, {
@@ -29,7 +29,7 @@ export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputT
     name: 'dateRange',
     label: 'Date Range'
   }]
-  
+
   const onFilterChange = (name: keyof ExampleFilter, value: FilterValue) => {
     props.singleFilterChangeHandler(name, value)
     setFilter(filter => ({ ...filter, [name]: value }))
