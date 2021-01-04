@@ -17,7 +17,7 @@ const Container = styled(Box)`
   margin-right: 5px;
 `
 
-const CollapsibleSearchPanel = styled(CollapsiblePanel)<{
+const CollapsibleSearchPanel = styled(CollapsiblePanel) <{
   width: number | undefined
 }>`
   width: ${(props) => props.width || 370}px;
@@ -73,7 +73,7 @@ const SearchDrawer = <T extends any, U extends InputType>(props: SearchDrawerPro
 
 export default SearchDrawer
 
-function getFilterComponents<T, U extends InputType>(filterDefinitions: FilterDefinition<T, U>[], singleFilterChangeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>, getFilterComponent?: GetFilterComponentFn<T, U>) : ReactElement[] {
+function getFilterComponents<T, U extends InputType>(filterDefinitions: FilterDefinition<T, U>[], singleFilterChangeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>, getFilterComponent?: GetFilterComponentFn<T, U>): ReactElement[] {
   return filterDefinitions.map(filterDefinition => {
     let filter: ReactElement | undefined
     if (getFilterComponent) {
@@ -87,7 +87,7 @@ function getFilterComponents<T, U extends InputType>(filterDefinitions: FilterDe
   })
 }
 
-function getBaseFilterComponent<T, U extends InputType>(filterDefinition: FilterDefinition<T, U>, changeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>) : ReactElement {
+function getBaseFilterComponent<T, U extends InputType>(filterDefinition: FilterDefinition<T, U>, changeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>): ReactElement {
   const props = {
     key: filterDefinition.name as string,
     value: currentFilter[filterDefinition.name],
@@ -100,8 +100,11 @@ function getBaseFilterComponent<T, U extends InputType>(filterDefinition: Filter
       return <TextFilter {...props} />
     case 'daterange':
       return <DateRangeFilter {...props} />
+    case 'format':
+      if (filterDefinition.format) filterDefinition.format(filterDefinition)
+      return <div key={filterDefinition.name as string}>No format function specified for {filterDefinition.name}</div>
     default:
-      return <div key={filterDefinition.name as string}>Unknown filter type {filterDefinition.type}.</div>
-  }  
+      return <div key={filterDefinition.name as string}>({filterDefinition.name})Unknown filter type {filterDefinition.type}.</div>
+  }
 }
 
