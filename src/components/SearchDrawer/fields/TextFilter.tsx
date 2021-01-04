@@ -9,14 +9,14 @@ import {
 } from '../../../definitions/filter'
 import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
 
-interface TextFilterProps<T, U extends string = InputType> {
+interface TextFilterProps<T, U extends string> {
   value?: unknown
   filterDefinition: FilterDefinition<T, U>
   changeHandler: SingleFilterChangeHandler<T>
   type?: string
 }
 
-const TextFilter = <T extends any, U extends string = InputType>(props: TextFilterProps<T, U>) => {
+const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U>) => {
   const propsValue = props.value as string
   const type = props.type
   const [value, setValue] = useState<string | number>(propsValue)

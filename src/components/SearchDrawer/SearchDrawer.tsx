@@ -30,7 +30,7 @@ const CollapsibleSearchPanel = styled(CollapsiblePanel) <{
 
 const FilterContainer = styled.div``
 
-export interface SearchDrawerProps<T, U extends string = InputType> {
+export interface SearchDrawerProps<T, U extends string> {
   title?: string
   width?: number
   header?: ReactNode
@@ -46,7 +46,7 @@ const StyledForm = styled(Form)`
   flex-grow: 1;
   height: 0;
 `
-const SearchDrawer = <T extends any, U extends string = InputType>(props: SearchDrawerProps<T, U>) => {
+const SearchDrawer = <T extends any, U extends string>(props: SearchDrawerProps<T, U>) => {
   return (
     <Container>
       <CollapsibleSearchPanel
@@ -73,7 +73,7 @@ const SearchDrawer = <T extends any, U extends string = InputType>(props: Search
 
 export default SearchDrawer
 
-function getFilterComponents<T, U extends string = InputType>(filterDefinitions: FilterDefinition<T, U>[], singleFilterChangeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>, getFilterComponent?: GetFilterComponentFn<T, U>): ReactElement[] {
+function getFilterComponents<T, U extends string>(filterDefinitions: FilterDefinition<T, U>[], singleFilterChangeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>, getFilterComponent?: GetFilterComponentFn<T, U>): ReactElement[] {
   return filterDefinitions.map(filterDefinition => {
     let filter: ReactElement | undefined
     if (getFilterComponent) {
@@ -87,7 +87,7 @@ function getFilterComponents<T, U extends string = InputType>(filterDefinitions:
   })
 }
 
-function getBaseFilterComponent<T, U extends string = InputType>(filterDefinition: FilterDefinition<T, U>, changeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>): ReactElement {
+function getBaseFilterComponent<T, U extends string>(filterDefinition: FilterDefinition<T, U>, changeHandler: SingleFilterChangeHandler<T>, currentFilter: Partial<T>): ReactElement {
   const props = {
     key: filterDefinition.name as string,
     value: currentFilter[filterDefinition.name],
