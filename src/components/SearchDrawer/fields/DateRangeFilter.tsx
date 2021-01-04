@@ -7,7 +7,7 @@ import {
 import DateRange, { DateRangeOptions } from '../../Form/DateRange'
 
 
-interface DateRangeFilterProps<T, U extends InputType> {
+interface DateRangeFilterProps<T, U extends string = InputType> {
   value?: unknown
   filterDefinition: FilterDefinition<T, U>
   changeHandler: SingleFilterChangeHandler<T>
@@ -15,7 +15,7 @@ interface DateRangeFilterProps<T, U extends InputType> {
 
 
 
-const DateRangeFilter = <T extends any, U extends InputType>(props: DateRangeFilterProps<T, U>) => {
+const DateRangeFilter = <T extends any, U extends string = InputType>(props: DateRangeFilterProps<T, U>) => {
   const { filterDefinition, changeHandler } = props
 
   const onChange = useCallback(() => {

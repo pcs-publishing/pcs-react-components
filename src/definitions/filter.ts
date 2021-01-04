@@ -2,7 +2,10 @@ import { ReactElement } from 'react'
 
 export type InputType = 'textfield' | 'daterange' | 'format'
 
-export interface FilterDefinition<Filter, ExtendedInputType = InputType> {
+export interface FilterDefinition<
+  Filter,
+  ExtendedInputType extends string = InputType
+> {
   type: ExtendedInputType
   name: keyof Filter
   queryName?: string
@@ -24,7 +27,7 @@ export type SingleFilterChangeHandler<Filter> = (
   value: FilterValue
 ) => void
 
-export type GetFilterComponentFn<T, U extends InputType> = (
+export type GetFilterComponentFn<T, U extends string = InputType> = (
   filterDefinition: FilterDefinition<T, U>,
   singleFilterChangeHandler: SingleFilterChangeHandler<T>,
   currentFilter: Partial<T>
