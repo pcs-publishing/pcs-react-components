@@ -24,6 +24,11 @@ export type ColumnValueType =
 
 export type SortDirection = 'ascending' | 'descending' | undefined
 
+export interface Sort {
+  column: string
+  direction: SortDirection
+}
+
 export interface ColumnDefinition<T, U = never> {
   key: keyof T | U
   type?: ColumnValueType // gives a default beforeSort and format value

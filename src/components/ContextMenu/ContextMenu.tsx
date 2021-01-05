@@ -3,13 +3,10 @@ import { SemanticICONS, Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { Menu, Item } from 'react-contexify'
 
-
-
 const StyledMenu = styled(Menu)`
   border-radius: 3px;
   z-index: 1000 !important;
 `
-
 export interface MenuItemEventHandler {
   event?: MouseEvent & TouchEvent
   props?: {
@@ -17,7 +14,7 @@ export interface MenuItemEventHandler {
   }
 }
 
-const StyledItem = styled(Item)<{ $selectedBackgroundColor: string, $selectedTextColor: string}>`
+const StyledItem = styled(Item) <{ $selectedBackgroundColor: string, $selectedTextColor: string }>`
   display: block;
   font-size: 1.1em;
   padding-left: 5px;
@@ -31,7 +28,7 @@ const StyledItem = styled(Item)<{ $selectedBackgroundColor: string, $selectedTex
     div {
       background: ${(props) => props.$selectedBackgroundColor} !important;
       color: ${(props) =>
-        props.$selectedTextColor} !important;
+    props.$selectedTextColor} !important;
       border-radius: 5px;
     }
   }
@@ -51,7 +48,7 @@ export interface ContextMenuItem<T> {
 export interface ContextMenuProps<T> {
   id: string
   items: ContextMenuItem<T>[]
-  onAction: (action: T, args: MenuItemEventHandler) => void | Promise<void>
+  onAction: (action: T, args: MenuItemEventHandler) => (void | Promise<void>)
   selectedItemBackgroundColor?: string
   selectedItemTextColor?: string
 }
