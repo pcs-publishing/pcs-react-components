@@ -29,8 +29,8 @@ export interface Sort {
   direction: SortDirection
 }
 
-export interface ColumnDefinition<T, U = never> {
-  key: keyof T | U
+export interface ColumnDefinition<T> {
+  key: keyof T | string
   type?: ColumnValueType // gives a default beforeSort and format value
   title?: string
   export?: boolean

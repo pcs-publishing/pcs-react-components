@@ -6,9 +6,9 @@ import {
   getFormattedDateTime
 } from '../util/date'
 
-export function formatColumnValue<T, U>(
+export function formatColumnValue<T>(
   record: T,
-  columnDefinition: ColumnDefinition<T, U>,
+  columnDefinition: ColumnDefinition<T>,
   index: number
 ): any {
   if (columnDefinition.format) {
@@ -22,8 +22,8 @@ export function formatColumnValue<T, U>(
   )
 }
 
-export function formatColumnName<T, U>(
-  columnDefinition: ColumnDefinition<T, U>
+export function formatColumnName<T>(
+  columnDefinition: ColumnDefinition<T>
 ): string {
   return columnDefinition.title ?? _.capitalize(columnDefinition.key as string)
 }

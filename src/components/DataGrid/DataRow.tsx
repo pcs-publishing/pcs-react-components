@@ -11,10 +11,10 @@ interface RowColor {
   text: string
 }
 
-interface DataRowProps<T, U> {
+interface DataRowProps<T> {
   record: T
   index: number
-  columnDefinitions: ColumnDefinition<T, U>[]
+  columnDefinitions: ColumnDefinition<T>[]
   selected: boolean
   onRowClick: (record: T, isMultiSelect: boolean) => void
   contextMenu?: string
@@ -23,12 +23,12 @@ interface DataRowProps<T, U> {
   onRowDoubleClick?: (record: T) => void
 }
 
-const Cell = styled(Table.Cell)<{ padding?: number }>`
+const Cell = styled(Table.Cell) <{ padding?: number }>`
   ${(props) =>
     _.isNumber(props.padding) ? `padding: ${props.padding}px !important;` : ''}
 `
 
-const TableRow = styled(Table.Row)<{ selected: boolean }>`
+const TableRow = styled(Table.Row) <{ selected: boolean }>`
   :hover {
     background-color: rgba(0, 0, 0, 0.05)
   }
@@ -44,8 +44,8 @@ const TableRow = styled(Table.Row)<{ selected: boolean }>`
   }}
 `
 
-const DataRow = <T extends any, U extends string>(
-  props: DataRowProps<T, U>
+const DataRow = <T extends any>(
+  props: DataRowProps<T>
 ) => {
   const {
     record,

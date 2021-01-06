@@ -26,15 +26,16 @@ import useRecordSelection from '../../hooks/useRecordSelection'
 import ReactResizeDetector from 'react-resize-detector'
 import LoadingMask from '../LoadingMask'
 
-export interface DataGridProps<T, U> {
+export interface DataGridProps<T> {
+  idField: keyof SubType<T, string | number>
   data: T[]
-  columnDefinitions: ColumnDefinition<T, U>[]
+  columnDefinitions: ColumnDefinition<T>[]
   defaultSortColumn?: string
   defaultSortDirection?: SortDirection
   compact?: boolean
   selectionMode?: SelectionMode
   onSortChange?: (
-    column: ColumnDefinition<T, U>,
+    column: ColumnDefinition<T>,
     direction: SortDirection
   ) => void
   contextMenu?: string
@@ -43,7 +44,6 @@ export interface DataGridProps<T, U> {
   pageInfo?: PageInfo
   onPageInfoChange?: (pageInfo: PageInfo) => void
   onSelectedRecordsChange?: (selectedRecords: T[]) => void
-  idField: keyof SubType<T, string | number>
   loading?: boolean
   onDoubleClickRow?: (record: T) => void
   onRefreshClick?: () => void
@@ -66,8 +66,8 @@ const TableCmp = styled(Table)`
   width: 100%;
 `
 
-const DataGrid = <T extends any, U extends string>(
-  props: DataGridProps<T, U>
+const DataGrid = <T extends any>(
+  props: DataGridProps<T>
 ) => {
   const [sortedColumn, setSortedColumn] = useState<string>(
     props.defaultSortColumn || ''
@@ -121,7 +121,7 @@ const DataGrid = <T extends any, U extends string>(
     sortedColumn === column ? sortDirection : undefined
 
   const onSortClick = (column: string) =>
-    handleSortClick<T, U>(
+    handleSortClick<T>(
       column,
       setSortedColumn,
       setSortDirection,
@@ -183,11 +183,11 @@ const DataGrid = <T extends any, U extends string>(
 
 export default DataGrid
 
-function handleSortClick<T, U>(
+function handleSortClick<T>(
   column: string,
   setSortedColumn: Dispatch<SetStateAction<string>>,
   setSortDirection: Dispatch<SetStateAction<SortDirection>>,
-  columnDefinitions: ColumnDefinition<T, U>[]
+  columnDefinitions: ColumnDefinition<T>[]
 ) {
   const columnDefinition = columnDefinitions.find(({ key }) => key === column)
 

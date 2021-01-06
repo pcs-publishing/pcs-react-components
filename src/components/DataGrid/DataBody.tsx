@@ -9,11 +9,11 @@ interface TableBodyProps {
   $height: string
 }
 
-interface DataBodyProps<T, U> {
+interface DataBodyProps<T> {
   records: T[]
   height: number
   isRecordSelected: (record: T) => boolean
-  columnDefinitions: ColumnDefinition<T, U>[]
+  columnDefinitions: ColumnDefinition<T>[]
   onRowClick: (record: T, isMultiSelect: boolean) => void
   contextMenu?: string
   allowContextMenu?: (record: T) => boolean
@@ -21,15 +21,15 @@ interface DataBodyProps<T, U> {
   onRowDoubleClick?: (record: T) => void
 }
 
-const TableBody = styled(Table.Body)<TableBodyProps>`
+const TableBody = styled(Table.Body) <TableBodyProps>`
   display: block;
   overflow-y: auto;
   width: 100%;
   max-height: ${(props) => props.$height};
 `
 
-const DataBody = <T extends any, U extends string>(
-  props: DataBodyProps<T, U>
+const DataBody = <T extends any>(
+  props: DataBodyProps<T>
 ) => {
   const { records, isRecordSelected } = props
   const height: string = isNaN(props.height) ? '100%' : `${props.height}px`

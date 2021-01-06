@@ -16,10 +16,10 @@ import { isValid } from 'date-fns'
  *
  * @return The sorted data
  */
-export function sortData<T, U>(
+export function sortData<T>(
   data: T[],
   sortColumn: string,
-  columnDefinitions: ColumnDefinition<T, U>[],
+  columnDefinitions: ColumnDefinition<T>[],
   direction: SortDirection = 'ascending'
 ): T[] {
   if (!sortColumn) {
@@ -46,9 +46,9 @@ export function sortData<T, U>(
  *
  * @return The sorted data
  */
-function sortDataByColumn<T, U>(
+function sortDataByColumn<T>(
   data: T[],
-  columnDefinition: ColumnDefinition<T, U>,
+  columnDefinition: ColumnDefinition<T>,
   direction: SortDirection
 ): T[] {
   const sorted = _.sortBy(data, (dataItem) => {
@@ -66,9 +66,9 @@ function sortDataByColumn<T, U>(
  *
  * @return The value to sort by for this record
  */
-function getSortValue<T, U>(
+function getSortValue<T>(
   record: T,
-  columnDefinition: ColumnDefinition<T, U>
+  columnDefinition: ColumnDefinition<T>
 ): unknown {
   const value = record[columnDefinition.key as keyof T]
 
@@ -107,10 +107,10 @@ function formatValueForSortingByType(
  * @param columnName
  * @param definitions
  */
-function getDefinitionForColumn<T, U>(
+function getDefinitionForColumn<T>(
   columnName: string,
-  definitions: ColumnDefinition<T, U>[]
-): ColumnDefinition<T, U> | undefined {
+  definitions: ColumnDefinition<T>[]
+): ColumnDefinition<T> | undefined {
   return _.find(definitions, (definition) => definition.key === columnName)
 }
 
