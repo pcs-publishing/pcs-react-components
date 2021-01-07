@@ -122,6 +122,7 @@ export const useCallOnEscapeUp = H_useCallOnEscapeUp
 export const useCallOnKeyUp = H_useCallOnKeyUp
 export const useRecordSelection = H_useRecordSelection
 export const useTheme = H_useTheme
+export const useDebouncedCallback = H_useDebouncedCallback
 //#endregion
 
 //#region service exports
