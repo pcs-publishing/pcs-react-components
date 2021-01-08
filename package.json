@@ -1,6 +1,6 @@
 {
   "name": "@pcs/react-components",
-  "version": "1.0.19",
+  "version": "1.0.18",
   "description": "",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -11,7 +11,8 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "rollup -c && npm t"
   },
   "author": "",
   "license": "ISC",
