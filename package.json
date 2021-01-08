@@ -1,6 +1,6 @@
 {
   "name": "@pcs/react-components",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "main": "build/index.js",
   "module": "build/index.esm.js",
