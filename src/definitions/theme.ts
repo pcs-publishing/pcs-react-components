@@ -12,7 +12,8 @@ export interface Theme {
   }
   backgrounds: {
     main: FlattenSimpleInterpolation,
-    offset: FlattenSimpleInterpolation
+    offset: FlattenSimpleInterpolation,
+    offsetEmphasis: FlattenSimpleInterpolation
   },
   border: FlattenSimpleInterpolation
   dragOverOutline: FlattenSimpleInterpolation
