@@ -1,6 +1,5 @@
 //#region component imports
 import C_Button from './components/Button'
-import C_CodeEditor from './components/CodeEditor'
 import C_ContextMenu from './components/ContextMenu'
 import C_Counter from './components/Counter'
 import C_DataGrid from './components/DataGrid'
@@ -69,7 +68,6 @@ import * as U_format from './util/format'
 
 //#region component exports
 export const Button = C_Button
-export const CodeEditor = C_CodeEditor
 export const ContextMenu = C_ContextMenu
 export const Counter = C_Counter
 export const DataGrid = C_DataGrid
