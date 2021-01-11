@@ -30,3 +30,8 @@ To use a component from the component library, import and use it like so (exampl
 ```
 
 This example demonstrates how to use one of the many components available within the pcs-react-components library, to see examples and demos of all the components available visit: http://react-components.dev.presscomputer.systems
+
+## Contributing
+
+If you have an idea for a generic component that you think would be a good addition to the library then feel free to submit a pull-request to 
+https://bitbucket.org/pcs-developers/pcs-react-components 
