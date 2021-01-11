@@ -1,6 +1,5 @@
 import React from 'react'
-import { Modal, Header, Icon } from 'semantic-ui-react'
-import Button from '../Button'
+import { Button, Modal, Header, Icon } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 import { pdfjs, Document, Page } from 'react-pdf'
 

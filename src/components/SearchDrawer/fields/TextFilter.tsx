@@ -52,7 +52,7 @@ const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U
   return (
     <Form.Input
       label={label}
-      value={value}
+      value={value || ''}
       onChange={onChangeCallback}
       icon={filterDefinition.icon}
       placeholder={`Filter by ${label}`}

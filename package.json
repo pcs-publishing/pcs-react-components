@@ -1,7 +1,10 @@
 {
   "name": "@pcs/react-components",
   "version": "1.0.21",
-  "description": "",
+  "description": "Generic components for use in PCS React applications",
+  "repository": {
+    "url": "https://bitbucket.org/pcs-developers/pcs-react-components"
+  },
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "files": [
@@ -37,7 +40,6 @@
     "@types/faker": "^5.1.5",
     "@types/jest": "^26.0.19",
     "@types/lodash": "^4.14.165",
-    "@types/prismjs": "^1.16.2",
     "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-date-range": "^1.1.2",
     "@types/react-pdf": "^5.0.0",
@@ -61,7 +63,6 @@
     "date-fns": "^2.16.1",
     "lodash": "^4.17.20",
     "prettier": "^2.2.1",
-    "prismjs": "^1.22.0",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-color": "^2.19.3",
@@ -74,7 +75,6 @@
     "react-resize-detector": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-semantic-ui-range": "^0.7.0",
-    "react-simple-code-editor": "^0.11.0",
     "semantic-ui-react": "^2.0.1",
     "styled-components": "^5.2.1"
   }
