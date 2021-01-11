@@ -20,5 +20,5 @@ export const Example = Template.bind({})
 
 Example.args = {
   title: 'PDF Window',
-  url: 'https://www.bombmanual.com/print/KeepTalkingAndNobodyExplodes-BombDefusalManual-v1.pdf'
+  url: 'https://cors-anywhere.herokuapp.com/https://www.bombmanual.com/print/KeepTalkingAndNobodyExplodes-BombDefusalManual-v1.pdf'
 }
