@@ -15,7 +15,9 @@ export default {
     }
   ],
   cache: false,
-  plugins: [peerDepsExternal(), resolve(), commonjs(), typescript({
+  plugins: [peerDepsExternal(), resolve({
+    preferBuiltins: false
+  }), commonjs(), typescript({
     tsconfig: './tsconfig.json',
     clean: true
   })]
