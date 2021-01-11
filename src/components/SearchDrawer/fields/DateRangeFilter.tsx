@@ -12,8 +12,6 @@ interface DateRangeFilterProps<T, U extends string> {
   changeHandler: SingleFilterChangeHandler<T>
 }
 
-
-
 const DateRangeFilter = <T extends any, U extends string>(props: DateRangeFilterProps<T, U>) => {
   const { filterDefinition, changeHandler } = props
 
