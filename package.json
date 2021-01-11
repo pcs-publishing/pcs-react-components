@@ -15,7 +15,10 @@
     "test-watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepare": "rollup -c && npm t"
+    "prepare": "rollup -c && npm t",
+    "docker-build": "docker build -t pcs-react-components-storybook .",
+    "docker-tag": "docker tag pcs-react-components-storybook registry.presscomputer.systems/pcs-react-components-storybook:latest",
+    "docker-publish": "docker push registry.presscomputer.systems/pcs-react-components-storybook:latest"
   },
   "author": "",
   "license": "ISC",
