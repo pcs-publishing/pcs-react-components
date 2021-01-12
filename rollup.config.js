@@ -12,6 +12,9 @@ export default {
       file: packageJson.module,
       format: "esm",
       sourcemap: true
+    }, {
+      file: packageJson.module,
+      format: 'cjs'
     }
   ],
   cache: false,
