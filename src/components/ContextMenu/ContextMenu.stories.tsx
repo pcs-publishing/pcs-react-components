@@ -1,5 +1,5 @@
 import React from 'react'
-import ContextMenu, { ContextMenuItem } from './ContextMenu';
+import ContextMenu, { ContextMenuItem, ContextMenuProps } from './ContextMenu';
 import styled from 'styled-components'
 import { useContextMenu } from 'react-contexify'
 
@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
   padding: 20px;
 `
 
-export const Basic = (props: ContextMenuProps) => {
+export const Basic = (props: ContextMenuProps<string>) => {
   const items: ContextMenuItem<string>[] = [{
     action: 'rewind',
     text: 'Rewind',
@@ -50,7 +50,7 @@ export const Basic = (props: ContextMenuProps) => {
   </div>
 }
 
-export const DisabledItem = (props: ContextMenuProps) => {
+export const DisabledItem = (props: ContextMenuProps<string>) => {
   const items: ContextMenuItem<string>[] = [{
     action: 'up',
     text: 'Turn Up',
