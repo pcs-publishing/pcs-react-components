@@ -13,7 +13,10 @@ export default function useDebouncedCallback<T extends (...args: any[]) => any>(
     debouncedCallbackRef.current = debounce(callback, delay)
 
     return () => {
-      debouncedCallbackRef.current ?.cancel()
+      if (debouncedCallbackRef.current) {
+        debouncedCallbackRef.current.cancel()
+      }
+    
       debouncedCallbackRef.current = undefined
     }
   }, [callback, delay])

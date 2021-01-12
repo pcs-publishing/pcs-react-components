@@ -12,14 +12,17 @@ export default {
       file: packageJson.module,
       format: "esm",
       sourcemap: true
-    }, {
+    },
+    {
       file: packageJson.module,
       format: 'cjs'
     }
   ],
   cache: false,
   plugins: [peerDepsExternal(), resolve({
-    preferBuiltins: false
+    preferBuiltins: false,
+    main: true,
+    browser: true
   }), commonjs(), typescript({
     tsconfig: './tsconfig.json',
     clean: true
