@@ -28,6 +28,8 @@ const StyledItem = styled(Item)`
   padding-left: 5px;
   padding-right: 5px;
   width: 100%;
+  border: none !important;
+  outline: none !important;
 
   div {
     padding: 8px;
