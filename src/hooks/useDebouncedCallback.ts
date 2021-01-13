@@ -11,6 +11,14 @@ export default function useDebouncedCallback<T extends (...args: any[]) => any>(
 
   useEffect(() => {
     debouncedCallbackRef.current = debounce(callback, delay)
+
+    return () => {
+      if (debouncedCallbackRef.current) {
+        debouncedCallbackRef.current.cancel()
+      }
+    
+      debouncedCallbackRef.current = undefined
+    }
   }, [callback, delay])
 
   return debouncedCallbackRef.current || callback

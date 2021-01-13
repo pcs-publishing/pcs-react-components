@@ -19,7 +19,7 @@ export const PdfFile = Template.bind({})
 
 PdfFile.args = {
   file: {
-    url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    url: 'https://cors-anywhere.herokuapp.com/https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     name: 'Dummy PDF file',
     mimeType: 'application/pdf'
   }
@@ -40,8 +40,9 @@ export const TextFile = Template.bind({})
 TextFile.args = {
   file: {
     url: '',
-    name: 'Example Text File',
-    mimeType: `To see a World in a Grain of Sand
+    name: 'Bit of poetry and that',
+    mimeType: 'text/plain',
+    textContent: `To see a World in a Grain of Sand
                And a Heaven in a Wild Flower
                Hold Infinity in the palm of your hand
                And Eternity in an hour`

@@ -101,7 +101,7 @@ function getBaseFilterComponent<T, U extends string>(filterDefinition: FilterDef
     case 'daterange':
       return <DateRangeFilter {...props} />
     case 'format':
-      if (filterDefinition.format) filterDefinition.format(filterDefinition)
+      if (filterDefinition.format) return filterDefinition.format(filterDefinition)
       return <div key={filterDefinition.name as string}>No format function specified for {filterDefinition.name}</div>
     default:
       return <div key={filterDefinition.name as string}>({filterDefinition.name})Unknown filter type {filterDefinition.type}.</div>

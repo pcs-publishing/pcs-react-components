@@ -1,6 +1,6 @@
 import React from 'react'
 import { SemanticICONS, Icon } from 'semantic-ui-react'
-import styled from 'styled-components'
+import styled, { css } from '../../theme-styled'
 import { Menu, Item } from 'react-contexify'
 
 const StyledMenu = styled(Menu)`
@@ -14,23 +14,33 @@ export interface MenuItemEventHandler {
   }
 }
 
-const StyledItem = styled(Item) <{ $selectedBackgroundColor: string, $selectedTextColor: string }>`
+const HighlightContextItem = css`
+  div {
+    background: ${(props) => props.theme.colors.primary} !important;
+    color: ${(props) => props.theme.colors.text.onPrimary} !important;
+    border-radius: 5px;
+  }
+`
+
+const StyledItem = styled(Item)`
   display: block;
   font-size: 1.1em;
   padding-left: 5px;
   padding-right: 5px;
+  width: 100%;
+  border: none !important;
+  outline: none !important;
 
   div {
     padding: 8px;
   }
 
   :hover {
-    div {
-      background: ${(props) => props.$selectedBackgroundColor} !important;
-      color: ${(props) =>
-    props.$selectedTextColor} !important;
-      border-radius: 5px;
-    }
+    ${HighlightContextItem}
+  }
+
+  :focus {
+    ${HighlightContextItem}
   }
 `
 
@@ -71,8 +81,6 @@ const ContextMenu = <T extends any>({
             key={item.text}
             disabled={disabled}
             onClick={(args: any) => onAction(item.action, args as MenuItemEventHandler)}
-            $selectedBackgroundColor={selectedItemBackgroundColor || '#3498db'}
-            $selectedTextColor={selectedItemTextColor || 'white'}
           >
             <Icon name={item.icon} />
             <FloatRightText>{item.text}</FloatRightText>

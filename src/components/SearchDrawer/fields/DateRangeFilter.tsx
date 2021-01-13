@@ -12,13 +12,11 @@ interface DateRangeFilterProps<T, U extends string> {
   changeHandler: SingleFilterChangeHandler<T>
 }
 
-
-
 const DateRangeFilter = <T extends any, U extends string>(props: DateRangeFilterProps<T, U>) => {
   const { filterDefinition, changeHandler } = props
 
-  const onChange = useCallback(() => {
-    changeHandler(filterDefinition.name, props.value as DateRangeOptions)
+  const onChange = useCallback((value: DateRangeOptions | undefined) => {
+    changeHandler(filterDefinition.name, value)
   }, [filterDefinition, changeHandler])
 
   return <DateRange label={filterDefinition.label} value={props.value as DateRangeOptions} onChange={onChange} />

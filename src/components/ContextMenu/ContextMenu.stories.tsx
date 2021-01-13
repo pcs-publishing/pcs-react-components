@@ -1,5 +1,5 @@
 import React from 'react'
-import ContextMenu, { ContextMenuItem } from './ContextMenu';
+import ContextMenu, { ContextMenuItem, ContextMenuProps } from './ContextMenu';
 import styled from 'styled-components'
 import { useContextMenu } from 'react-contexify'
 
@@ -20,7 +20,7 @@ const StyledDiv = styled.div`
   padding: 20px;
 `
 
-export const Basic = () => {
+export const Basic = (props: ContextMenuProps<string>) => {
   const items: ContextMenuItem<string>[] = [{
     action: 'rewind',
     text: 'Rewind',
@@ -45,12 +45,12 @@ export const Basic = () => {
 
 
   return <div>
-    <ContextMenu id="menuId" items={items} onAction={(action) => console.log(action)} />
+    <ContextMenu id="menuId" items={items} onAction={props.onAction} />
     <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
   </div>
 }
 
-export const DisabledItem = () => {
+export const DisabledItem = (props: ContextMenuProps<string>) => {
   const items: ContextMenuItem<string>[] = [{
     action: 'up',
     text: 'Turn Up',
@@ -69,7 +69,7 @@ export const DisabledItem = () => {
   })
 
   return <div>
-    <ContextMenu id={menuId} items={items} onAction={(action) => console.log(action)} />
+    <ContextMenu id={menuId} items={items} onAction={props.onAction} />
     <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
   </div>
 }
