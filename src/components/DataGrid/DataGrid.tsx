@@ -18,13 +18,14 @@ import {
 
 import { Table } from 'semantic-ui-react'
 import { sortData } from '../../services/SortService'
-import styled from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import HeaderRow from './HeaderRow'
 import DataBody from './DataBody'
 import DataPager from './DataPager'
 import useRecordSelection from '../../hooks/useRecordSelection'
 import ReactResizeDetector from 'react-resize-detector'
 import LoadingMask from '../LoadingMask'
+import { css } from '../../theme-styled'
 
 export interface DataGridProps<T> {
   idField: keyof SubType<T, string | number>
@@ -34,10 +35,7 @@ export interface DataGridProps<T> {
   defaultSortDirection?: SortDirection
   compact?: boolean
   selectionMode?: SelectionMode
-  onSortChange?: (
-    column: ColumnDefinition<T>,
-    direction: SortDirection
-  ) => void
+  onSortChange?: (column: ColumnDefinition<T>, direction: SortDirection) => void
   contextMenu?: string
   allowContextMenu?: (record: T) => boolean
   mapContextMenuProps?: (record: T) => { [key: string]: any }
@@ -47,6 +45,7 @@ export interface DataGridProps<T> {
   loading?: boolean
   onDoubleClickRow?: (record: T) => void
   onRefreshClick?: () => void
+  getRowStyle?: (record: T) => FlattenSimpleInterpolation
 }
 
 const Container = styled.div`
@@ -66,9 +65,7 @@ const TableCmp = styled(Table)`
   width: 100%;
 `
 
-const DataGrid = <T extends any>(
-  props: DataGridProps<T>
-) => {
+const DataGrid = <T extends any>(props: DataGridProps<T>) => {
   const [sortedColumn, setSortedColumn] = useState<string>(
     props.defaultSortColumn || ''
   )
@@ -163,6 +160,7 @@ const DataGrid = <T extends any>(
                 contextMenu={props.contextMenu}
                 allowContextMenu={props.allowContextMenu}
                 mapContextMenuProps={props.mapContextMenuProps}
+                getRowStyle={props.getRowStyle}
               />
 
               {hasPaging ? (

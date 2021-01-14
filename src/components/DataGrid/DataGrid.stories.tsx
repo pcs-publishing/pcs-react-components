@@ -4,6 +4,7 @@ import _ from 'lodash'
 import faker from 'faker'
 import styled from 'styled-components'
 import { ColumnDefinition, PageInfo, SortDirection } from '../../definitions'
+import { css } from '../../theme-styled'
 
 export default {
   title: 'Data/Data Grid',
@@ -25,15 +26,29 @@ interface Record {
 
 const records: Record[] = generateTestData()
 
-const columnDefinitions: ColumnDefinition<Record>[] = [{
+const columnDefinitions: ColumnDefinition<Record>[] = [
+  {
     key: 'name'
-  }, {
+  },
+  {
     key: 'product'
-  }, {
+  },
+  {
     key: 'email'
-  }, {
+  },
+  {
     key: 'phone'
-}]
+  }
+]
+
+const onStyleRow = (record) => {
+  if (record.id % 2) {
+    return css`
+      background-color: #ff6666 !important;
+    `
+  }
+  return css``
+}
 
 const Template = (props: DataGridProps<Record, never>) => {
   const [pageInfo, setPageInfo] = useState<PageInfo>({
@@ -43,34 +58,74 @@ const Template = (props: DataGridProps<Record, never>) => {
     totalRecords: 125
   })
 
-  const [sort, setSort] = useState<{ column: string, direction: SortDirection}>({
+  const [sort, setSort] = useState<{
+    column: string
+    direction: SortDirection
+  }>({
     column: 'name',
     direction: 'ascending'
   })
 
-  const data = useMemo(() => getRecordsForPage(pageInfo.page, pageInfo.pageSize, sort.column, sort.direction, records), [pageInfo, sort, records])
+  const data = useMemo(
+    () =>
+      getRecordsForPage(
+        pageInfo.page,
+        pageInfo.pageSize,
+        sort.column,
+        sort.direction,
+        records
+      ),
+    [pageInfo, sort, records]
+  )
 
-  const onPageInfoChange = useCallback(newInfo => {
-    setPageInfo((current) => ({ ...current, ...newInfo }))
-  }, [setPageInfo])
+  const onPageInfoChange = useCallback(
+    (newInfo) => {
+      setPageInfo((current) => ({ ...current, ...newInfo }))
+    },
+    [setPageInfo]
+  )
 
-  const onSortChange = useCallback((column, direction) => {
-    setSort({ column: column.key, direction })
-  }, [setSort])
+  const onSortChange = useCallback(
+    (column, direction) => {
+      setSort({ column: column.key, direction })
+    },
+    [setSort]
+  )
 
-
-  return <GridContainer>
-    <DataGrid {...props} data={data} columnDefinitions={columnDefinitions} onPageInfoChange={onPageInfoChange} onSortChange={onSortChange} pageInfo={pageInfo} idField="id"/>
-  </GridContainer>
-
- }
+  return (
+    <GridContainer>
+      <DataGrid
+        {...props}
+        data={data}
+        columnDefinitions={columnDefinitions}
+        onPageInfoChange={onPageInfoChange}
+        onSortChange={onSortChange}
+        pageInfo={pageInfo}
+        idField="id"
+        getRowStyle={props.styledRow.state ? onStyleRow : undefined}
+      />
+    </GridContainer>
+  )
+}
 
 export const Basic = Template.bind({})
 
 Basic.args = {
   compact: false,
   selectionMode: 'single',
-  loading: false
+  loading: false,
+  styledRow: {
+    state: false
+  }
+}
+
+export const StyledRow = Template.bind({})
+
+StyledRow.args = {
+  ...Basic.args,
+  styledRow: {
+    state: true
+  }
 }
 
 function generateTestData() {
@@ -83,9 +138,19 @@ function generateTestData() {
   }))
 }
 
-function getRecordsForPage(page: number, pageSize: number, sortColumn: string, sortDirection: SortDirection, data: Record[]): Record[] {
+function getRecordsForPage(
+  page: number,
+  pageSize: number,
+  sortColumn: string,
+  sortDirection: SortDirection,
+  data: Record[]
+): Record[] {
   const startIndex = (page - 1) * pageSize
-  const sortedData = _.orderBy(data, [sortColumn], [sortDirection === 'ascending' ? 'asc' : 'desc'])
+  const sortedData = _.orderBy(
+    data,
+    [sortColumn],
+    [sortDirection === 'ascending' ? 'asc' : 'desc']
+  )
 
   return sortedData.slice(startIndex, startIndex + pageSize)
 }
