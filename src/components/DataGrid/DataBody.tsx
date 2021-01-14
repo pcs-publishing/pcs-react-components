@@ -1,6 +1,6 @@
 import React from 'react'
 import { ColumnDefinition } from '../../definitions'
-import styled from 'styled-components'
+import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import { Table } from 'semantic-ui-react'
 import DataRow from './DataRow'
 import _ from 'lodash'
@@ -19,18 +19,17 @@ interface DataBodyProps<T> {
   allowContextMenu?: (record: T) => boolean
   mapContextMenuProps?: (record: T) => { [key: string]: any }
   onRowDoubleClick?: (record: T) => void
+  getRowStyle?: (record: T) => FlattenSimpleInterpolation
 }
 
-const TableBody = styled(Table.Body) <TableBodyProps>`
+const TableBody = styled(Table.Body)<TableBodyProps>`
   display: block;
   overflow-y: auto;
   width: 100%;
   max-height: ${(props) => props.$height};
 `
 
-const DataBody = <T extends any>(
-  props: DataBodyProps<T>
-) => {
+const DataBody = <T extends any>(props: DataBodyProps<T>) => {
   const { records, isRecordSelected } = props
   const height: string = isNaN(props.height) ? '100%' : `${props.height}px`
 
@@ -40,14 +39,14 @@ const DataBody = <T extends any>(
     'contextMenu',
     'allowContextMenu',
     'mapContextMenuProps',
-    'onRowDoubleClick'
+    'onRowDoubleClick',
+    'getRowStyle'
   ])
 
   return (
     <TableBody $height={height}>
       {records.map((record, index) => {
         const selected = isRecordSelected(record)
-
         return (
           <DataRow
             key={`row-${_.get(record, '_id') || _.get(record, 'id') || index}`}
