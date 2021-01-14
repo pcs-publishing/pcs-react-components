@@ -125,13 +125,6 @@ const DataGrid = <T extends any>(props: DataGridProps<T>) => {
       columnDefinitions
     )
 
-  const onGetRowStyle = (record: T) => {
-    if (props.getRowStyle) {
-      return props.getRowStyle(record)
-    }
-    return css``
-  }
-
   const onRowDoubleClick = (record: T) => {
     if (props.onDoubleClickRow) {
       props.onDoubleClickRow(record)
@@ -167,7 +160,7 @@ const DataGrid = <T extends any>(props: DataGridProps<T>) => {
                 contextMenu={props.contextMenu}
                 allowContextMenu={props.allowContextMenu}
                 mapContextMenuProps={props.mapContextMenuProps}
-                getRowStyle={onGetRowStyle}
+                getRowStyle={props.getRowStyle}
               />
 
               {hasPaging ? (
