@@ -8,13 +8,15 @@ export interface Theme {
     text: {
       onBase: string
       onPrimary: string
+      onNavigation: string
     }
   }
   backgrounds: {
-    main: FlattenSimpleInterpolation,
-    offset: FlattenSimpleInterpolation,
+    main: FlattenSimpleInterpolation
+    offset: FlattenSimpleInterpolation
     offsetEmphasis: FlattenSimpleInterpolation
-  },
+    navigation: FlattenSimpleInterpolation
+  }
   border: FlattenSimpleInterpolation
   dragOverOutline: FlattenSimpleInterpolation
 }

@@ -27,6 +27,9 @@ const defaultTheme: Theme = {
     `,
     offsetEmphasis: css`
       background-color: #ddd;
+    `,
+    navigation: css`
+      
     `
   },
   border: css`

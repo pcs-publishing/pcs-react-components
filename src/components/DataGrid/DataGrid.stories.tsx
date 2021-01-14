@@ -41,7 +41,7 @@ const columnDefinitions: ColumnDefinition<Record>[] = [
   }
 ]
 
-const onStyleRow = (record) => {
+const getRowStyle = (record) => {
   if (record.id % 2) {
     return css`
       background-color: #ff6666 !important;
@@ -50,7 +50,7 @@ const onStyleRow = (record) => {
   return css``
 }
 
-const Template = (props: DataGridProps<Record, never>) => {
+const Template = (props: DataGridProps<Record>) => {
   const [pageInfo, setPageInfo] = useState<PageInfo>({
     page: 1,
     pageSize: 20,
@@ -102,7 +102,6 @@ const Template = (props: DataGridProps<Record, never>) => {
         onSortChange={onSortChange}
         pageInfo={pageInfo}
         idField="id"
-        getRowStyle={props.styledRow.state ? onStyleRow : undefined}
       />
     </GridContainer>
   )
@@ -113,19 +112,14 @@ export const Basic = Template.bind({})
 Basic.args = {
   compact: false,
   selectionMode: 'single',
-  loading: false,
-  styledRow: {
-    state: false
-  }
+  loading: false
 }
 
 export const StyledRow = Template.bind({})
 
 StyledRow.args = {
   ...Basic.args,
-  styledRow: {
-    state: true
-  }
+  getRowStyle
 }
 
 function generateTestData() {
