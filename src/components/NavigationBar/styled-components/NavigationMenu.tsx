@@ -7,10 +7,9 @@ import { Orientation } from '../index';
 const StyledMenu = styled(Menu) <{ vertical: boolean }>`
   background: transparent !important;
   height: auto;
-  width: ${props => props.vertical ? '100%' : 'auto'};
-  height: auto;
   border: none !important;
   box-shadow: none !important;
+  border-radius: 0 !important;
 
   .menu-header {
     padding-bottom: 5px;

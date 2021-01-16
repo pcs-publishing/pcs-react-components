@@ -15,8 +15,9 @@ export default styled.div < { $collapsed: boolean, $orientation: Orientation } >
       width: 100%;
   `}
   
-  background-color: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.text.onPrimary};
+  ${props => props.theme.backgrounds.navigation}
+  
+  color: ${props => props.theme.colors.text.onNavigation};
 
   ${(props) => {
     if (props.$collapsed) {
@@ -32,5 +33,9 @@ export default styled.div < { $collapsed: boolean, $orientation: Orientation } >
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s linear;
+  }
+
+  .ui.vertical.menu {
+    width: 100% !important;
   }
 `

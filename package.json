@@ -13,8 +13,8 @@
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook -s ./public",
     "prepare": "rollup -c && npm t",
     "docker-build": "docker build -t pcs-react-components-storybook .",
     "docker-tag": "docker tag pcs-react-components-storybook registry.presscomputer.systems/pcs-react-components-storybook:latest",
@@ -58,6 +58,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-typescript2": "^0.29.0",
+    "rollup-plugin-uglify-es": "0.0.1",
     "storybook-addon-styled-component-theme": "^1.3.0",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",
@@ -80,6 +81,7 @@
     "react-resize-detector": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-semantic-ui-range": "^0.7.0",
+    "react-svg": "^11.2.2",
     "semantic-ui-react": "^2.0.1",
     "styled-components": "^5.2.1"
   }

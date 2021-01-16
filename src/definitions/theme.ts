@@ -9,6 +9,7 @@ export interface Theme {
       onBase: string
       onPrimary: string
       onNavigation: string
+      onLogin: string
     }
   }
   backgrounds: {
@@ -16,6 +17,7 @@ export interface Theme {
     offset: FlattenSimpleInterpolation
     offsetEmphasis: FlattenSimpleInterpolation
     navigation: FlattenSimpleInterpolation
+    login: FlattenSimpleInterpolation
   }
   border: FlattenSimpleInterpolation
   dragOverOutline: FlattenSimpleInterpolation

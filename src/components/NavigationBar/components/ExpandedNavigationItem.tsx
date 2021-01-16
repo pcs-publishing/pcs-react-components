@@ -13,7 +13,7 @@ const StyledMenuItem = styled(Menu.Item) <{ $active: boolean, $orientation: Orie
   color: ${props => props.theme.colors.text.onPrimary} !important;
   cursor: pointer;
 
-  ${props => props.$orientation === 'vertical' ? 'width: 100%;' : ''}
+  ${props => props.$orientation === 'vertical' ? 'width: 100% !important;' : ''}
 
   &.active {
     background-color: rgba(255, 255, 255, 0.1) !important;
