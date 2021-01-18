@@ -5,13 +5,13 @@ import { ReactSVG } from 'react-svg'
 export interface SVGLogoProps {
   src: string
   size: number
+  className?: string
   onClick?: () => void
 }
 
 const Fallback = styled.div<{ $size: number }>`
   max-width: ${props => props.$size}px;
   max-height: ${props => props.$size}px;
-  background-color: green;
 `
 
 const Container = styled.div<{ $pointer: boolean, $size: number }>`
@@ -26,7 +26,7 @@ const SVGLogo = (props: SVGLogoProps) => {
     $size: props.size,
   }
 
-  return <Container $pointer={!!props.onClick} {...sizeProps}>
+  return <Container className={props.className} $pointer={!!props.onClick} {...sizeProps}>
     <ReactSVG
       src={props.src}
       loading={() => <Fallback {...sizeProps} />}

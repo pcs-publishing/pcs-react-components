@@ -1,3 +1,4 @@
+import { FunctionComponent } from 'react'
 import { SemanticICONS } from 'semantic-ui-react'
 import NavigationBar from './NavigationBar'
 
@@ -15,6 +16,12 @@ export interface NavigationItemProps {
   active: boolean
   orientation: Orientation
   onClick: (item: NavigationItem) => void
+}
+
+export type AdditionalItem = FunctionComponent<AdditionalItemProps>
+export interface AdditionalItemProps {
+  collapsed: boolean
+  orientation: Orientation
 }
 
 export type Orientation = 'vertical' | 'horizontal'

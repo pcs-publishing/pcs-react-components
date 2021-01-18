@@ -1,8 +1,3 @@
-// import { withThemeSwitcher } from 'storybook-theme-switcher'
-// import themes from '../src/themes'
-
-// addDecorator(withThemeSwitcher({ themes }))
-
 module.exports = {
   "stories": [
     "../src/components/**/*.stories.mdx",

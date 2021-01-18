@@ -6,13 +6,14 @@ export default styled.div < { $collapsed: boolean, $orientation: Orientation } >
 
   width: auto;
   display: flex;
-  flex-direction: column;
 
   ${props => props.$orientation === 'vertical' ? `
       height: 100%;
-      max-width: 300px;
-  ` : `
-      width: 100%;
+      max-width: ${props.$collapsed ? '60px' : '300px'};
+      flex-direction: column;
+    ` : `
+      width: 100 %;
+      flex-direction: row;
   `}
   
   ${props => props.theme.backgrounds.navigation}

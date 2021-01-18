@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useState } from 'react'
-import NavigationBar, { NavigationBarProps, AdditionalItemProps } from './NavigationBar'
+import React, { useState } from 'react'
+import NavigationBar, { NavigationBarProps } from './NavigationBar'
 import styled from '../../theme-styled'
 import SVGLogo from '../SVGLogo/SVGLogo'
-import { NavigationItem } from '.'
-import { Separator } from 'react-contexify'
+import { AdditionalItemProps, NavigationItem } from '.'
+import Version from '../Version'
 
 const Container = styled.div`
   width: 100%;
@@ -66,11 +66,23 @@ Vertical.args = {
   initiallyCollapsed: false
 }
 
-export const WithLogo = (props: NavigationBarProps) => {
+export const WithStartItemItem = (props: NavigationBarProps) => {
   const [location, setLocation] = useState(props.currentLocation)
 
   return <Container>
-    <NavigationBar {...props} topItem={TopItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
+    <NavigationBar {...props} startItem={LogoItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
+      setLocation(path)
+      props.onNavigate(path)
+    })} />
+  </Container>
+}
+
+
+export const WithLastItem = (props: NavigationBarProps) => {
+  const [location, setLocation] = useState(props.currentLocation)
+
+  return <Container>
+    <NavigationBar {...props} lastItem={VersionItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
       setLocation(path)
       props.onNavigate(path)
     })} />
@@ -82,13 +94,13 @@ const LogoContainer = styled.div`
   margin: 0 auto;
 `
 
-const TopItem = (props: AdditionalItemProps) => {
-  return <>
-    <LogoContainer>
-      <SVGLogo src="/indesign-cc.svg" size={170} />
-    </LogoContainer>
-    <Separator />
-  </>
-
+const LogoItem = (props: AdditionalItemProps) => {
+  return <LogoContainer>
+    <SVGLogo src="/redis.svg" size={170} />
+  </LogoContainer>
 }
 
+
+const VersionItem = (props: AdditionalItemProps) => {
+  return <Version version="1.0.1" />
+}

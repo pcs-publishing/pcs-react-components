@@ -10,18 +10,18 @@ const Template = (props: SVGLogoProps) => {
   return <SVGLogo {...props} />
 }
 
-export const InDesign = Template.bind({})
+export const RedisIcon = Template.bind({})
 
-InDesign.args = {
+RedisIcon.args = {
   size: 200,
-  src: '/indesign-cc.svg'
+  src: '/redis.svg'
 }
 
-export const Photoshop = Template.bind({})
+export const ReactIcon = Template.bind({})
 
-Photoshop.args = {
+ReactIcon.args = {
   size: 400,
-  src: '/photoshop-cc.svg'
+  src: '/react-2.svg'
 }
 
 

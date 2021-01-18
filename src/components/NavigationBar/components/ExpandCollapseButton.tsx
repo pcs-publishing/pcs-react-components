@@ -1,37 +1,35 @@
 import React from 'react'
-import { Button, Popup } from 'semantic-ui-react'
+import { Button, Popup, SemanticICONS } from 'semantic-ui-react';
+import { Orientation } from '..'
 import styled from '../../../theme-styled'
 
 
-interface ExpandCollapseButtonProps {
+interface CollapseButtonProps {
   collapsed: boolean
+  orientation: Orientation
   onClick: () => void
 }
 
-const ExpandCollapseButtonContainer = styled.div<{ collapsed: boolean }>`
+const CollapseButtonContainer = styled.div<{ collapsed: boolean }>`
   float: right;
   text-align: center;
   overflow: visible;
   height: ${props => !props.collapsed ? '0px !important' : 'auto'};
 
-  ${(props) => {
-    if (!props.collapsed) {
-      return `
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s 0.3s, opacity 0.3s linear;
-      `
-    }
-  }}
+  ${(props) => !props.collapsed ? `
+    visibility: hidden;opacity: 0;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+  ` : ''}
 `
 
-const ExpandCollapseButton = (props: ExpandCollapseButtonProps) => {
-  const floated = props.collapsed ? undefined : 'right'
-  const tooltip = props.collapsed ? 'Expand Sidebar' : 'Collapse Sidebar'
+const CollapseButton = (props: CollapseButtonProps) => {
+  const floated = props.collapsed && props.orientation === 'vertical' ? undefined : 'right'
+  const tooltip = props.collapsed ? 'Expand Navigation' : 'Collapse Navigation'
+  const icon = getButtonIcon(props.collapsed, props.orientation)
 
   return (
-    <ExpandCollapseButtonContainer
-      className="expand-collapse-button-container"
+    <CollapseButtonContainer
+      className="collapse-button-container"
       collapsed={props.collapsed}
     >
       <Popup
@@ -39,7 +37,7 @@ const ExpandCollapseButton = (props: ExpandCollapseButtonProps) => {
         position="right center"
         trigger={
           <Button
-            icon={`chevron ${props.collapsed ? 'right' : 'left'}`}
+            icon={icon}
             circular
             size="tiny"
             basic
@@ -50,8 +48,16 @@ const ExpandCollapseButton = (props: ExpandCollapseButtonProps) => {
           />
         }
       />
-    </ExpandCollapseButtonContainer>
+    </CollapseButtonContainer>
   )
 }
 
-export default ExpandCollapseButton
+export default CollapseButton
+
+
+function getButtonIcon(collapsed: boolean, orientation: Orientation): SemanticICONS {
+  if (orientation === 'vertical') {
+    return collapsed ? 'chevron right' : 'chevron left'
+  }
+  return collapsed ? 'chevron down' : 'chevron up'
+}

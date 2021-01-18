@@ -10,6 +10,7 @@ const StyledMenu = styled(Menu) <{ vertical: boolean }>`
   border: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
+  padding-top: 5px;
 
   .menu-header {
     padding-bottom: 5px;
