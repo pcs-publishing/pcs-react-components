@@ -16,7 +16,8 @@ const defaultTheme: Theme = {
     text: {
       onBase: COLORS.TEXT,
       onPrimary: COLORS.BASE,
-      onNavigation: COLORS.BASE
+      onNavigation: COLORS.BASE,
+      onLogin: COLORS.BASE
     }
   },
   backgrounds: {
@@ -31,6 +32,9 @@ const defaultTheme: Theme = {
     `,
     navigation: css`
       background-color: #4f5c72;
+    `,
+    login: css`
+      background-color: ${COLORS.PRIMARY};
     `
   },
   border: css`

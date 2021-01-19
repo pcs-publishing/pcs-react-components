@@ -32,6 +32,9 @@ const alternateTheme: Theme = {
     `,
     navigation: css`
       background-color: #4f5c72;
+    `,
+    login: css`
+      background-color: ${COLORS.PRIMARY};
     `
   },
   border: css`

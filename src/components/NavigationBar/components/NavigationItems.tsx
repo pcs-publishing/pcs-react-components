@@ -12,7 +12,7 @@ interface NavigationItemsProps {
 }
 
 const NavigationItems = (props: NavigationItemsProps) => {
-  const NavigationItemComponent = props.collapsed ? CollapsedNavigationItem : ExpandedNavigationItem
+  const NavigationItemComponent = props.orientation === 'vertical' && props.collapsed ? CollapsedNavigationItem : ExpandedNavigationItem
   const Wrapper = props.collapsed ? React.Fragment : NavigationMenu
 
   return <Wrapper orientation={props.orientation}>

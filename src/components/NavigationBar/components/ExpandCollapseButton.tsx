@@ -23,9 +23,13 @@ const CollapseButtonContainer = styled.div<{ collapsed: boolean }>`
 `
 
 const CollapseButton = (props: CollapseButtonProps) => {
-  const floated = props.collapsed && props.orientation === 'vertical' ? undefined : 'right'
+  const floated = props.collapsed ? undefined : 'right'
   const tooltip = props.collapsed ? 'Expand Navigation' : 'Collapse Navigation'
-  const icon = getButtonIcon(props.collapsed, props.orientation)
+  const icon = getButtonIcon(props.collapsed)
+
+  if (props.orientation !== 'vertical') {
+    return null
+  }
 
   return (
     <CollapseButtonContainer
@@ -55,9 +59,6 @@ const CollapseButton = (props: CollapseButtonProps) => {
 export default CollapseButton
 
 
-function getButtonIcon(collapsed: boolean, orientation: Orientation): SemanticICONS {
-  if (orientation === 'vertical') {
-    return collapsed ? 'chevron right' : 'chevron left'
-  }
-  return collapsed ? 'chevron down' : 'chevron up'
+function getButtonIcon(collapsed: boolean): SemanticICONS {
+  return collapsed ? 'chevron right' : 'chevron left'
 }

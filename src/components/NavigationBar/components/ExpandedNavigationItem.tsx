@@ -15,6 +15,9 @@ const StyledMenuItem = styled(Menu.Item) <{ $active: boolean, $orientation: Orie
 
   ${props => props.$orientation === 'vertical' ? 'width: 100% !important;' : ''}
 
+  padding: none !important;
+  margin-top: none !important;
+
   &.active {
     background-color: rgba(255, 255, 255, 0.1) !important;
     font-style: bolder !important;

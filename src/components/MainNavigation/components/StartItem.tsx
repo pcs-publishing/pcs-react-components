@@ -25,7 +25,7 @@ const HorizontalDivider = styled.div`
   height: 100%;
   margin: 5px 10px;
   width: 1px;
-  color: 'white'
+  color: 'white';
 `
 
 const StartItem = (props: StartItemProps) => {
@@ -33,12 +33,13 @@ const StartItem = (props: StartItemProps) => {
   const smaller = props.collapsed || horizontal
   const size = smaller ? 40 : 150
   const Splitter = horizontal ? <HorizontalDivider /> : <Divider />
+  const showUser = props.user && props.orientation === 'vertical'
 
   return <>
     <Logo src={props.logo} size={size} onClick={props.onLogoClick} />
     {Splitter}
-    {props.user ? <>
-      <CentralProfilePicture size={Math.round(size / 1.2)} showName={!smaller} {...props.user} onClick={props.onUserClick} />
+    {showUser ? <>
+      <CentralProfilePicture size={Math.round(size / 1.2)} showName={!smaller} {...props.user as MainNavigationUser} onClick={props.onUserClick} />
       {Splitter}
     </>
       : null}

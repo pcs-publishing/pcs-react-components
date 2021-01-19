@@ -12,7 +12,8 @@ export default styled.div < { $collapsed: boolean, $orientation: Orientation } >
       max-width: ${props.$collapsed ? '60px' : '300px'};
       flex-direction: column;
     ` : `
-      width: 100 %;
+      width: 100%;
+      height: 60px;
       flex-direction: row;
   `}
   

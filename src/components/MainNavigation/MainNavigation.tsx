@@ -2,7 +2,7 @@ import React from 'react'
 import { MainNavigationUser } from '.'
 import NavigationBar, { AdditionalItemProps, NavigationItem, Orientation } from '../NavigationBar'
 import StartItem from './components/StartItem'
-import Version from './components/Version'
+import EndItem from './components/EndItem'
 
 
 export interface MainNavigationProps {
@@ -24,7 +24,7 @@ const MainNavigation = (props: MainNavigationProps) => {
     orientation={props.orientation}
     initiallyCollapsed={false}
     startItem={(itemProps: AdditionalItemProps) => <StartItem {...itemProps} onLogoClick={() => props.onNavigate('/')} logo={props.logo} user={props.user} onUserClick={props.onUserClick} />}
-    lastItem={Version}
+    lastItem={(itemProps: AdditionalItemProps) => <EndItem {...itemProps} version={props.version} user={props.user} onUserClick={props.onUserClick} />}
   />
 }
 
