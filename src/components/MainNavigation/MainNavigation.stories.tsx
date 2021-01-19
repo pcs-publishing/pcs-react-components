@@ -66,3 +66,15 @@ HorizontalWithUser.args = {
     avatar: '/avatar.png'
   }
 }
+
+export const VerticalWithExtraItems = Template.bind({})
+VerticalWithExtraItems.args = {
+  ...defaultProps,
+  user: {
+    firstname: 'Christopher',
+    surname: 'Train',
+    avatar: '/avatar.png'
+  },
+  startItem: () => <p>Extra item at the start</p>,
+  lastItem: () => <p>Extra item at the end</p>
+}

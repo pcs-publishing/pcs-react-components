@@ -29,7 +29,7 @@ const NavigationBar = (props: NavigationBarProps) => {
   return <NavigationContainer $collapsed={collapsed} $orientation={props.orientation}>
     {!collapsed && ExpandCollapse}
     {StartItem ? <StartItem {...commonProps} /> : null}
-    <NavigationItems {...commonProps} items={props.items} onClick={onNavigateItemClick} />
+    <NavigationItems {...commonProps} currentLocation={props.currentLocation} items={props.items} onClick={onNavigateItemClick} />
     {collapsed && ExpandCollapse}
     {LastItem ? <LastItem {...commonProps} /> : null}
   </NavigationContainer>

@@ -28,7 +28,7 @@ const HorizontalDivider = styled.div`
   color: 'white';
 `
 
-const StartItem = (props: StartItemProps) => {
+const StartItem: React.FunctionComponent<StartItemProps> = (props) => {
   const horizontal = props.orientation === 'horizontal'
   const smaller = props.collapsed || horizontal
   const size = smaller ? 40 : 150
@@ -43,6 +43,7 @@ const StartItem = (props: StartItemProps) => {
       {Splitter}
     </>
       : null}
+    {props.children}
   </>
 }
 

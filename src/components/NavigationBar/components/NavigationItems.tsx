@@ -9,6 +9,7 @@ interface NavigationItemsProps {
   collapsed: boolean
   orientation: Orientation
   onClick: (item: NavigationItem) => void
+  currentLocation: string
 }
 
 const NavigationItems = (props: NavigationItemsProps) => {
@@ -16,7 +17,7 @@ const NavigationItems = (props: NavigationItemsProps) => {
   const Wrapper = props.collapsed ? React.Fragment : NavigationMenu
 
   return <Wrapper orientation={props.orientation}>
-    {props.items.map(item => (<NavigationItemComponent key={item.path} orientation={props.orientation} active={false} item={item} onClick={props.onClick} />))}
+    {props.items.map(item => (<NavigationItemComponent active={item.path === props.currentLocation} key={item.path} orientation={props.orientation} active={false} item={item} onClick={props.onClick} />))}
   </Wrapper>
 }
 

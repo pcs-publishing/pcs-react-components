@@ -66,7 +66,7 @@ Vertical.args = {
   initiallyCollapsed: false
 }
 
-export const WithStartItemItem = (props: NavigationBarProps) => {
+export const WithStartItem = (props: NavigationBarProps) => {
   const [location, setLocation] = useState(props.currentLocation)
 
   return <Container>

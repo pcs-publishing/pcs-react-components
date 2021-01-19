@@ -4,15 +4,19 @@ import styled from '../../../theme-styled'
 import Version from '../../Version'
 import { Orientation } from '../../NavigationBar/index';
 
-const StyledVersion = styled(Version) <{ $orientation: Orientation }>`
+const StyledVersion = styled(Version) <{ $orientation: Orientation, $collapsed: boolean }>`
   display: inline-block;
   ${props => props.$orientation === 'horizontal' ? `
     text-align: right;
     float: right;
+    padding: 10px !important;
   ` : `
     width: 100%;
     text-align: center;
   `}
+
+
+  ${props => props.$collapsed ? 'font-size: 0.8em;' : ''}
 `
 
 const BottomAligner = styled.div`
@@ -28,12 +32,9 @@ interface VersionItemProps extends AdditionalItemProps {
 }
 
 const VersionItem = (props: VersionItemProps) => {
-  if (props.collapsed) {
-    return null
-  }
   return <>
     {props.orientation === 'vertical' ? <BottomAligner /> : null}
-    <StyledVersion className={props.className} version={props.version} $orientation={props.orientation} />
+    <StyledVersion className={props.className} version={props.version} $collapsed={props.collapsed} $orientation={props.orientation} />
   </>
 }
 
