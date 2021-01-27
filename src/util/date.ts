@@ -28,6 +28,14 @@ export function formatDate(date: DateValue, formatTemplate: string): string {
   })
 }
 
+export function getDayNameFromDate(date: DateValue): DayOfWeek | string {
+  return formatDate(date, 'EEEE')
+}
+
+export function getTimeFromDate(date: DateValue): DayOfWeek | string {
+  return formatDate(date, 'p')
+}
+
 type DayOfWeek =
   | 'Monday'
   | 'Tuesday'
