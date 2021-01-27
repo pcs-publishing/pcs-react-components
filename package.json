@@ -6,7 +6,6 @@
     "url": "https://bitbucket.org/pcs-developers/pcs-react-components"
   },
   "main": "build/index.js",
-  "module": "build/index.esm.js",
   "files": [
     "build"
   ],
@@ -20,7 +19,7 @@
     "docker-tag": "docker tag pcs-react-components-storybook registry.presscomputer.systems/pcs-react-components-storybook:latest",
     "docker-publish": "docker push registry.presscomputer.systems/pcs-react-components-storybook:latest"
   },
-  "author": "",
+  "author": "PCS-Publishing",
   "license": "ISC",
   "peerDependencies": {
     "react": "^17.0.1",
