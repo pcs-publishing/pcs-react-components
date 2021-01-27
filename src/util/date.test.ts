@@ -1,7 +1,6 @@
-import { isValidDate } from './date'
+import { isValidDate, getDayNameFromDate, getTimeFromDate } from './date'
 
 describe('Date Utils', () => {
-
   describe('isValidDate', () => {
     it('Should return true when passed a valid date', () => {
       const result = isValidDate(new Date(2020, 11, 25))
@@ -39,12 +38,15 @@ describe('Date Utils', () => {
     })
 
     it('Should return false when passed a non-date object', () => {
-      const result = isValidDate({ start: new Date() }) 
+      const result = isValidDate({ start: new Date() })
       expect(result).toBe(false)
     })
   })
 
   describe('getFormattedDateShort', () => {
-
+    it('Should return Monday if the passed in date is on a Monday ', () => {
+      const result = getDayNameFromDate(new Date('2021-01-25'))
+      expect(result).toBe('Monday')
+    })
   })
 })
