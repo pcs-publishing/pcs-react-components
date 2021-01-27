@@ -21,6 +21,8 @@ export type ColumnValueType =
   | 'user'
   | 'named-record'
   | 'boolean'
+  | 'time'
+  | 'day'
 
 export type SortDirection = 'ascending' | 'descending' | undefined
 
