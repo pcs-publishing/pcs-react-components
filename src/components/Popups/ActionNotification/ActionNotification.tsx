@@ -26,7 +26,7 @@ const Container = styled.div`
   text-align: center;
 `
 
-const ContainerTwo = styled.div`
+const CloseButtonContainer = styled.div`
   width: 100%;
   text-align: center;
 `
@@ -125,9 +125,9 @@ const ActionNotification = (props: ActionNotificationProps) => {
             {displayMessage}
           </MessageSegment>
           {persist ? (
-            <ContainerTwo>
+            <CloseButtonContainer>
               <Button content="Close" onClick={() => setShowMessage(false)} />
-            </ContainerTwo>
+            </CloseButtonContainer>
           ) : null}
         </Container>
       </TransitionablePortal>
