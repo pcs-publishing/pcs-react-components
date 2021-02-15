@@ -1,15 +1,15 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import {
   SemanticICONS,
+  Button,
   TransitionablePortal,
   Icon,
   Segment,
-  SemanticCOLORS,
+  SemanticCOLORS
 } from 'semantic-ui-react'
 import styled from 'styled-components'
 import { isFunction } from 'lodash'
 import { DisplayNotificationOptions } from '../../../definitions'
-
 
 const MessageSegment = styled(Segment)`
   display: inline-block;
@@ -26,6 +26,11 @@ const Container = styled.div`
   text-align: center;
 `
 
+const ContainerTwo = styled.div`
+  width: 100%;
+  text-align: center;
+`
+
 type MessagePosition = 'left' | 'right' | 'center'
 
 export interface ActionNotificationProps {
@@ -35,6 +40,7 @@ export interface ActionNotificationProps {
   show: boolean
   position?: MessagePosition
   close?: () => void
+  persist?: boolean
 }
 
 function getIconForDisplaying(
@@ -68,7 +74,7 @@ function getColorForDisplaying(
 }
 
 const ActionNotification = (props: ActionNotificationProps) => {
-  const { displayForMs, message, displaying, show, close } = props
+  const { displayForMs, message, displaying, show, close, persist } = props
   const color: SemanticCOLORS = getColorForDisplaying(displaying)
   const icon: SemanticICONS = getIconForDisplaying(displaying)
   const [showMessage, setShowMessage] = useState<boolean>(show)
@@ -82,38 +88,50 @@ const ActionNotification = (props: ActionNotificationProps) => {
 
   const closeMessage = useCallback(() => {
     const timeoutLength = displayForMs || 2000 // 2 seconds default
+    if (persist) {
+      return
+    }
     setTimeout(() => {
       setShowMessage(false)
-      if (isFunction(close)) {
-        close()
-      }
       setDisplayMessage('')
     }, timeoutLength)
-  }, [setShowMessage, setDisplayMessage, close, displayForMs])
+  }, [setShowMessage, setDisplayMessage, close, displayForMs, persist])
 
   return (
-    <TransitionablePortal
-      open={showMessage}
-      transition={{
-        animation: 'fade up',
-        duration: 400,
-      }}
-      // initiate the close message on show
-      onOpen={() => closeMessage()}
-    >
-      <Container>
-        <MessageSegment
-          color={color}
-          inverted
-          floated={props.position !== 'center' ? props.position : undefined}
-          raised
-          size='large'
-        >
-          <Icon name={icon} />
-          {displayMessage}
-        </MessageSegment>
-      </Container>
-    </TransitionablePortal>
+    <>
+      <TransitionablePortal
+        open={showMessage}
+        transition={{
+          animation: persist ? undefined : 'fade up',
+          duration: persist ? undefined : 400
+        }}
+        // initiate the close message on show
+        onOpen={() => closeMessage()}
+        onClose={() => {
+          if (isFunction(close)) {
+            close()
+          }
+        }}
+      >
+        <Container>
+          <MessageSegment
+            color={color}
+            inverted
+            floated={props.position !== 'center' ? props.position : undefined}
+            raised
+            size="large"
+          >
+            <Icon name={icon} />
+            {displayMessage}
+          </MessageSegment>
+          {persist ? (
+            <ContainerTwo>
+              <Button content="Close" onClick={() => setShowMessage(false)} />
+            </ContainerTwo>
+          ) : null}
+        </Container>
+      </TransitionablePortal>
+    </>
   )
 }
 
