@@ -102,7 +102,7 @@ const ActionNotification = (props: ActionNotificationProps) => {
       <TransitionablePortal
         open={showMessage}
         transition={{
-          animation: persist ? undefined : 'fade up',
+          animation: 'fade up',
           duration: persist ? undefined : 400
         }}
         // initiate the close message on show
