@@ -1,4 +1,4 @@
-import { Theme } from '../definitions/theme';
+import { Theme } from '../definitions/theme'
 import { css } from '../theme-styled'
 
 const COLORS = {
@@ -24,6 +24,9 @@ const alternateTheme: Theme = {
     `,
     offset: css`
       background-color: #eee;
+    `,
+    offsetEmphasis: css`
+      background-color: #ddd;
     `
   },
   border: css`

@@ -67,6 +67,10 @@ import * as U_filename from './util/filename'
 import * as U_format from './util/format'
 //#endregion
 
+//#region theme imports
+import T_defaultTheme from './themes/defaultTheme'
+//#endregion
+
 //#region component exports
 export const Button = C_Button
 export const ContextMenu = C_ContextMenu
@@ -134,3 +138,7 @@ export const SortService = S_SortService
 export const date = U_date
 export const filename = U_filename
 export const format = U_format
+
+//#region theme exports
+export const defaultTheme = T_defaultTheme
+//#endregion
