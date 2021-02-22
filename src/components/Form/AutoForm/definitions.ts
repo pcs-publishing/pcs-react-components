@@ -1,7 +1,13 @@
 import { WeekDay } from '../../../definitions'
 import { DateRangeOptions } from '../DateRange'
 
-export type FormFieldValue = string | number | boolean | WeekDay | DateRangeOptions | undefined
+export type FormFieldValue =
+  | string
+  | number
+  | boolean
+  | WeekDay
+  | DateRangeOptions
+  | undefined
 
 export type FormFieldType =
   | 'text'
@@ -13,6 +19,7 @@ export type FormFieldType =
   | 'date'
   | 'time'
   | 'daterange'
+  | 'textarea'
 
 export type FormFieldInputType = 'text' | 'number' | 'password'
 
@@ -52,6 +59,7 @@ export interface FieldDefinition {
     value: FormFieldValue,
     allvalues: FormValue
   ) => FieldDefinitionError | undefined
+  rows?: number
 }
 
 export interface FieldProps {
@@ -61,4 +69,3 @@ export interface FieldProps {
   onChange: (key: string, value: FormFieldValue) => void
   allValues?: FormValue
 }
-
