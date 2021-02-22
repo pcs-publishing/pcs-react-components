@@ -30,6 +30,7 @@ import C_Confirm from './components/Popups/Confirm'
 import C_LoadingModal from './components/Popups/LoadingModal'
 import C_Overlay from './components/Popups/Overlay'
 import C_TextAreaModal from './components/Popups/TextAreaModal'
+import C_PopoverButton from './components/Popups/PopoverButton'
 import C_RecordsSummary from './components/RecordsSummary'
 import C_SearchBar from './components/SearchBar'
 import C_SearchDrawer from './components/SearchDrawer'
@@ -118,6 +119,7 @@ export const Uploader = C_Uploader
 export const UploadButton = C_UploadButton
 export const ViewFileWindow = C_ViewFileWindow
 export const TextViewer = C_TextViewer
+export const PopoverButton = C_PopoverButton
 //#endregion
 
 //#region hook exports
