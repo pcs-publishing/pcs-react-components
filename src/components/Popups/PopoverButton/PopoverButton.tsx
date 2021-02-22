@@ -18,7 +18,6 @@ export interface PopoverButtonProps extends ButtonProps {
 }
 
 const PopoverButton = (props: PopoverButtonProps) => {
-  console.log('props: ', props)
   const [open, setOpen] = useState(false)
   const PopoverComponent = props.popover
   return <>
