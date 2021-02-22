@@ -1,11 +1,6 @@
 import React, { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
-import styled from '../../../../theme-styled'
 import { FieldProps } from '../definitions'
-
-const StyledTextArea = styled(Form.TextArea)`
-  resize: none !important;
-`
 
 const TextField = (props: FieldProps) => {
   const { onChange, field, value, allValues } = props
@@ -22,7 +17,7 @@ const TextField = (props: FieldProps) => {
   const error = field.error ? field.error(value, allValues ?? {}) : undefined
 
   return (
-    <StyledTextArea
+    <Form.TextArea
       autoFocus={!!field.autoFocus}
       label={field.label}
       value={value as string | number | undefined}
