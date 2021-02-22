@@ -30,6 +30,7 @@ import C_Confirm from './components/Popups/Confirm'
 import C_LoadingModal from './components/Popups/LoadingModal'
 import C_Overlay from './components/Popups/Overlay'
 import C_TextAreaModal from './components/Popups/TextAreaModal'
+import C_PopoverButton from './components/Popups/PopoverButton'
 import C_RecordsSummary from './components/RecordsSummary'
 import C_SearchBar from './components/SearchBar'
 import C_SearchDrawer from './components/SearchDrawer'
@@ -41,6 +42,7 @@ import C_Swatch from './components/Styled/Swatch'
 import C_DrawerArea from './components/Styled/DrawerArea'
 import C_SummaryValue from './components/SummaryValue'
 import C_TileMenu from './components/TileMenu'
+import C_UploadButton from './components/UploadButton'
 import C_Uploader from './components/Uploader'
 import C_ViewFileWindow from './components/ViewFileWindow'
 import C_TextViewer from './components/ViewFileWindow/components/TextViewer'
@@ -64,6 +66,10 @@ import * as S_SortService from './services/SortService'
 import * as U_date from './util/date'
 import * as U_filename from './util/filename'
 import * as U_format from './util/format'
+//#endregion
+
+//#region theme imports
+import T_defaultTheme from './themes/defaultTheme'
 //#endregion
 
 //#region component exports
@@ -110,8 +116,10 @@ export const DrawerArea = C_DrawerArea
 export const SummaryValue = C_SummaryValue
 export const TileMenu = C_TileMenu
 export const Uploader = C_Uploader
+export const UploadButton = C_UploadButton
 export const ViewFileWindow = C_ViewFileWindow
 export const TextViewer = C_TextViewer
+export const PopoverButton = C_PopoverButton
 //#endregion
 
 //#region hook exports
@@ -132,3 +140,7 @@ export const SortService = S_SortService
 export const date = U_date
 export const filename = U_filename
 export const format = U_format
+
+//#region theme exports
+export const defaultTheme = T_defaultTheme
+//#endregion

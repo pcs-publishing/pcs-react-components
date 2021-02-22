@@ -1,11 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import Button from '../../Button'
 import ActionNotification from './ActionNotification'
-
 
 export default {
   title: 'Popups/Action Notification',
   component: ActionNotification
+}
+
+export const PersistantNotification = () => {
+  const [showNotification, setShowNotification] = useState<boolean>(false)
+  return (
+    <>
+      <Button onClick={() => setShowNotification(true)}>
+        Show persistant notification
+      </Button>
+      <ActionNotification
+        message={'This is a persistant notification. Click to close it!'}
+        displaying="message"
+        persist={true}
+        close={() => setShowNotification(false)}
+        show={showNotification}
+      />
+    </>
+  )
 }
 
 export const Warning = () => {
@@ -15,9 +32,10 @@ export const Warning = () => {
       <Button onClick={() => setShowNotification(true)}>Show warning</Button>
       <ActionNotification
         message={'This is a warning. It will only last 2 seconds.'}
-        displaying='warning'
+        displaying="warning"
         close={() => setShowNotification(false)}
         show={showNotification}
+        displayForMs={2000}
       />
     </>
   )
@@ -32,7 +50,7 @@ export const Success = () => {
         message={
           'This is a success message. It is a message you not often get on Knowledge Prospect so I will keep it open for 6 seconds'
         }
-        displaying='success'
+        displaying="success"
         close={() => setShowNotification(false)}
         show={showNotification}
         displayForMs={6000}
@@ -48,7 +66,7 @@ export const Error = () => {
       <Button onClick={() => setShowNotification(true)}>Show error</Button>
       <ActionNotification
         message={'This is an error message. Welcome to Knowledge Prospect'}
-        displaying='error'
+        displaying="error"
         close={() => setShowNotification(false)}
         show={showNotification}
       />
@@ -65,8 +83,8 @@ export const PositionedOnTheLeft = () => {
       </Button>
       <ActionNotification
         message="Look at me, I'm over here on the left"
-        displaying='message'
-        position='left'
+        displaying="message"
+        position="left"
         close={() => setShowNotification(false)}
         show={showNotification}
       />
@@ -83,12 +101,11 @@ export const PositionedOnTheRight = () => {
       </Button>
       <ActionNotification
         message="Look at me, I'm over here on the right"
-        displaying='message'
-        position='right'
+        displaying="message"
+        position="right"
         close={() => setShowNotification(false)}
         show={showNotification}
       />
     </>
   )
 }
-

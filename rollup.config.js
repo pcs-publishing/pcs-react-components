@@ -1,24 +1,20 @@
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import typescript from "rollup-plugin-typescript2";
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import typescript from 'rollup-plugin-typescript2'
 import css from 'rollup-plugin-css-only'
 
-import packageJson from "./package.json";
+import packageJson from './package.json'
 
 export default {
-  input: "./src/index.ts",
+  input: './src/index.ts',
   output: [
-    {
-      file: packageJson.module,
-      format: "esm",
-      sourcemap: true
-    },
     {
       file: packageJson.main,
       format: 'cjs'
     }
   ],
+  external: Object.keys(packageJson.devDependencies),
   cache: false,
   plugins: [peerDepsExternal(), resolve({
     preferBuiltins: false,
@@ -27,5 +23,5 @@ export default {
   }), commonjs(), typescript({
     tsconfig: './tsconfig.json',
     clean: true
-  }),css({ output: 'bundle.css' })]
+  }), css({ output: 'bundle.css' })]
 }
