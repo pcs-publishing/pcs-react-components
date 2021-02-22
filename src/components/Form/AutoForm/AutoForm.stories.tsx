@@ -85,6 +85,11 @@ Example.args = {
       key: 'holiday',
       label: 'Holiday Date Range',
       type: 'daterange'
+    },
+    {
+      key: 'description',
+      label: 'Description',
+      type: 'textarea'
     }
   ],
   compact: false,
