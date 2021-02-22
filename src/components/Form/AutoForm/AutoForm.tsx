@@ -7,9 +7,16 @@ import BooleanField from './fields/BooleanField'
 import DropdownField from './fields/DropdownField'
 import DateField from './fields/DateField'
 import TimeField from './fields/TimeField'
+import TextAreaField from './fields/TextAreaField'
 import styled from 'styled-components'
 import FilenameFormField from './fields/FilenameFormField'
-import { AutoFormProps, FieldDefinition, FormFieldSetter, FormFieldValue, FormValue } from './definitions'
+import {
+  AutoFormProps,
+  FieldDefinition,
+  FormFieldSetter,
+  FormFieldValue,
+  FormValue
+} from './definitions'
 import { DateRangeOptions } from '../DateRange'
 import DateRange from '../DateRange'
 
@@ -104,7 +111,8 @@ function generateField(
       return generateTimeField(field, formValue, setFormValue)
     case 'daterange':
       return generateDateRangeField(field, formValue, setFormValue)
-
+    case 'textarea':
+      return generateTextAreaField(field, formValue, setFormValue)
     default:
       return null
   }
@@ -152,6 +160,23 @@ function generateTextField(
   const value = (formValue[field.key] ?? '') as string
   return (
     <TextField
+      key={field.key}
+      field={field}
+      value={value}
+      onChange={setFormValue}
+      allValues={formValue}
+    />
+  )
+}
+
+function generateTextAreaField(
+  field: FieldDefinition,
+  formValue: FormValue,
+  setFormValue: FormFieldSetter
+): ReactNode {
+  const value = (formValue[field.key] ?? '') as string
+  return (
+    <TextAreaField
       key={field.key}
       field={field}
       value={value}
@@ -251,8 +276,11 @@ function generateDateRangeField(
   formValue: FormValue,
   setFormValue: FormFieldSetter
 ): ReactNode {
-  const value = (formValue[field.key] as unknown) as DateRangeOptions | undefined
-  const onChange = (value: DateRangeOptions | undefined) => setFormValue(field.key, value)
+  const value = (formValue[field.key] as unknown) as
+    | DateRangeOptions
+    | undefined
+  const onChange = (value: DateRangeOptions | undefined) =>
+    setFormValue(field.key, value)
   return <DateRange value={value} label={field.label} onChange={onChange} />
 }
 
