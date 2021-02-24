@@ -9,10 +9,16 @@ import {
 export function formatColumnValue<T>(
   record: T,
   columnDefinition: ColumnDefinition<T>,
-  index: number
+  index: number,
+  isExport?: boolean
 ): any {
-  if (columnDefinition.format) {
-    return columnDefinition.format(record, index)
+  const formatFn =
+    isExport && columnDefinition.exportFormat
+      ? columnDefinition.exportFormat
+      : columnDefinition.format
+
+  if (formatFn) {
+    return formatFn(record, index)
   }
 
   return formatByType(
