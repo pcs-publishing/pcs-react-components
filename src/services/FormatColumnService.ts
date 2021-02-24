@@ -12,9 +12,10 @@ export function formatColumnValue<T>(
   index: number,
   isExport?: boolean
 ): any {
-  const formatFn = isExport
-    ? columnDefinition.exportFormat
-    : columnDefinition.format
+  const formatFn =
+    isExport && columnDefinition.exportFormat
+      ? columnDefinition.exportFormat
+      : columnDefinition.format
 
   if (formatFn) {
     return formatFn(record, index)
