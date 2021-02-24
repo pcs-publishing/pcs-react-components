@@ -66,7 +66,7 @@ const AutoForm = (props: AutoFormProps) => {
           Save
         </Button>
         {props.onCancel ? (
-          <Button size={size} onClick={onCancel} compact={props.compact}>
+          <Button type="button" size={size} onClick={onCancel} compact={props.compact}>
             Cancel
           </Button>
         ) : null}
