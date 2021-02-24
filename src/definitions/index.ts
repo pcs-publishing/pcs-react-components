@@ -42,6 +42,10 @@ export interface ColumnDefinition<T> {
   width?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
   padding?: number
   center?: boolean
+  exportFormat?: (
+    record: T,
+    index: number
+  ) => string | number | Date | boolean | undefined
 }
 
 export interface PageInfo {
