@@ -37,6 +37,7 @@ export interface AutoFormProps {
   defaultValue?: FormValue
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
   compact?: boolean
+  clearAfterSave?: boolean
 }
 
 type FieldDefinitionErrorPointing = 'below' | 'left' | 'above' | 'right'
@@ -60,6 +61,7 @@ export interface FieldDefinition {
     allvalues: FormValue
   ) => FieldDefinitionError | undefined
   rows?: number
+  onChange?: (value: FormFieldValue) => void
 }
 
 export interface FieldProps {
