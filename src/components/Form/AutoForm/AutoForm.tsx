@@ -47,6 +47,9 @@ const AutoForm = (props: AutoFormProps) => {
     e.preventDefault()
     if (!isValid) return
     onSave(formValue)
+    if (props.clearAfterSave) {
+      setFormValue(props.defaultValue ?? {})
+    }
   }
 
   const isValid = validateForm(fields, formValue)
@@ -66,7 +69,12 @@ const AutoForm = (props: AutoFormProps) => {
           Save
         </Button>
         {props.onCancel ? (
-          <Button type="button" size={size} onClick={onCancel} compact={props.compact}>
+          <Button
+            type="button"
+            size={size}
+            onClick={onCancel}
+            compact={props.compact}
+          >
             Cancel
           </Button>
         ) : null}
@@ -129,7 +137,12 @@ function generateDateField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -146,7 +159,12 @@ function generateTimeField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -163,7 +181,12 @@ function generateTextField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -180,7 +203,12 @@ function generateTextAreaField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -198,7 +226,12 @@ function generateNumberField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -215,7 +248,12 @@ function generateBooleanField(
       key={field.key}
       field={field}
       value={!!value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
     />
   )
 }
@@ -232,7 +270,12 @@ function generateDropdownField(
       field={field}
       value={!!value}
       defaultValue={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -249,7 +292,12 @@ function generateColorField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
     />
   )
 }
@@ -265,7 +313,12 @@ function generateFileNameField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -279,8 +332,12 @@ function generateDateRangeField(
   const value = (formValue[field.key] as unknown) as
     | DateRangeOptions
     | undefined
-  const onChange = (value: DateRangeOptions | undefined) =>
+  const onChange = (value: DateRangeOptions | undefined) => {
+    if (field.onChange) {
+      field.onChange(value)
+    }
     setFormValue(field.key, value)
+  }
   return <DateRange value={value} label={field.label} onChange={onChange} />
 }
 
