@@ -1,4 +1,4 @@
-import { FileRecord } from '../components/ViewFileWindow/ViewFileWindow'
+import { FileRecord } from '../definitions'
 
 export function isImage(file: FileRecord): boolean {
   return file.mimeType.startsWith('image/')
