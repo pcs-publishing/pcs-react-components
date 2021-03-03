@@ -71,3 +71,10 @@ export interface ProcessingState {
   totalSteps?: number
   currentStep?: number
 }
+
+export interface FileRecord {
+  url: string
+  name: string
+  mimeType: string
+  textContent?: string
+}
