@@ -90,6 +90,11 @@ Example.args = {
       key: 'description',
       label: 'Description',
       type: 'textarea'
+    },
+    {
+      key: 'file',
+      label: 'File',
+      type: 'file'
     }
   ],
   compact: false,
