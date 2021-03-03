@@ -8,6 +8,7 @@ import DropdownField from './fields/DropdownField'
 import DateField from './fields/DateField'
 import TimeField from './fields/TimeField'
 import TextAreaField from './fields/TextAreaField'
+import FileField from './fields/FileField'
 import styled from 'styled-components'
 import FilenameFormField from './fields/FilenameFormField'
 import {
@@ -121,6 +122,8 @@ function generateField(
       return generateDateRangeField(field, formValue, setFormValue)
     case 'textarea':
       return generateTextAreaField(field, formValue, setFormValue)
+    case 'file':
+      return generateFileField(field, formValue, setFormValue)
     default:
       return null
   }
@@ -339,6 +342,29 @@ function generateDateRangeField(
     setFormValue(field.key, value)
   }
   return <DateRange value={value} label={field.label} onChange={onChange} />
+}
+
+function generateFileField(
+  field: FieldDefinition,
+  formValue: FormValue,
+  setFormValue: FormFieldSetter
+): ReactNode {
+  const value = (formValue[field.key] ?? '') as string
+  field.inputType = 'file' // to force a file input
+  return (
+    <FileField
+      key={field.key}
+      field={field}
+      value={value}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
+      allValues={formValue}
+    />
+  )
 }
 
 function validateForm(

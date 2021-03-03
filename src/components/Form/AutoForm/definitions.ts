@@ -1,4 +1,5 @@
 import { WeekDay } from '../../../definitions'
+import { FileRecord } from '../../ViewFileWindow'
 import { DateRangeOptions } from '../DateRange'
 
 export type FormFieldValue =
@@ -7,6 +8,8 @@ export type FormFieldValue =
   | boolean
   | WeekDay
   | DateRangeOptions
+  | File
+  | FileRecord
   | undefined
 
 export type FormFieldType =
@@ -20,8 +23,9 @@ export type FormFieldType =
   | 'time'
   | 'daterange'
   | 'textarea'
+  | 'file'
 
-export type FormFieldInputType = 'text' | 'number' | 'password'
+export type FormFieldInputType = 'text' | 'number' | 'password' | 'file'
 
 export type FormValue = { [key: string]: FormFieldValue }
 
@@ -62,6 +66,7 @@ export interface FieldDefinition {
   ) => FieldDefinitionError | undefined
   rows?: number
   onChange?: (value: FormFieldValue) => void
+  allowedMimeTypes?: string[]
 }
 
 export interface FieldProps {
