@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Button, Modal, Header, Icon } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 import { pdfjs, Document, Page } from 'react-pdf'
