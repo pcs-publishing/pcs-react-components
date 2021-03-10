@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Button, Modal, Header, Icon } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 import { pdfjs, Document, Page } from 'react-pdf'
@@ -31,6 +31,10 @@ const PageWrapper = styled.div`
 const PdfViewerWindow = (props: PdfViewerWindowProps) => {
   const modalHeight = document.body.offsetHeight - 200
 
+  const onOpenPdf = useCallback(() => {
+    window.open(props.url, '_blank')
+  }, [props.url])
+
   return (
     <Modal size="large" open={props.open} onClose={props.close} closeIcon>
       <Header content={props.title} />
@@ -46,7 +50,7 @@ const PdfViewerWindow = (props: PdfViewerWindowProps) => {
         </Document>
       </DocumentWrapper>
       <Modal.Actions>
-        <Button primary as="a" compact size="small" href={props.url}>
+        <Button primary compact size="small" onClick={onOpenPdf}>
           <Icon as="i" name="download" />
           Download
         </Button>
