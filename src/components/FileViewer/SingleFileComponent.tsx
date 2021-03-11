@@ -71,7 +71,8 @@ const StyledCenteredImage = styled(CenteredImage)`
   }
 `
 
-export interface SingleFileComponentExtendedProps<T> extends SingleFileComponentProps<T> {
+export interface SingleFileComponentExtendedProps<T>
+  extends SingleFileComponentProps<T> {
   title: string
   filename: string
   previewUrl?: string
@@ -146,11 +147,11 @@ const SingleFileComponent = <T extends any>(
         Open
       </Button>
     ) : (
-        <Button as="a" compact size="small" href={downloadUrl}>
-          <Icon as="i" name="download" />
+      <Button as="a" compact size="small" href={downloadUrl}>
+        <Icon as="i" name="download" />
         Download
-        </Button>
-      )
+      </Button>
+    )
   ) : null
 
   const maxHeight = props.maxImageHeight || 200
@@ -190,8 +191,8 @@ const SingleFileComponent = <T extends any>(
             />
           </Card.Content>
         ) : (
-            getMainContent(props, openButton, switchToEditMode, canEdit)
-          )}
+          getMainContent(props, openButton, switchToEditMode, canEdit)
+        )}
       </FileCard>
     </>
   )
@@ -217,13 +218,14 @@ function getMainContent<T>(
           }
         />
 
-        {props.text && props.text.map((textItem) => {
-          return (
-            <Card.Meta key={textItem.label} className={textItem.className}>
-              {textItem.label}: {textItem.value}
-            </Card.Meta>
-          )
-        })}
+        {props.text &&
+          props.text.map((textItem) => {
+            return (
+              <Card.Meta key={textItem.label} className={textItem.className}>
+                {textItem.label}: {textItem.value}
+              </Card.Meta>
+            )
+          })}
       </Card.Content>
       <Card.Content extra>
         {openButton}
@@ -238,7 +240,9 @@ function getMainContent<T>(
             compact
             size="small"
             color="red"
-            onClick={() => props.onDeleteClick && props.onDeleteClick(props.record)}
+            onClick={() =>
+              props.onDeleteClick && props.onDeleteClick(props.record)
+            }
           >
             <Icon name="trash" />
             Delete
@@ -298,7 +302,7 @@ function getFileExtension(filename: string): string {
 }
 
 function canViewMimeType(mimeType: string): boolean {
-  const isImage = mimeType.startsWith('image/')
+  const isImage = mimeType.startsWith('image/') && !mimeType.endsWith('tiff') // tiff files cannot be displayed
   const isText = mimeType === 'text/plain'
   const isPdf = mimeType === 'application/pdf'
 
