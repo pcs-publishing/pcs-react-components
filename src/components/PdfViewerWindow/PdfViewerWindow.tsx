@@ -48,7 +48,14 @@ const PdfViewerWindow = (props: PdfViewerWindowProps) => {
         </Document>
       </DocumentWrapper>
       <Modal.Actions>
-        <Button primary as="a" compact size="small" href={props.url}>
+        <Button
+          primary
+          as="a"
+          compact
+          size="small"
+          href={props.url}
+          target="_blank"
+        >
           <Icon as="i" name="download" />
           Download
         </Button>
