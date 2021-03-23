@@ -25,20 +25,20 @@ interface DataRowProps<T> {
   getRowStyle?: (record: T) => FlattenSimpleInterpolation
 }
 
-const Cell = styled(Table.Cell)<{ padding?: number }>`
+const Cell = styled(Table.Cell) <{ padding?: number }>`
   ${(props) =>
     _.isNumber(props.padding) ? `padding: ${props.padding}px !important;` : ''}
 `
 
-const TableRow = styled(Table.Row)<{
+const TableRow = styled(Table.Row) <{
   selected: boolean
-  rowStyle?: FlattenSimpleInterpolation
+  $rowStyle?: FlattenSimpleInterpolation
 }>`
   :hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
 
-  ${(props) => props.rowStyle ?? ''}
+  ${(props) => props.$rowStyle ?? ''}
 
   ${(props) => {
     if (!props.selected) {
@@ -126,7 +126,7 @@ const DataRow = <T extends any>(props: DataRowProps<T>) => {
       onClick={onClick}
       onContextMenu={onContextMenu}
       onDoubleClick={onDoubleClick}
-      rowStyle={rowStyle}
+      $rowStyle={rowStyle}
     >
       {columnDefinitions.map((columnDefinition, index) => {
         const value = formatColumnValue(record, columnDefinition, index)
