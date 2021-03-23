@@ -5,7 +5,7 @@ import { DroppableId } from './DragDropAssignment'
 import DraggableElement from './DraggableElement'
 import { toString } from 'lodash'
 import { SubType } from '../../definitions'
-import { Header } from 'semantic-ui-react'
+import { Header, Input } from 'semantic-ui-react'
 
 const Container = styled.div<{ listWidth: number }>`
   width: ${(props) => props.listWidth}px;
@@ -38,11 +38,20 @@ interface DragDropListProps<T> {
     record: T,
     selected: boolean
   ) => string | React.ReactElement
+  onSearch: (id: DroppableId, value: string) => void
+  allowSearch: boolean
 }
 
 const DragDropList = <T extends any>(props: DragDropListProps<T>) => {
   return (
     <Container listWidth={props.listWidth || 220}>
+      {props.allowSearch ? (
+        <Input
+          placeholder="Search..."
+          onChange={(e) => props.onSearch(props.id, e.target.value)}
+          icon="search"
+        />
+      ) : null}
       <Header size="small" textAlign="center">
         {props.title}
       </Header>
