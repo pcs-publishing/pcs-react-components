@@ -4,11 +4,13 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import DragDropList from './DragDropList'
 import { SubType } from '../../definitions'
 import LoadingMask from '../LoadingMask'
+import _ from 'lodash'
 
 export interface DragDropAssignmentProps<T> {
   records: T[]
   initiallySelectedRecords?: T[]
   onChange: (selected: T[]) => void
+  allowSearch?: boolean
   recordIdProperty: keyof SubType<T, string>
   recordNameProperty: keyof SubType<T, string>
   getRecordComponent?: (
@@ -20,6 +22,7 @@ export interface DragDropAssignmentProps<T> {
   className?: string
   loading?: boolean
   listWidth?: number
+  fieldsToSearch?: keyof T[]
 }
 
 interface AssignmentState<T> {
@@ -43,7 +46,8 @@ const DragDropAssignment = <T extends any>(
     onChange,
     records,
     initiallySelectedRecords,
-    recordIdProperty
+    recordIdProperty,
+    allowSearch
   } = props
   const [assignmentState, setAssignmentState] = useState(
     getInitialAssignmentState(
@@ -113,11 +117,42 @@ const DragDropAssignment = <T extends any>(
     [setAssignmentState, onChange]
   )
 
+  const onChangeSearch = useCallback(
+    (id: DroppableId, value: string) => {
+      const regex = new RegExp(value, 'i')
+      const filteredAssignmentState = assignmentState[id].filter((row: any) =>
+        _.some(props.fieldsToSearch as any, (value: string) =>
+          regex.test(row[value])
+        )
+      )
+      if (value) {
+        setAssignmentState((p) => ({ ...p, [id]: filteredAssignmentState }))
+      } else {
+        setAssignmentState(
+          getInitialAssignmentState(
+            records || [],
+            initiallySelectedRecords || [],
+            recordIdProperty
+          )
+        )
+      }
+    },
+    [
+      setAssignmentState,
+      getInitialAssignmentState,
+      records,
+      initiallySelectedRecords,
+      recordIdProperty
+    ]
+  )
+
   const commonDragDropListProps = {
     recordIdProperty: props.recordIdProperty,
     recordNameProperty: props.recordNameProperty,
     getRecordComponent: props.getRecordComponent,
-    listWidth: props.listWidth
+    listWidth: props.listWidth,
+    onSearch: onChangeSearch,
+    allowSearch: allowSearch!!
   }
 
   return (
