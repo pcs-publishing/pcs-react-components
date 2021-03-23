@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from '../../theme-styled'
-import Swatch from '../Styled/Swatch';
-import DragDropAssignment from './DragDropAssignment';
-import { DragDropAssignmentProps } from './DragDropAssignment';
+import Swatch from '../Styled/Swatch'
+import DragDropAssignment from './DragDropAssignment'
+import { DragDropAssignmentProps } from './DragDropAssignment'
 
 export default {
   title: 'Drag Drop Assignment',
@@ -23,7 +23,7 @@ const Color = styled(Swatch)`
 `
 
 export const AssigningColors = () => {
-   const records: ColorRecord[] = [
+  const records: ColorRecord[] = [
     {
       color: 'red'
     },
@@ -45,19 +45,19 @@ export const AssigningColors = () => {
     {
       color: 'magenta'
     }
-   ]
-  
+  ]
+
   const props: DragDropAssignmentProps<ColorRecord> = {
-    getRecordComponent: (record: ColorRecord) => (
-      <Color color={record.color} />
-    ),
+    getRecordComponent: (record: ColorRecord) => <Color color={record.color} />,
     initiallySelectedRecords: [records[0]],
-    onChange: ((selected: ColorRecord[]) => console.log(selected)),
+    onChange: (selected: ColorRecord[]) => console.log(selected),
     records: records,
     recordIdProperty: 'color',
-    recordNameProperty: 'color'
+    recordNameProperty: 'color',
+    allowSearch: true,
+    fieldsToSearch: (['color'] as unknown) as keyof ColorRecord[]
   }
-  
+
   return (
     <Container>
       <DragDropAssignment {...props} />
