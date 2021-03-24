@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { Form, InputOnChangeData } from 'semantic-ui-react'
 import { capitalize } from 'lodash'
 
@@ -7,6 +7,7 @@ import {
   FilterDefinition
 } from '../../../definitions/filter'
 import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
+import { useIsTyping } from '../../../hooks/useIsTyping'
 
 interface TextFilterProps<T, U extends string> {
   value?: unknown
@@ -15,10 +16,29 @@ interface TextFilterProps<T, U extends string> {
   type?: string
 }
 
+const DELAY = 500
+
 const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U>) => {
-  const value = props.value || '' as string | number | undefined
+  const propsValue = props.value as string
   const type = props.type
+  const [value, setValue] = useState<string | number>(propsValue)
+  const [isTyping, setIsTyping] = useIsTyping(value, DELAY)
   const { filterDefinition, changeHandler } = props
+
+  const handleChange = useDebouncedCallback(
+    (val: string | number | undefined) => {
+      changeHandler(filterDefinition.name, val)
+    },
+    [changeHandler, filterDefinition],
+    DELAY
+  )
+
+  useEffect(() => {
+    if (!isTyping) {
+      setValue(propsValue)
+    }
+  }, [isTyping, propsValue])
+
 
   const onChangeCallback = useCallback(
     (_event, data: InputOnChangeData) => {
@@ -30,9 +50,13 @@ const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U
         }
       }
       const newValue = type === 'number' ? Number(val) : val
-      changeHandler(filterDefinition.name, newValue)
+
+      setValue(newValue)
+      setIsTyping(true)
+
+      handleChange(newValue)
     },
-    [filterDefinition, type, changeHandler]
+    [filterDefinition, type, handleChange]
   )
 
   const name = filterDefinition.name as string
@@ -51,3 +75,5 @@ const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U
 }
 
 export default TextFilter
+
+
