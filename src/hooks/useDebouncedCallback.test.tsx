@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { render, screen } from '@testing-library/react'
 import useDebouncedCallback from './useDebouncedCallback';
 
-const TestComponent = (props: { onChange: (value: number) => void}) => {
+const TestComponent = (props: { onChange: (value: number) => void }) => {
   const [value, setValue] = useState(0)
   const debouncedCallback = useDebouncedCallback(props.onChange, [], 20)
 
@@ -33,7 +33,7 @@ describe('useDebouncedCallback', () => {
     render(<TestComponent onChange={callback} />)
 
     const button = screen.getByText('Increment')
-    
+
     // Click the increment button four times
     button.click()
     button.click()
@@ -43,11 +43,8 @@ describe('useDebouncedCallback', () => {
 
     await wait(25)
 
-    expect(callback).toBeCalledWith(1)
     expect(callback).toBeCalledWith(4)
-
-    expect(callback).toBeCalledTimes(2)
-
+    expect(callback).toBeCalledTimes(1)
   })
 
 })
