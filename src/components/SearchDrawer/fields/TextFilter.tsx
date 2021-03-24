@@ -16,18 +16,9 @@ interface TextFilterProps<T, U extends string> {
 }
 
 const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U>) => {
-  const propsValue = props.value as string
+  const value = props.value || '' as string | number | undefined
   const type = props.type
-  const [value, setValue] = useState<string | number>(propsValue)
   const { filterDefinition, changeHandler } = props
-
-  const handleChange = useDebouncedCallback(
-    (val: string | number | undefined) => {
-      changeHandler(filterDefinition.name, val)
-    },
-    [changeHandler, filterDefinition],
-    1000
-  )
 
   const onChangeCallback = useCallback(
     (_event, data: InputOnChangeData) => {
@@ -39,11 +30,9 @@ const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U
         }
       }
       const newValue = type === 'number' ? Number(val) : val
-      setValue(newValue)
-
-      handleChange(newValue)
+      changeHandler(filterDefinition.name, newValue)
     },
-    [filterDefinition, type, handleChange]
+    [filterDefinition, type, changeHandler]
   )
 
   const name = filterDefinition.name as string
