@@ -53,6 +53,7 @@ import H_useCallOnEnterUp from './hooks/useCallOnEnterUp'
 import H_useCallOnEscapeUp from './hooks/useCallOnEscapeUp'
 import H_useCallOnKeyUp from './hooks/useCallOnKeyUp'
 import H_useDebouncedCallback from './hooks/useDebouncedCallback'
+import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
 import H_useTheme from './hooks/useTheme'
 //#endregion
@@ -130,6 +131,7 @@ export const useCallOnKeyUp = H_useCallOnKeyUp
 export const useRecordSelection = H_useRecordSelection
 export const useTheme = H_useTheme
 export const useDebouncedCallback = H_useDebouncedCallback
+export const useDelayedFunction = H_useDelayedFunction
 //#endregion
 
 //#region service exports

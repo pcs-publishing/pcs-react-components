@@ -6,7 +6,7 @@ import {
   SingleFilterChangeHandler,
   FilterDefinition
 } from '../../../definitions/filter'
-import useDebouncedCallback from '../../../hooks/useDebouncedCallback'
+import useDelayedFunction from '../../../hooks/useDelayedFunction'
 import { useIsTyping } from '../../../hooks/useIsTyping'
 
 interface TextFilterProps<T, U extends string> {
@@ -25,11 +25,10 @@ const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U
   const [isTyping, setIsTyping] = useIsTyping(value, DELAY)
   const { filterDefinition, changeHandler } = props
 
-  const handleChange = useDebouncedCallback(
+  const handleChange = useDelayedFunction(
     (val: string | number | undefined) => {
       changeHandler(filterDefinition.name, val)
     },
-    [changeHandler, filterDefinition],
     DELAY
   )
 
