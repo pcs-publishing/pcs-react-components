@@ -8,8 +8,9 @@ const TextField = (props: FieldProps) => {
   const rows = field.rows ?? 4
 
   const onTextAreaChange = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      const value = e.target.value
+    (e: unknown) => {
+      const { target } = e as { target: { value: string } }
+      const value = target.value
       onChange(field.key, value)
     },
     [onChange, field]

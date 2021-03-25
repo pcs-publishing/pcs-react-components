@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { render, screen } from '@testing-library/react'
-import useDebouncedCallback from './useDebouncedCallback';
+import useDelayedFunction from './useDelayedFunction';
 
 const TestComponent = (props: { onChange: (value: number) => void }) => {
   const [value, setValue] = useState(0)
-  const debouncedCallback = useDebouncedCallback(props.onChange, [], 20)
+  const debouncedFunction = useDelayedFunction(props.onChange, 20)
 
   const onClick = () => {
     setValue(current => {
       const newValue = current + 1
-      debouncedCallback(newValue)
+      debouncedFunction(newValue)
       return newValue
     })
   }
@@ -27,10 +27,10 @@ const wait = (ms: number) => {
 }
 
 
-describe('useDebouncedCallback', () => {
-  it('Should delay until calling the callback until it has not been hit for the delay time, the call should be the most recent call', async () => {
-    const callback = jest.fn()
-    render(<TestComponent onChange={callback} />)
+describe('useDelayedFunction', () => {
+  it('Should delay until calling the function until it has not been hit for the delay time, the call should be the most recent call', async () => {
+    const handler = jest.fn()
+    render(<TestComponent onChange={handler} />)
 
     const button = screen.getByText('Increment')
 
@@ -43,11 +43,8 @@ describe('useDebouncedCallback', () => {
 
     await wait(25)
 
-    expect(callback).toBeCalledWith(1)
-    expect(callback).toBeCalledWith(4)
-
-    expect(callback).toBeCalledTimes(2)
-
+    expect(handler).toBeCalledWith(4)
+    expect(handler).toBeCalledTimes(1)
   })
 
 })

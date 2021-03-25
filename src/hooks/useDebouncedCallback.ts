@@ -1,32 +1,25 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
+import { debounce, DebouncedFunc } from 'lodash'
 
 export default function useDebouncedCallback<T extends (...args: any[]) => any>(
   fn: T,
   dependencies: any[],
   delay: number
-): T {
-  const [timeoutId, setTimeoutId] = useState<number | undefined>()
+): DebouncedFunc<T> | T {
   const callback = useCallback(fn, [...dependencies, fn])
-  const debouncedCallback = (...args: unknown[]) => {
-    return new Promise((resolve) => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-      setTimeoutId(
-        setTimeout(() => {
-          resolve(callback(...args))
-        }, delay)
-      )
-    })
-  }
+  let debouncedCallbackRef = useRef<DebouncedFunc<T>>()
 
   useEffect(() => {
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-    }
-  }, [])
+    debouncedCallbackRef.current = debounce(callback, delay)
 
-  return debouncedCallback as T
+    return () => {
+      if (debouncedCallbackRef.current) {
+        debouncedCallbackRef.current.cancel()
+      }
+
+      debouncedCallbackRef.current = undefined
+    }
+  }, [callback, delay])
+
+  return debouncedCallbackRef.current || callback
 }
