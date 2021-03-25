@@ -69,7 +69,7 @@ const ContextMenu = <T extends any>({
   onAction,
 }: ContextMenuProps<T>) => {
   return (
-    <Menu id={id}>
+    <StyledMenu id={id}>
       {items.map((item) => {
         const disabled = item.disabled ? item.disabled : false
         return (
@@ -83,7 +83,7 @@ const ContextMenu = <T extends any>({
           </StyledItem>
         )
       })}
-    </Menu>
+    </StyledMenu>
   )
 }
 
