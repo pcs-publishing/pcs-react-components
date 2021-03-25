@@ -67,13 +67,9 @@ const ContextMenu = <T extends any>({
   id,
   items,
   onAction,
-  selectedItemBackgroundColor,
-  selectedItemTextColor
 }: ContextMenuProps<T>) => {
-
-
   return (
-    <StyledMenu id={id} animation="pop">
+    <Menu id={id}>
       {items.map((item) => {
         const disabled = item.disabled ? item.disabled : false
         return (
@@ -87,7 +83,7 @@ const ContextMenu = <T extends any>({
           </StyledItem>
         )
       })}
-    </StyledMenu>
+    </Menu>
   )
 }
 
