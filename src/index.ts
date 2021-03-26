@@ -75,6 +75,10 @@ import * as U_File from './util/file'
 import T_defaultTheme from './themes/defaultTheme'
 //#endregion
 
+//#region css imports
+import 'react-contexify/dist/ReactContexify.css'
+//#endregion
+
 //#region component exports
 export const Button = C_Button
 export const ContextMenu = C_ContextMenu
