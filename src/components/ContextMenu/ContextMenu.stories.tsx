@@ -2,7 +2,7 @@ import React from 'react'
 import ContextMenu, { ContextMenuItem, ContextMenuProps } from './ContextMenu';
 import styled from 'styled-components'
 import { useContextMenu } from 'react-contexify'
-
+import { Modal } from 'semantic-ui-react'
 import 'react-contexify/dist/ReactContexify.css';
 
 export default {
@@ -72,4 +72,29 @@ export const DisabledItem = (props: ContextMenuProps<string>) => {
     <ContextMenu id={menuId} items={items} onAction={props.onAction} />
     <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
   </div>
+}
+
+export const InAModal = (props: ContextMenuProps<string>) => {
+  const items: ContextMenuItem<string>[] = [{
+    action: 'up',
+    text: 'Turn Up',
+    icon: 'volume up'
+  }, {
+    action: 'down',
+    text: 'Turn Off',
+    icon: 'volume down'
+  }]
+
+  const menuId = 'second-story'
+
+  const { show } = useContextMenu({
+    id: menuId
+  })
+
+  return <Modal open>
+    <Modal.Content>
+      <ContextMenu id={menuId} items={items} onAction={props.onAction} />
+      <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
+    </Modal.Content>
+  </Modal>
 }

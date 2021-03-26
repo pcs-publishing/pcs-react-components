@@ -1,5 +1,5 @@
 import React from 'react'
-import { SemanticICONS, Icon } from 'semantic-ui-react'
+import { SemanticICONS, Icon, Portal } from 'semantic-ui-react'
 import styled, { css } from '../../theme-styled'
 import { Menu, Item } from 'react-contexify'
 
@@ -67,27 +67,25 @@ const ContextMenu = <T extends any>({
   id,
   items,
   onAction,
-  selectedItemBackgroundColor,
-  selectedItemTextColor
 }: ContextMenuProps<T>) => {
-
-
   return (
-    <StyledMenu id={id} animation="pop">
-      {items.map((item) => {
-        const disabled = item.disabled ? item.disabled : false
-        return (
-          <StyledItem
-            key={item.text}
-            disabled={disabled}
-            onClick={(args: any) => onAction(item.action, args as MenuItemEventHandler)}
-          >
-            <Icon name={item.icon} />
-            <FloatRightText>{item.text}</FloatRightText>
-          </StyledItem>
-        )
-      })}
-    </StyledMenu>
+    <Portal open>
+      <StyledMenu id={id}>
+        {items.map((item) => {
+          const disabled = item.disabled ? item.disabled : false
+          return (
+            <StyledItem
+              key={item.text}
+              disabled={disabled}
+              onClick={(args: any) => onAction(item.action, args as MenuItemEventHandler)}
+            >
+              <Icon name={item.icon} />
+              <FloatRightText>{item.text}</FloatRightText>
+            </StyledItem>
+          )
+        })}
+      </StyledMenu>
+    </Portal>
   )
 }
 

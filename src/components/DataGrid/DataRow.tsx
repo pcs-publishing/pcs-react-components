@@ -3,7 +3,7 @@ import { ColumnDefinition } from '../../definitions'
 import styled from '../../theme-styled'
 import { Table } from 'semantic-ui-react'
 import { formatColumnValue } from '../../services/FormatColumnService'
-import { contextMenu } from 'react-contexify'
+import { useContextMenu } from 'react-contexify'
 import _ from 'lodash'
 import { FlattenSimpleInterpolation } from 'styled-components'
 
@@ -64,6 +64,8 @@ const DataRow = <T extends any>(props: DataRowProps<T>) => {
   } = props
   const contextMenuId = props.contextMenu as string
 
+  const { show: showContextMenu } = useContextMenu({ id: contextMenuId })
+
   const onClick = useCallback(
     (event: MouseEvent) => {
       const targetElement = event.target as HTMLElement
@@ -102,9 +104,8 @@ const DataRow = <T extends any>(props: DataRowProps<T>) => {
 
       e.preventDefault()
 
-      contextMenu.show({
+      showContextMenu(e, {
         id: contextMenuId,
-        event: e,
         props: mapProps(record)
       })
     },

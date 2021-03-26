@@ -56,6 +56,7 @@ import H_useDebouncedCallback from './hooks/useDebouncedCallback'
 import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
 import H_useTheme from './hooks/useTheme'
+import { useContextMenu as H_useContextMenu } from 'react-contexify'
 //#endregion
 
 //#region service imports
@@ -72,6 +73,10 @@ import * as U_File from './util/file'
 
 //#region theme imports
 import T_defaultTheme from './themes/defaultTheme'
+//#endregion
+
+//#region css imports
+import 'react-contexify/dist/ReactContexify.css'
 //#endregion
 
 //#region component exports
@@ -132,6 +137,7 @@ export const useRecordSelection = H_useRecordSelection
 export const useTheme = H_useTheme
 export const useDebouncedCallback = H_useDebouncedCallback
 export const useDelayedFunction = H_useDelayedFunction
+export const useContextMenu = H_useContextMenu
 //#endregion
 
 //#region service exports
