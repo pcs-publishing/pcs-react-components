@@ -7,9 +7,17 @@ import BooleanField from './fields/BooleanField'
 import DropdownField from './fields/DropdownField'
 import DateField from './fields/DateField'
 import TimeField from './fields/TimeField'
+import TextAreaField from './fields/TextAreaField'
+import FileField from './fields/FileField'
 import styled from 'styled-components'
 import FilenameFormField from './fields/FilenameFormField'
-import { AutoFormProps, FieldDefinition, FormFieldSetter, FormFieldValue, FormValue } from './definitions'
+import {
+  AutoFormProps,
+  FieldDefinition,
+  FormFieldSetter,
+  FormFieldValue,
+  FormValue
+} from './definitions'
 import { DateRangeOptions } from '../DateRange'
 import DateRange from '../DateRange'
 
@@ -40,6 +48,9 @@ const AutoForm = (props: AutoFormProps) => {
     e.preventDefault()
     if (!isValid) return
     onSave(formValue)
+    if (props.clearAfterSave) {
+      setFormValue(props.defaultValue ?? {})
+    }
   }
 
   const isValid = validateForm(fields, formValue)
@@ -59,7 +70,12 @@ const AutoForm = (props: AutoFormProps) => {
           Save
         </Button>
         {props.onCancel ? (
-          <Button size={size} onClick={onCancel} compact={props.compact}>
+          <Button
+            type="button"
+            size={size}
+            onClick={onCancel}
+            compact={props.compact}
+          >
             Cancel
           </Button>
         ) : null}
@@ -104,7 +120,10 @@ function generateField(
       return generateTimeField(field, formValue, setFormValue)
     case 'daterange':
       return generateDateRangeField(field, formValue, setFormValue)
-
+    case 'textarea':
+      return generateTextAreaField(field, formValue, setFormValue)
+    case 'file':
+      return generateFileField(field, formValue, setFormValue)
     default:
       return null
   }
@@ -121,7 +140,12 @@ function generateDateField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -138,7 +162,12 @@ function generateTimeField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -155,7 +184,34 @@ function generateTextField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
+      allValues={formValue}
+    />
+  )
+}
+
+function generateTextAreaField(
+  field: FieldDefinition,
+  formValue: FormValue,
+  setFormValue: FormFieldSetter
+): ReactNode {
+  const value = (formValue[field.key] ?? '') as string
+  return (
+    <TextAreaField
+      key={field.key}
+      field={field}
+      value={value}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -173,7 +229,12 @@ function generateNumberField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -190,7 +251,12 @@ function generateBooleanField(
       key={field.key}
       field={field}
       value={!!value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
     />
   )
 }
@@ -207,7 +273,12 @@ function generateDropdownField(
       field={field}
       value={!!value}
       defaultValue={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -224,7 +295,12 @@ function generateColorField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
     />
   )
 }
@@ -240,7 +316,12 @@ function generateFileNameField(
       key={field.key}
       field={field}
       value={value}
-      onChange={setFormValue}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
       allValues={formValue}
     />
   )
@@ -251,9 +332,39 @@ function generateDateRangeField(
   formValue: FormValue,
   setFormValue: FormFieldSetter
 ): ReactNode {
-  const value = (formValue[field.key] as unknown) as DateRangeOptions | undefined
-  const onChange = (value: DateRangeOptions | undefined) => setFormValue(field.key, value)
+  const value = (formValue[field.key] as unknown) as
+    | DateRangeOptions
+    | undefined
+  const onChange = (value: DateRangeOptions | undefined) => {
+    if (field.onChange) {
+      field.onChange(value)
+    }
+    setFormValue(field.key, value)
+  }
   return <DateRange value={value} label={field.label} onChange={onChange} />
+}
+
+function generateFileField(
+  field: FieldDefinition,
+  formValue: FormValue,
+  setFormValue: FormFieldSetter
+): ReactNode {
+  const value = (formValue[field.key] ?? '') as string
+  field.inputType = 'file' // to force a file input
+  return (
+    <FileField
+      key={field.key}
+      field={field}
+      value={value}
+      onChange={(key, value) => {
+        if (field.onChange) {
+          field.onChange(value)
+        }
+        setFormValue(key, value)
+      }}
+      allValues={formValue}
+    />
+  )
 }
 
 function validateForm(

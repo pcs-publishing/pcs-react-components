@@ -18,8 +18,6 @@ export interface MainNavigationProps {
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
-  const ExtraStartItem = props.startItem || null
-  const ExtraLastItem = props.lastItem || null
   return <NavigationBar
     items={props.items}
     currentLocation={props.currentLocation}

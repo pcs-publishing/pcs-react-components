@@ -3,16 +3,24 @@ import _ from 'lodash'
 import {
   isValidDate,
   getFormattedDateLong,
-  getFormattedDateTime
+  getFormattedDateTime,
+  getDayNameFromDate,
+  getTimeFromDate
 } from '../util/date'
 
 export function formatColumnValue<T>(
   record: T,
   columnDefinition: ColumnDefinition<T>,
-  index: number
+  index: number,
+  isExport?: boolean
 ): any {
-  if (columnDefinition.format) {
-    return columnDefinition.format(record, index)
+  const formatFn =
+    isExport && columnDefinition.exportFormat
+      ? columnDefinition.exportFormat
+      : columnDefinition.format
+
+  if (formatFn) {
+    return formatFn(record, index)
   }
 
   return formatByType(
@@ -39,6 +47,10 @@ function formatByType<T>(
       return getFormattedDateString(value)
     case 'datetime':
       return getFormattedDateTimeString(value)
+    case 'day':
+      return getFormattedDayString(value)
+    case 'time':
+      return getFormattedTimeString(value)
     case 'user':
       return getFormattedUser(value)
     case 'named-record':
@@ -54,6 +66,14 @@ export function getFormattedDateString(date: unknown): string {
 
 export function getFormattedDateTimeString(date: unknown): string {
   return isValidDate(date) ? getFormattedDateTime(date) : ''
+}
+
+export function getFormattedTimeString(date: unknown): string {
+  return isValidDate(date) ? getTimeFromDate(date) : ''
+}
+
+export function getFormattedDayString(date: unknown): string {
+  return isValidDate(date) ? getDayNameFromDate(date) : ''
 }
 
 function getFormattedUser(value: unknown): string {

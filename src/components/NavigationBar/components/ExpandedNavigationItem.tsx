@@ -18,10 +18,10 @@ const StyledMenuItem = styled(Menu.Item) <{ $active: boolean, $orientation: Orie
   padding: none !important;
   margin-top: none !important;
 
-  &.active {
+  ${props => props.$active ? `
     background-color: rgba(255, 255, 255, 0.1) !important;
     font-style: bolder !important;
-  }
+  ` : ''}
 
   :hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
@@ -29,7 +29,7 @@ const StyledMenuItem = styled(Menu.Item) <{ $active: boolean, $orientation: Orie
 `
 
 const ExpandedNavigationItem = (props: NavigationItemProps) => {
-  return <StyledMenuItem $active={props.active} $orientation={props.orientation}>
+  return <StyledMenuItem $active={props.active} $orientation={props.orientation} onClick={() => props.onClick(props.item)}>
     <NavigationItemIcon name={props.item.icon} />
     {props.item.title}
     <Chevron />

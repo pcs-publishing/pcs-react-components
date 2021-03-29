@@ -3,7 +3,7 @@ import { ColumnDefinition } from '../../definitions'
 import styled from '../../theme-styled'
 import { Table } from 'semantic-ui-react'
 import { formatColumnValue } from '../../services/FormatColumnService'
-import { contextMenu } from 'react-contexify'
+import { useContextMenu } from 'react-contexify'
 import _ from 'lodash'
 import { FlattenSimpleInterpolation } from 'styled-components'
 
@@ -25,20 +25,20 @@ interface DataRowProps<T> {
   getRowStyle?: (record: T) => FlattenSimpleInterpolation
 }
 
-const Cell = styled(Table.Cell)<{ padding?: number }>`
+const Cell = styled(Table.Cell) <{ padding?: number }>`
   ${(props) =>
     _.isNumber(props.padding) ? `padding: ${props.padding}px !important;` : ''}
 `
 
-const TableRow = styled(Table.Row)<{
+const TableRow = styled(Table.Row) <{
   selected: boolean
-  rowStyle?: FlattenSimpleInterpolation
+  $rowStyle?: FlattenSimpleInterpolation
 }>`
   :hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
 
-  ${(props) => props.rowStyle ?? ''}
+  ${(props) => props.$rowStyle ?? ''}
 
   ${(props) => {
     if (!props.selected) {
@@ -63,6 +63,8 @@ const DataRow = <T extends any>(props: DataRowProps<T>) => {
     getRowStyle
   } = props
   const contextMenuId = props.contextMenu as string
+
+  const { show: showContextMenu } = useContextMenu({ id: contextMenuId })
 
   const onClick = useCallback(
     (event: MouseEvent) => {
@@ -102,9 +104,8 @@ const DataRow = <T extends any>(props: DataRowProps<T>) => {
 
       e.preventDefault()
 
-      contextMenu.show({
+      showContextMenu(e, {
         id: contextMenuId,
-        event: e,
         props: mapProps(record)
       })
     },
@@ -126,7 +127,7 @@ const DataRow = <T extends any>(props: DataRowProps<T>) => {
       onClick={onClick}
       onContextMenu={onContextMenu}
       onDoubleClick={onDoubleClick}
-      rowStyle={rowStyle}
+      $rowStyle={rowStyle}
     >
       {columnDefinitions.map((columnDefinition, index) => {
         const value = formatColumnValue(record, columnDefinition, index)

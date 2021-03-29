@@ -19,13 +19,15 @@ const BooleanField = (props: FieldProps) => {
   )
 
   return (
-    <StyledCheckbox
-      toggle
-      autoFocus={!!field.autoFocus}
-      label={field.label}
-      checked={value as boolean}
-      onChange={onCheckboxChange}
-    />
+    <div>
+      <StyledCheckbox
+        toggle
+        autoFocus={!!field.autoFocus}
+        label={field.label}
+        checked={value as boolean}
+        onChange={onCheckboxChange}
+      />
+    </div>
   )
 }
 

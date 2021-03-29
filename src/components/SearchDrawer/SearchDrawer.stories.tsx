@@ -47,6 +47,7 @@ export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputT
         filterDefinitions={filterDefinitions}
         singleFilterChangeHandler={onFilterChange}
         currentFilter={filter}
+        onClear={() => setFilter({})}
       />
       <MainArea />
     </Container>

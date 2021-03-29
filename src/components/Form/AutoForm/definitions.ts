@@ -1,7 +1,16 @@
 import { WeekDay } from '../../../definitions'
+import { FileRecord } from '../../ViewFileWindow'
 import { DateRangeOptions } from '../DateRange'
 
-export type FormFieldValue = string | number | boolean | WeekDay | DateRangeOptions | undefined
+export type FormFieldValue =
+  | string
+  | number
+  | boolean
+  | WeekDay
+  | DateRangeOptions
+  | File
+  | FileRecord
+  | undefined
 
 export type FormFieldType =
   | 'text'
@@ -13,8 +22,10 @@ export type FormFieldType =
   | 'date'
   | 'time'
   | 'daterange'
+  | 'textarea'
+  | 'file'
 
-export type FormFieldInputType = 'text' | 'number' | 'password'
+export type FormFieldInputType = 'text' | 'number' | 'password' | 'file'
 
 export type FormValue = { [key: string]: FormFieldValue }
 
@@ -30,6 +41,7 @@ export interface AutoFormProps {
   defaultValue?: FormValue
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
   compact?: boolean
+  clearAfterSave?: boolean
 }
 
 type FieldDefinitionErrorPointing = 'below' | 'left' | 'above' | 'right'
@@ -52,6 +64,9 @@ export interface FieldDefinition {
     value: FormFieldValue,
     allvalues: FormValue
   ) => FieldDefinitionError | undefined
+  rows?: number
+  onChange?: (value: FormFieldValue) => void
+  allowedMimeTypes?: string[]
 }
 
 export interface FieldProps {
@@ -61,4 +76,3 @@ export interface FieldProps {
   onChange: (key: string, value: FormFieldValue) => void
   allValues?: FormValue
 }
-

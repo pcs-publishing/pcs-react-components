@@ -15,7 +15,7 @@ export interface PdfViewerWindowProps {
 const DocumentWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.base};
   text-align: center;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 25px;
 `
 
@@ -24,6 +24,8 @@ const PageWrapper = styled.div`
     canvas {
       margin: 0 auto;
       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+      width: 100% !important;
+      height: auto !important;
     }
   }
 `
@@ -46,7 +48,14 @@ const PdfViewerWindow = (props: PdfViewerWindowProps) => {
         </Document>
       </DocumentWrapper>
       <Modal.Actions>
-        <Button primary as="a" compact size="small" href={props.url}>
+        <Button
+          primary
+          as="a"
+          compact
+          size="small"
+          href={props.url}
+          target="_blank"
+        >
           <Icon as="i" name="download" />
           Download
         </Button>

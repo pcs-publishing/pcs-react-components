@@ -14,11 +14,16 @@ interface NavigationItemsProps {
 
 const NavigationItems = (props: NavigationItemsProps) => {
   const NavigationItemComponent = props.orientation === 'vertical' && props.collapsed ? CollapsedNavigationItem : ExpandedNavigationItem
-  const Wrapper = props.collapsed ? React.Fragment : NavigationMenu
 
-  return <Wrapper orientation={props.orientation}>
-    {props.items.map(item => (<NavigationItemComponent active={item.path === props.currentLocation} key={item.path} orientation={props.orientation} active={false} item={item} onClick={props.onClick} />))}
-  </Wrapper>
+  const items = props.items.map(item => (<NavigationItemComponent active={item.path === props.currentLocation} key={item.path} orientation={props.orientation} item={item} onClick={props.onClick} />))
+
+  if (props.collapsed) {
+    return <>
+      {items}
+    </>
+  }
+
+  return <NavigationMenu orientation={props.orientation}>{items}</NavigationMenu>
 }
 
 export default NavigationItems

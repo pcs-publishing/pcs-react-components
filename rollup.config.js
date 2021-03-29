@@ -1,14 +1,14 @@
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import typescript from "rollup-plugin-typescript2";
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import typescript from 'rollup-plugin-typescript2'
 import css from 'rollup-plugin-css-only'
 import uglify from 'rollup-plugin-uglify-es'
 
-import packageJson from "./package.json";
+import packageJson from './package.json'
 
 export default {
-  input: "./src/index.ts",
+  input: './src/index.ts',
   output: [
     {
       file: packageJson.module,
@@ -19,6 +19,7 @@ export default {
       format: 'cjs'
     }
   ],
+  external: Object.keys(packageJson.devDependencies),
   cache: false,
   plugins: [peerDepsExternal(), resolve({
     preferBuiltins: false,

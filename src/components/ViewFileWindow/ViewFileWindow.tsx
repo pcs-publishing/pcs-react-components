@@ -3,13 +3,7 @@ import PdfViewerWindow from '../PdfViewerWindow/PdfViewerWindow'
 import ImageLightbox from '../Image/ImageLightbox'
 import Alert from '../Popups/Alert'
 import TextViewer from './components/TextViewer'
-
-export interface FileRecord {
-  url: string
-  name: string
-  mimeType: string
-  textContent?: string
-}
+import { FileRecord } from '../../definitions'
 
 export interface ViewFileWindowProps {
   file: FileRecord | undefined

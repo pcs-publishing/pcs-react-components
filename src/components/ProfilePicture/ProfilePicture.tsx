@@ -45,12 +45,15 @@ const ProfilePicture = (props: ProfilePictureProps) => {
         position="right center"
         disabled={props.showName}
         trigger={
-          <Image
-            size={size}
-            src={props.avatar ? props.avatar : defaultAvatar}
-            alt={`user-profile-image-${props.firstname}-${props.surname}`}
-            onError={onError}
-          />
+          <>
+            <Image
+              size={size}
+              src={props.avatar ? props.avatar : defaultAvatar}
+              alt={`user-profile-image-${props.firstname}-${props.surname}`}
+              onError={onError}
+            />
+            {props.customIndicator || null}
+          </>
         }
       />
       {props.showName && <Username>{props.firstname} {props.surname}</Username>}

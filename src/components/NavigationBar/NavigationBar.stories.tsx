@@ -89,18 +89,43 @@ export const WithLastItem = (props: NavigationBarProps) => {
   </Container>
 }
 
+export const WithStartAndLastItems = (props: NavigationBarProps) => {
+  const [location, setLocation] = useState(props.currentLocation)
+
+  console.log('location: ', location)
+
+  return <Container>
+    <NavigationBar {...props} startItem={LogoItem} lastItem={VersionItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
+      setLocation(path)
+      props.onNavigate(path)
+    })} />
+  </Container>
+}
+
 const LogoContainer = styled.div`
-  padding: 20px;
+  padding: 2%;
   margin: 0 auto;
 `
 
 const LogoItem = (props: AdditionalItemProps) => {
   return <LogoContainer>
-    <SVGLogo src="/redis.svg" size={170} />
+    <SVGLogo src="/redis.svg" size={props.collapsed ? 40 : 170} />
   </LogoContainer>
 }
 
+const VersionContainer = styled.div`
+  position: relative;
+  flex: 1;
+`
+
+const StyledVersion = styled(Version)`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+`
 
 const VersionItem = (props: AdditionalItemProps) => {
-  return <Version version="1.0.1" />
+  return <VersionContainer>
+    <StyledVersion version="1.0.1" />
+  </VersionContainer>
 }
