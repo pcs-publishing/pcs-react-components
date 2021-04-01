@@ -1,6 +1,7 @@
 import React from 'react'
 import faker from 'faker'
 import ProfilePicture, { ProfilePictureProps } from '.'
+import styled from 'styled-components'
 
 export default {
   title: 'Profile Picture',
@@ -8,8 +9,12 @@ export default {
   argTypes: { onClick: { action: 'click' } }
 }
 
+const Container = styled.div`
+  width: 200px;
+`
+
 const Template = (props: ProfilePictureProps) => (
-  <ProfilePicture {...props} />
+  <Container><ProfilePicture {...props} /></Container>
 )
 
 export const NoPicture = Template.bind({})
@@ -36,4 +41,28 @@ WithName.args = {
   avatar: '/avatar.png',
   size: 200,
   showName: true
+}
+
+const size = 200
+const indicatorSize = 30
+
+const StatusIndicator = styled.div`
+  position: relative;
+  bottom: ${(size * 0.8) + indicatorSize}px;
+  left: ${(size * 0.8)}px;
+  width: ${indicatorSize}px;
+  height: ${indicatorSize}px;
+  border-radius: 50%;
+  background-color: #2ecc71;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+`
+
+export const WithCustomIndicator = Template.bind({})
+WithCustomIndicator.args = {
+  firstname: 'Christopher',
+  surname: 'Train',
+  avatar: '/avatar.png',
+  size: 200,
+  showName: false,
+  customIndicator: <StatusIndicator />
 }

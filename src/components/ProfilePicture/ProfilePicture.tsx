@@ -4,20 +4,23 @@ import _ from 'lodash'
 import { Popup } from 'semantic-ui-react'
 import { ProfilePictureProps } from '.'
 
-const Image = styled.img<{ size: number }>`
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
+const ImageContainer = styled.div<{ $size: number }>`
+  width: ${(props) => props.$size}px;
+  height: ${(props) => props.$size}px;
+  overflow: hidden;
+  `
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
   border-radius: 100%;
   object-fit: cover;
   margin: 0 auto;
-
 `
 
 const Username = styled.div`
   font-size: 1.2em;
-  width: 100%;
-  margin-top: 5px;
-  text-align: center;
+  margin-top: 8px;
 `
 
 const Container = styled.div<{ onClick?: () => void }>`
@@ -45,15 +48,14 @@ const ProfilePicture = (props: ProfilePictureProps) => {
         position="right center"
         disabled={props.showName}
         trigger={
-          <>
+          <ImageContainer $size={size}>
             <Image
-              size={size}
               src={props.avatar ? props.avatar : defaultAvatar}
               alt={`user-profile-image-${props.firstname}-${props.surname}`}
               onError={onError}
             />
             {props.customIndicator || null}
-          </>
+          </ImageContainer>
         }
       />
       {props.showName && <Username>{props.firstname} {props.surname}</Username>}
@@ -67,7 +69,7 @@ function arePropsTheSame(
   oldProps: ProfilePictureProps,
   newProps: ProfilePictureProps
 ): boolean {
-  const propsToCompare = ['username', 'size', 'avatar']
+  const propsToCompare = ['username', 'size', 'avatar', 'showName', 'firstname', 'surname', 'customIndicator']
   return _.isEqual(
     _.pick(oldProps, propsToCompare),
     _.pick(newProps, propsToCompare)

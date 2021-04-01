@@ -1,29 +1,32 @@
 import React from 'react'
 import styled from '../../theme-styled'
 import { ReactSVG } from 'react-svg'
+import { isNumber } from 'lodash'
 
 export interface SVGLogoProps {
   src: string
-  size: number
+  size: number | string
   className?: string
   onClick?: () => void
 }
 
-const Fallback = styled.div<{ $size: number }>`
-  max-width: ${props => props.$size}px;
-  max-height: ${props => props.$size}px;
+const Fallback = styled.div<{ $size: string }>`
+  max-width: ${props => props.$size};
+  max-height: ${props => props.$size};
 `
 
-const Container = styled.div<{ $pointer: boolean, $size: number }>`
-  max-width: ${props => props.$size}px !important;
-  max-height: ${props => props.$size}px !important;
+const Container = styled.div<{ $pointer: boolean, $size: string }>`
+  max-width: ${props => props.$size} !important;
+  max-height: ${props => props.$size} !important;
   display: inline-block;
   cursor: ${props => props.$pointer ? 'pointer' : 'default'};
 `
 
 const SVGLogo = (props: SVGLogoProps) => {
+  const sizeAsString = isNumber(props.size) ? `${props.size}px` : props.size
+
   const sizeProps = {
-    $size: props.size,
+    $size: sizeAsString,
   }
 
   return <Container className={props.className} $pointer={!!props.onClick} {...sizeProps}>
@@ -32,7 +35,7 @@ const SVGLogo = (props: SVGLogoProps) => {
       loading={() => <Fallback {...sizeProps} />}
       role="img"
       beforeInjection={(svg) => {
-        svg.setAttribute('style', `max-width: ${props.size}px; max-height: ${props.size}px;`)
+        svg.setAttribute('style', `max-width: 100%; max-height: 100%;`)
       }}
     />
   </Container>

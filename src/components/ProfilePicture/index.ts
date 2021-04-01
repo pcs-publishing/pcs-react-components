@@ -8,7 +8,7 @@ export interface ProfilePictureProps {
   avatar?: string
   className?: string
   onClick?: () => void
-  customIndicator?: React.FunctionComponentElement
+  customIndicator?: React.ReactElement
 }
 
 export default ProfilePicture
