@@ -3,7 +3,7 @@ import { Form, Header } from 'semantic-ui-react'
 import styled from '../../../theme-styled'
 import Button from '../../../components/Button'
 
-interface LoginFormProps {
+export interface LoginFormProps {
   className?: string
   onLogin: (username: string, password: string) => void
   onForgottenPasswordClick: () => void
@@ -11,13 +11,20 @@ interface LoginFormProps {
 }
 
 const StyledLink = styled.span`
-  color: white;
+  color: ${props => props.theme.colors.text.onLogin};
   cursor: pointer;
+
+  :hover {
+    text-decoration: underline;
+  }
 `
 
 const StyledForm = styled(Form)`
   width: 100%;
 
+  label, .header {
+    color: ${props => props.theme.colors.text.onLogin} !important;
+  }
 `
 
 const LinkContainer = styled.div`
@@ -37,8 +44,8 @@ const DefaultForm = (props: LoginFormProps) => {
     props.onLogin(username, password)
   }
 
-  return <StyledForm inverted className={props.className} onSubmit={submitForm}>
-    <Header inverted size="large">Login to your account</Header>
+  return <StyledForm className={props.className} onSubmit={submitForm}>
+    <Header size="large">Login to your account</Header>
     <Form.Input
       label="Username"
       autoFocus

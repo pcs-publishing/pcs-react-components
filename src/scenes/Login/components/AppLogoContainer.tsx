@@ -5,17 +5,20 @@ interface AppLogoContainerProps {
   logo: React.ReactElement
 }
 
-const Container = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const Layout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  height: 100%;
 `
 
 const AppLogoContainer = (props: AppLogoContainerProps) => {
-  return <Container>
-    {props.logo}
-  </Container>
+  return <Layout>
+    <div>
+      {props.logo}
+    </div>
+  </Layout>
 }
 
 export default AppLogoContainer

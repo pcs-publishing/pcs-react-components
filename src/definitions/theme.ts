@@ -15,8 +15,8 @@ export interface ThemeBackgrounds {
   main: FlattenSimpleInterpolation
   offset: FlattenSimpleInterpolation
   offsetEmphasis: FlattenSimpleInterpolation
-      navigation: FlattenSimpleInterpolation
-    login: FlattenSimpleInterpolation
+  navigation: FlattenSimpleInterpolation
+  login: FlattenSimpleInterpolation
 }
 
 export interface Theme {

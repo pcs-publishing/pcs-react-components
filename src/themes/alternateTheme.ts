@@ -34,7 +34,26 @@ const alternateTheme: Theme = {
       background-color: #4f5c72;
     `,
     login: css`
-      background-color: ${COLORS.PRIMARY};
+      background-image: radial-gradient(
+          circle at center center,
+          rgba(33, 33, 33, 0),
+          rgb(33, 33, 33)
+        ),
+        repeating-linear-gradient(
+          135deg,
+          rgb(33, 33, 33) 0px,
+          rgb(33, 33, 33) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgb(56, 56, 56) 0px,
+          rgb(56, 56, 56) 5px,
+          transparent 5px,
+          transparent 6px
+        ),
+        linear-gradient(90deg, rgb(33, 33, 33), rgb(33, 33, 33));
     `
   },
   border: css`

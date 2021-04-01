@@ -1,17 +1,17 @@
-import { isNull } from 'lodash'
+import { isBoolean, isNull } from 'lodash'
 import React from 'react'
-import Particles from 'react-particles-js'
+import Particles, { IParticlesParams } from 'react-particles-js'
 import styled from '../../theme-styled'
 import DefaultForm from './components/DefaultForm'
 import FormContainer from './components/FormContainer'
 import AppLogoContainer from './components/AppLogoContainer'
+import { LoginFormProps } from './components/DefaultForm';
 
 const SceneContainer = styled.div`
   display: flex;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(90deg, rgb(43, 77, 130),rgb(40, 144, 172));
-
+  ${props => props.theme.backgrounds.login};
   @media (max-width: 900px) {
     flex-direction: column;
   }
@@ -28,6 +28,7 @@ const LogoSide = styled.div`
 
   @media (max-width: 900px) {
     order: -1;
+    flex: 1;
   }
 `
 
@@ -43,57 +44,62 @@ export interface LoginProps {
   appName: string
   onLogin: (username: string, password: string) => void
   onForgottenPasswordClick: () => void
-  particles?: boolean
   appLogo: (large: boolean) => React.ReactElement
-  companyLogo: React.ReactElement
+  particles?: boolean | IParticlesParams
+  form?: React.FunctionComponent<LoginFormProps>
+  header?: React.ReactElement
+  footer?: React.ReactElement
 }
 
 const Login = (props: LoginProps) => {
+  const LoginForm = props.form || DefaultForm
   return <SceneContainer>
     {getParticles(props.particles)}
     <FormSide>
-      <FormContainer appLogo={props.appLogo(false)} companyLogo={props.companyLogo} form={
-        <DefaultForm appName={props.appName} onLogin={props.onLogin} onForgottenPasswordClick={props.onForgottenPasswordClick} />
+      <FormContainer appLogo={props.appLogo(false)} header={props.header} footer={props.footer} form={
+        <LoginForm appName={props.appName} onLogin={props.onLogin} onForgottenPasswordClick={props.onForgottenPasswordClick} />
       } />
     </FormSide>
     <LogoSide>
       <AppLogoContainer logo={props.appLogo(true)} />
-
     </LogoSide>
   </SceneContainer>
 }
 
 export default Login
 
-
-function getParticles(enableParticles?: boolean) {
-  if (!enableParticles) return isNull
-  return <StyledParticles
-    params={{
-      "particles": {
-        "number": {
-          "value": 160,
-          "density": {
-            "enable": false
-          }
-        },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "speed": 3,
-            "size_min": 0.3
-          }
-        },
-        "line_linked": {
-          "enable": false
-        },
-        "move": {
-          "random": true,
-          "speed": 1,
-          "direction": "top",
-          "out_mode": "out"
-        }
+const defaultParticlesConfig: IParticlesParams = {
+  particles: {
+    number: {
+      value: 160,
+      density: {
+        enable: false
       }
-    }} />
+    },
+    size: {
+      value: 3,
+      random: true,
+      anim: {
+        speed: 3,
+        size_min: 0.3
+      }
+    },
+    line_linked: {
+      enable: false
+    },
+    move: {
+      random: true,
+      speed: 1,
+      direction: 'top',
+      out_mode: 'out'
+    }
+  }
+}
+
+
+function getParticles(particles?: boolean | IParticlesParams) {
+  if (!particles) return null
+  const config = isBoolean(particles) ? defaultParticlesConfig : particles
+  return <StyledParticles
+    params={config} />
 }

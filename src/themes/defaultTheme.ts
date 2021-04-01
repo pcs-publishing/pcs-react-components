@@ -34,7 +34,7 @@ const defaultTheme: Theme = {
       background-color: #4f5c72;
     `,
     login: css`
-      background-color: ${COLORS.PRIMARY};
+      background: linear-gradient(90deg, rgb(43, 77, 130), rgb(40, 144, 172)); ;
     `
   },
   border: css`
