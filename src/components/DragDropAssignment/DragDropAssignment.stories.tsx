@@ -55,7 +55,7 @@ export const AssigningColors = () => {
     recordIdProperty: 'color',
     recordNameProperty: 'color',
     allowSearch: true,
-    fieldsToSearch: (['color'] as unknown) as keyof ColorRecord[]
+    fieldsToSearch: ['color']
   }
 
   return (
