@@ -22,7 +22,7 @@ export interface DragDropAssignmentProps<T> {
   className?: string
   loading?: boolean
   listWidth?: number
-  fieldsToSearch?: keyof T[]
+  fieldsToSearch?: (keyof T)[]
 }
 
 interface AssignmentState<T> {
