@@ -15,6 +15,19 @@ describe('FormatColumnService', () => {
       expect(value).toBe('COVID-19')
     })
 
+    it('Should format a datelong type correctly', () => {
+      const record = {
+        outbreakDate: '20-Mar-2020'
+      }
+      const basicDefinition: ColumnDefinition<typeof record> = {
+        key: 'outbreakDate',
+        type: 'datelong'
+      }
+
+      const value = formatColumnValue(record, basicDefinition, 0)
+      expect(value).toBe('Fri 20th Mar 2020')
+    })
+
     it('Should format a date type correctly', () => {
       const record = {
         outbreakDate: '20-Mar-2020'
@@ -25,7 +38,7 @@ describe('FormatColumnService', () => {
       }
 
       const value = formatColumnValue(record, basicDefinition, 0)
-      expect(value).toBe('Fri 20th Mar 2020')
+      expect(value).toBe('20/03/2020')
     })
 
     it('Should format a datetime type correctly', () => {
