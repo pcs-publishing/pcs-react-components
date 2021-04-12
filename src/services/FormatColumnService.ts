@@ -5,7 +5,8 @@ import {
   getFormattedDateLong,
   getFormattedDateTime,
   getDayNameFromDate,
-  getTimeFromDate
+  getTimeFromDate,
+  getFormattedDateShort
 } from '../util/date'
 
 export function formatColumnValue<T>(
@@ -43,8 +44,10 @@ function formatByType<T>(
 ): unknown {
   const value = record[key]
   switch (type) {
+    case 'datelong':
+      return getFormattedDateLongString(value)
     case 'date':
-      return getFormattedDateString(value)
+      return getFormattedDateShortString(value)
     case 'datetime':
       return getFormattedDateTimeString(value)
     case 'day':
@@ -60,8 +63,12 @@ function formatByType<T>(
   }
 }
 
-export function getFormattedDateString(date: unknown): string {
+export function getFormattedDateLongString(date: unknown): string {
   return isValidDate(date) ? getFormattedDateLong(date) : ''
+}
+
+export function getFormattedDateShortString(date: unknown): string {
+  return isValidDate(date) ? getFormattedDateShort(date) : ''
 }
 
 export function getFormattedDateTimeString(date: unknown): string {

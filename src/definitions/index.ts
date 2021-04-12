@@ -16,6 +16,7 @@ export type WeekDay =
   | 'Sunday'
 
 export type ColumnValueType =
+  | 'datelong'
   | 'date'
   | 'datetime'
   | 'user'
