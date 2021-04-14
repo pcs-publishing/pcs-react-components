@@ -48,6 +48,7 @@ import C_ViewFileWindow from './components/ViewFileWindow'
 import C_TextViewer from './components/ViewFileWindow/components/TextViewer'
 import C_NavigationBar from './components/NavigationBar'
 import C_MainNavigation from './components/MainNavigation'
+import C_SVGLogo from './components/SVGLogo'
 //#endregion
 
 //#region scene imports
@@ -135,6 +136,7 @@ export const TextViewer = C_TextViewer
 export const PopoverButton = C_PopoverButton
 export const NavigationBar = C_NavigationBar
 export const MainNavigation = C_MainNavigation
+export const SVGLogo = C_SVGLogo
 //#endregion
 
 //#region scene exports

@@ -32,7 +32,7 @@ const SVGLogo = (props: SVGLogoProps) => {
       loading={() => <Fallback {...sizeProps} />}
       role="img"
       beforeInjection={(svg) => {
-        svg.setAttribute('style', `max-width: ${props.size}px; max-height: ${props.size}px;`)
+        svg.setAttribute('style', `width: ${props.size}px; height: ${props.size}px;`)
       }}
     />
   </Container>
