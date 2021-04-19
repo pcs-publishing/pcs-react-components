@@ -13,6 +13,7 @@ export interface LazyDropdownProps<T> {
   form?: boolean
   recordTextProp?: keyof SubType<T, string>
   getOptions?: (records: T[]) => DropdownItemProps[]
+  className?: string
 }
 
 const LazyDropdown = <T extends unknown>(props: LazyDropdownProps<T>) => {
@@ -82,6 +83,7 @@ const LazyDropdown = <T extends unknown>(props: LazyDropdownProps<T>) => {
       search={onSearchFn}
       options={options}
       multiple={true}
+      className={props.className}
     />
   )
 }
