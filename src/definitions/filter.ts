@@ -5,8 +5,10 @@ export type InputType = 'textfield' | 'daterange' | 'format'
 export interface FilterDefinition<Filter, FilterType extends string> {
   type: FilterType
   name: keyof Filter
+  entity?: string
   queryName?: string
   label?: string
+  labelPlural?: string
   icon?: string
   mask?: string
   inputType?: string
