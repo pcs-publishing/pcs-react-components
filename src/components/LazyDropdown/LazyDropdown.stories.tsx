@@ -21,7 +21,7 @@ const records = times(50, (i) => ({
 const getRecordsByName = async (searchTerm: string) => records.filter(r => r.name.includes(searchTerm))
 const getRecordsForIds = async (ids: number[]) => records.filter(r => ids.includes(r.id))
 
-export const Example = (props: LazyDropdownProps) => {
+export const Example = (props: LazyDropdownProps<any>) => {
   return <Container>
     <LazyDropdown {...props} recordIdProp={'id'} recordTextProp={'name'} searchForRecords={getRecordsByName} getSelectedRecords={getRecordsForIds} />
   </Container>

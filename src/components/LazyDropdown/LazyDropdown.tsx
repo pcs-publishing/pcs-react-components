@@ -82,7 +82,6 @@ const LazyDropdown = <T extends unknown>(props: LazyDropdownProps<T>) => {
       loading={loading}
       search={onSearchFn}
       options={options}
-      multiple={true}
       className={props.className}
     />
   )
