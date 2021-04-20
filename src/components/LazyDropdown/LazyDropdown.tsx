@@ -78,6 +78,7 @@ const LazyDropdown = <T extends unknown>(props: LazyDropdownProps<T>) => {
 
   return (
     <DropdownComponent
+      noResultsMessage={!search ? `Search for records...` : 'No results found'}
       {...props.dropdownProps}
       loading={loading}
       search={onSearchFn}
