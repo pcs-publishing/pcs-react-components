@@ -45,7 +45,7 @@ const LazyDropdown = <T extends unknown>(props: LazyDropdownProps<T>) => {
       })
     },
     [search, searchForRecords, selectedValues, recordIdProp],
-    props.searchDelay || 300
+    props.searchDelay || 600
   )
 
   useEffect(() => {
@@ -78,7 +78,8 @@ const LazyDropdown = <T extends unknown>(props: LazyDropdownProps<T>) => {
 
   return (
     <DropdownComponent
-      noResultsMessage={!search ? `Search for records...` : 'No results found'}
+      lazyLoad
+      selection
       {...props.dropdownProps}
       loading={loading}
       search={onSearchFn}
