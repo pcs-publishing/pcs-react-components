@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { Form, Header } from 'semantic-ui-react'
+import { Form, Header, Message, SemanticCOLORS } from 'semantic-ui-react';
 import styled from '../../../theme-styled'
 import Button from '../../../components/Button'
+import { ReactElement } from 'react';
 
 export interface LoginFormProps {
   className?: string
   onLogin: (username: string, password: string) => void
   onForgottenPasswordClick: () => void
   appName: string
+  message?: string
+  messageLevel?: 'error' | 'warn' | 'info'
 }
 
 const StyledLink = styled.span`
-  color: ${props => props.theme.colors.text.onLogin};
+  color: ${props => props.theme.colors.text.onFullScreenScene};
   cursor: pointer;
 
   :hover {
@@ -23,7 +26,7 @@ const StyledForm = styled(Form)`
   width: 100%;
 
   label, .header {
-    color: ${props => props.theme.colors.text.onLogin} !important;
+    color: ${props => props.theme.colors.text.onFullScreenScene} !important;
   }
 `
 
@@ -78,6 +81,7 @@ const DefaultForm = (props: LoginFormProps) => {
         setPassword(e.target.value)
       }}
     />
+    {getMessage(props.message, props.messageLevel)}
     <ButtonContainer>
       <Button primary size="large" type="submit" content={`Login to ${props.appName}`} />
     </ButtonContainer>
@@ -85,6 +89,17 @@ const DefaultForm = (props: LoginFormProps) => {
       <StyledLink onClick={() => props.onForgottenPasswordClick()}>Forgot Your Password?</StyledLink>
     </LinkContainer>
   </StyledForm>
+}
+
+function getMessage(message?: string, messageLevel?: 'error' | 'warn' | 'info'): ReactElement | null {
+  if (!message || !messageLevel) return null
+  let color: SemanticCOLORS = 'blue'
+  if (messageLevel === 'error') {
+    color = 'red'
+  } else if (messageLevel === 'warn') {
+    color = 'yellow'
+  }
+  return <Message content={message} color={color} />
 }
 
 export default DefaultForm

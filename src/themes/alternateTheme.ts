@@ -17,7 +17,7 @@ const alternateTheme: Theme = {
       onBase: COLORS.TEXT,
       onPrimary: COLORS.BASE,
       onNavigation: COLORS.BASE,
-      onLogin: COLORS.BASE
+      onFullScreenScene: COLORS.BASE
     }
   },
   backgrounds: {
@@ -33,7 +33,7 @@ const alternateTheme: Theme = {
     navigation: css`
       background-color: #4f5c72;
     `,
-    login: css`
+    fullScreenScene: css`
       background-image: radial-gradient(
           circle at center center,
           rgba(33, 33, 33, 0),

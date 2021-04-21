@@ -17,7 +17,7 @@ const defaultTheme: Theme = {
       onBase: COLORS.TEXT,
       onPrimary: COLORS.BASE,
       onNavigation: COLORS.BASE,
-      onLogin: COLORS.BASE
+      onFullScreenScene: COLORS.BASE
     }
   },
   backgrounds: {
@@ -33,7 +33,7 @@ const defaultTheme: Theme = {
     navigation: css`
       background-color: #4f5c72;
     `,
-    login: css`
+    fullScreenScene: css`
       background: linear-gradient(90deg, rgb(43, 77, 130), rgb(40, 144, 172)); ;
     `
   },

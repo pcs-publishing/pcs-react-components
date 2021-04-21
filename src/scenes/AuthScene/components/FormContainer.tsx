@@ -12,7 +12,6 @@ const ExtraContent = styled.div`
   width: 100%;
 `
 
-
 const MainContent = styled.div`
   display: flex;
   width: 100%;
@@ -28,20 +27,19 @@ const FormWrapper = styled.div`
 `
 
 interface FormContainerProps {
-  form: React.ReactElement
   appLogo: React.ReactElement
   header?: React.ReactElement
   footer?: React.ReactElement
 }
 
-const FormContainer = (props: FormContainerProps) => {
+const FormContainer: React.FunctionComponent<FormContainerProps> = (props) => {
   return <Container>
     <ExtraContent>
       {props.header || null}
     </ExtraContent>
     <MainContent>
       <FormWrapper>
-        {props.form}
+        {props.children}
       </FormWrapper>
     </MainContent>
     <ExtraContent>

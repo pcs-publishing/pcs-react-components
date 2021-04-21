@@ -52,7 +52,9 @@ import C_SVGLogo from './components/SVGLogo'
 //#endregion
 
 //#region scene imports
-import SC_Login from './scenes/Login'
+import SC_LoginScene from './scenes/Login'
+import SC_AuthScene from './scenes/AuthScene'
+import SC_FullScreenScene from './scenes/FullScreenScene'
 //#endregion
 
 //#region hook imports
@@ -140,7 +142,9 @@ export const SVGLogo = C_SVGLogo
 //#endregion
 
 //#region scene exports
-export const LoginScene = SC_Login
+export const LoginScene = SC_LoginScene
+export const AuthScene = SC_AuthScene
+export const FullScreenScene = SC_FullScreenScene
 //#endregion
 
 //#region hook exports
