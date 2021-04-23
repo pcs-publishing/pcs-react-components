@@ -4,7 +4,7 @@ import { FieldProps } from '../definitions'
 
 const DropdownField = (props: FieldProps) => {
   const { onChange, field, defaultValue, value, allValues } = props
-  const { options, label, autoFocus } = field
+  const { options, label, autoFocus, multiple } = field
   const onValueChange = useCallback(
     (e: SyntheticEvent<HTMLElement, Event>, data: any) => {
       const { value } = data
@@ -25,10 +25,11 @@ const DropdownField = (props: FieldProps) => {
         fluid
         labeled
         selection
-        defaultValue={defaultValue as string | number}
+        defaultValue={defaultValue as string | string[] | number}
         onChange={onValueChange}
         clearable={true}
         error={error ? true : false}
+        multiple={multiple}
       />
     </Form.Field>
   )
