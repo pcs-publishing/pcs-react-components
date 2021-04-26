@@ -57,28 +57,21 @@ const DragDropAssignment = <T extends any>(
     )
   )
 
-  const [appliedInitialValue, setAppliedInitialValue] = useState(
-    !!props.initiallySelectedRecords
-  )
-
   useEffect(() => {
-    if (!appliedInitialValue && initiallySelectedRecords && records) {
+    const recordsAreTotalLength =
+      records.length ===
+      assignmentState.selected.length + assignmentState.unselected.length
+    const isThereRecords = initiallySelectedRecords && records
+    if (!recordsAreTotalLength && isThereRecords) {
       setAssignmentState(
         getInitialAssignmentState(
           records,
-          initiallySelectedRecords,
+          initiallySelectedRecords as T[],
           recordIdProperty
         )
       )
-      setAppliedInitialValue(true)
     }
-  }, [
-    records,
-    recordIdProperty,
-    initiallySelectedRecords,
-    appliedInitialValue,
-    setAssignmentState
-  ])
+  }, [records, recordIdProperty, initiallySelectedRecords, setAssignmentState])
 
   const onDragEnd = useCallback(
     (dropResult: DropResult) => {
