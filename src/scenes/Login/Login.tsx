@@ -7,8 +7,8 @@ import AuthScene from '../AuthScene'
 import { AppInfoContext } from '../../providers/AppInfoProvider';
 
 export interface LoginProps {
-  onLogin: (username: string, password: string) => void
-  onForgottenPasswordClick: () => void
+onLogin: (username: string, password: string) => void
+onForgottenPasswordClick: () => void
   particles?: boolean | IParticlesParams
   form?: React.FunctionComponent<LoginFormProps>
   header?: React.ReactElement

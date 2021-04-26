@@ -8,6 +8,8 @@ const ImageContainer = styled.div<{ $size: number }>`
   width: ${(props) => props.$size}px;
   height: ${(props) => props.$size}px;
   overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
   `
 
 const Image = styled.img`
