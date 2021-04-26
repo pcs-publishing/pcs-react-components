@@ -4,6 +4,7 @@ import { DateRangeOptions } from '../DateRange'
 
 export type FormFieldValue =
   | string
+  | string[]
   | number
   | boolean
   | WeekDay
@@ -67,6 +68,7 @@ export interface FieldDefinition {
   rows?: number
   onChange?: (value: FormFieldValue) => void
   allowedMimeTypes?: string[]
+  multiple?: boolean
 }
 
 export interface FieldProps {
