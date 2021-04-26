@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IParticlesParams } from 'react-particles-js'
 import styled from '../../theme-styled'
 import FullScreenScene from '../FullScreenScene'
 import AppLogoContainer from './components/AppLogoContainer'
 import FormContainer from './components/FormContainer'
+import { AppInfoContext } from '../../providers/AppInfoProvider'
 
 const SceneContainer = styled.div`
   display: flex;
@@ -17,11 +18,13 @@ const SceneContainer = styled.div`
 const FormSide = styled.div`
   flex: 3;
   padding: 1%;
+  z-index: 100;
 `
 
 const LogoSide = styled.div`
   flex: 4;
   position: relative;
+  z-index: 100;
 
   @media (max-width: 900px) {
     order: -1;
@@ -30,23 +33,23 @@ const LogoSide = styled.div`
 `
 
 export interface AuthSceneProps {
-  appName: string
-  appLogo: (large: boolean) => React.ReactElement
   particles?: boolean | IParticlesParams
   header?: React.ReactElement
   footer?: React.ReactElement
 }
 
 const AuthScene: React.FunctionComponent<AuthSceneProps> = (props) => {
+  const { appLogo } = useContext(AppInfoContext).appInfo
+
   return <FullScreenScene particles={props.particles}>
     <SceneContainer>
       <FormSide>
-        <FormContainer appLogo={props.appLogo(false)} header={props.header} footer={props.footer}>
+        <FormContainer appLogo={appLogo(false)} header={props.header} footer={props.footer}>
           {props.children}
         </FormContainer>
       </FormSide>
       <LogoSide>
-        <AppLogoContainer logo={props.appLogo(true)} />
+        <AppLogoContainer logo={appLogo(true)} />
       </LogoSide>
     </SceneContainer>
   </FullScreenScene>

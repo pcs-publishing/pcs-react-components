@@ -4,19 +4,27 @@ import { ReactSVG } from 'react-svg'
 
 export interface SVGLogoProps {
   src: string
-  size: number
+  size?: number
   className?: string
   onClick?: () => void
 }
 
-const Fallback = styled.div<{ $size: number }>`
-  max-width: ${props => props.$size}px;
-  max-height: ${props => props.$size}px;
+const Fallback = styled.div<{ $size?: number }>`
+  max-width: ${props => props.$size || 500}px;
+  max-height: ${props => props.$size || 500}px;
 `
 
-const Container = styled.div<{ $pointer: boolean, $size: number }>`
-  max-width: ${props => props.$size}px !important;
-  max-height: ${props => props.$size}px !important;
+const Container = styled.div<{ $pointer: boolean, $size?: number }>`
+  ${props => {
+    if (!props.$size) {
+      return ''
+    }
+    return `
+      max-width: ${props.$size}px !important;
+      max-height: ${props.$size}px !important;
+    `
+  }}
+
   display: inline-block;
   cursor: ${props => props.$pointer ? 'pointer' : 'default'};
 `
@@ -32,7 +40,8 @@ const SVGLogo = (props: SVGLogoProps) => {
       loading={() => <Fallback {...sizeProps} />}
       role="img"
       beforeInjection={(svg) => {
-        svg.setAttribute('style', `width: ${props.size}px; height: ${props.size}px;`)
+        if (props.size)
+          svg.setAttribute('style', `width: ${props.size}px; height: ${props.size}px;`)
       }}
     />
   </Container>

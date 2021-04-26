@@ -1,18 +1,24 @@
 import React from 'react'
+import { IParticlesParams } from 'react-particles-js'
 
-interface AppInfo {
+export interface AppInfo {
   appName: string
-  appLogo: string
+  appLogo: (large: boolean) => React.ReactElement
 }
 
-const AppInfoContext = React.createContext<AppInfo>({
-  appName: 'Unknown Application',
-  appLogo: ''
+export const AppInfoContext = React.createContext<{ appInfo: AppInfo }>({
+  appInfo: {
+    appName: '',
+    appLogo: () => <div></div>
+  }
 })
 
-function AppInfoProvider() {
-  
+export interface AppInfoProviderProps {
+  appInfo: AppInfo
 }
 
-
-export default { AppInfoContext, AppInfoProvider }
+export const AppInfoProvider: React.FunctionComponent<AppInfoProviderProps> = (props) => {
+  return <AppInfoContext.Provider value={{ appInfo: props.appInfo }}>
+    {props.children}
+  </AppInfoContext.Provider>
+}

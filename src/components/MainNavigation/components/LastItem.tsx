@@ -16,8 +16,15 @@ const Container = styled.div < { $orientation: Orientation }>`
   display: flex;
   flex-direction: ${props => props.$orientation === 'vertical' ? 'column' : 'row-reverse'};
   align-items: center;
-`
 
+  ${props => {
+    if (props.$orientation !== 'vertical') {
+      return ''
+    }
+
+    return 'width: 100%;'
+  }}
+`
 
 const LastItem: React.FunctionComponent<LastItemProps> = (props) => {
   const horizontal = props.orientation === 'horizontal'

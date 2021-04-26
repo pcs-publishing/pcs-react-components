@@ -63,5 +63,13 @@ const defaultParticlesConfig: IParticlesParams = {
       direction: 'top',
       out_mode: 'out'
     }
+  },
+  interactivity: {
+    events: {
+      onhover: {
+        enable: true,
+        mode: 'repulse'
+      }
+    }
   }
 }

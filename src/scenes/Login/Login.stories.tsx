@@ -3,6 +3,7 @@ import Login, { LoginProps } from './Login'
 import SVGLogo from '../../components/SVGLogo/SVGLogo'
 import styled from '../../theme-styled'
 import { LoginFormProps } from './components/DefaultForm'
+import { AppInfo, AppInfoProvider } from '../../providers/AppInfoProvider'
 
 export default {
   title: 'Scenes/Login',
@@ -10,8 +11,10 @@ export default {
   argTypes: {}
 }
 
-const Template = (props: LoginProps) => {
-  return <Login {...props} />
+const Template = (props: LoginProps & { appInfo: AppInfo }) => {
+  return <AppInfoProvider appInfo={props.appInfo}>
+    <Login {...props} />
+  </AppInfoProvider>
 }
 
 const PcsLogoContainer = styled.div`
@@ -43,24 +46,30 @@ const PcsLogo = () => {
 export const NoParticles = Template.bind({})
 
 NoParticles.args = {
-  appName: 'Knowledge Planning',
-  appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />,
+  appInfo: {
+    appName: 'Knowledge Planning',
+    appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />
+  }
 }
 
 export const WithParticles = Template.bind({})
 
 WithParticles.args = {
   particles: true,
-  appName: 'Falcon 9',
-  appLogo: (large: boolean) => <SVGLogo src="/spacex.svg" size={large ? 600 : 50} />,
+  appInfo: {
+    appName: 'Falcon 9',
+    appLogo: (large: boolean) => <SVGLogo src="/spacex.svg" size={large ? 600 : 50} />
+  }
 }
 
 
 export const WithCustomParticles = Template.bind({})
 
 WithCustomParticles.args = {
-  appName: 'Particles',
-  appLogo: (large: boolean) => <SVGLogo src="/react-2.svg" size={large ? 400 : 50} />,
+  appInfo: {
+    appName: 'Particles',
+    appLogo: (large: boolean) => <SVGLogo src="/react-2.svg" size={large ? 400 : 50} />
+  },
   particles: {
     "particles": {
       "number": {
@@ -110,16 +119,20 @@ WithCustomParticles.args = {
 export const Header = Template.bind({})
 Header.args = {
   particles: true,
-  appName: 'Knowledge Planning',
-  appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />,
+  appInfo: {
+    appName: 'Knowledge Planning',
+    appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />
+  },
   header: <PcsLogo />
 }
 
 export const Footer = Template.bind({})
 Footer.args = {
   particles: true,
-  appName: 'Knowledge Planning',
-  appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />,
+  appInfo: {
+    appName: 'Knowledge Planning',
+    appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />
+  },
   footer: <PcsLogo />
 }
 
@@ -131,7 +144,9 @@ export const AlternateForm = Template.bind({})
 
 AlternateForm.args = {
   particles: true,
-  appName: 'Knowledge Planning',
+  appInfo: {
+    appName: 'Knowledge Planning',
+    appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />
+  },
   form: OtherForm,
-  appLogo: (large: boolean) => <SVGLogo src="/redis.svg" size={large ? 400 : 50} />,
 }

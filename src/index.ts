@@ -88,6 +88,10 @@ import T_defaultTheme from './themes/defaultTheme'
 import 'react-contexify/dist/ReactContexify.css'
 //#endregion
 
+//#region provider imports
+import * as P_AppInfoProvider from './providers/AppInfoProvider'
+//#endregion
+
 //#region component exports
 export const Button = C_Button
 export const ContextMenu = C_ContextMenu
@@ -168,6 +172,16 @@ export const date = U_date
 export const filename = U_filename
 export const format = U_format
 export const file = U_File
+//#endregion
+
 //#region theme exports
 export const defaultTheme = T_defaultTheme
+//#endregion
+
+//#region provider exports
+export const AppInfoProvider = P_AppInfoProvider.AppInfoProvider
+//#endregion
+
+//#region context exports
+export const AppInfoContext = P_AppInfoProvider.AppInfoContext
 //#endregion
