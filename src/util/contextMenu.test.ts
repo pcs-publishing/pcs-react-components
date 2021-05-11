@@ -27,7 +27,7 @@ describe('ContextMenu Utils', () => {
       })
       expect(result).toBe(true)
     })
-    it('Should return false when passed a invalid context menu item', () => {
+    it('Should return false when passed a invalid sub menu item', () => {
       const result = instanceOfSubMenuItem({
         action: 'action',
         icon: 'accessible',
