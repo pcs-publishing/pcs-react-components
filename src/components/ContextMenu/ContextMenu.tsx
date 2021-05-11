@@ -1,7 +1,7 @@
 import React from 'react'
-import { SemanticICONS, Icon, Portal } from 'semantic-ui-react'
+import { SemanticICONS, Icon, Portal, Popup } from 'semantic-ui-react'
 import styled, { css } from '../../theme-styled'
-import { Menu, Item } from 'react-contexify'
+import { Menu, Item, Submenu, Separator } from 'react-contexify'
 
 const StyledMenu = styled(Menu)`
   border-radius: 3px;
@@ -31,10 +31,6 @@ const StyledItem = styled(Item)`
   border: none !important;
   outline: none !important;
 
-  div {
-    padding: 8px;
-  }
-
   :hover {
     ${HighlightContextItem}
   }
@@ -53,12 +49,25 @@ export interface ContextMenuItem<T> {
   action: T
   icon: SemanticICONS
   disabled?: boolean | ((params: MenuItemEventHandler) => boolean)
+  popupContent?: string
+  extraData?: any
+}
+
+export interface SubMenuItem<T> {
+  title: string
+  arrow?: React.ReactNode
+  items: ContextMenuItem<T>[]
 }
 
 export interface ContextMenuProps<T> {
   id: string
   items: ContextMenuItem<T>[]
-  onAction: (action: T, args: MenuItemEventHandler) => (void | Promise<void>)
+  subMenuItems?: SubMenuItem<T>[]
+  onAction: (
+    action: T,
+    args: MenuItemEventHandler,
+    extraData?: any
+  ) => void | Promise<void>
   selectedItemBackgroundColor?: string
   selectedItemTextColor?: string
 }
@@ -67,25 +76,54 @@ const ContextMenu = <T extends any>({
   id,
   items,
   onAction,
+  subMenuItems
 }: ContextMenuProps<T>) => {
   return (
     <Portal open>
       <StyledMenu id={id}>
         {items.map((item) => {
-          const disabled = item.disabled ? item.disabled : false
+          return getContextMenuItem(item, onAction)
+        })}
+        {subMenuItems && subMenuItems.length > 0 ? <Separator /> : null}
+        {subMenuItems?.map((subMenuItem) => {
           return (
-            <StyledItem
-              key={item.text}
-              disabled={disabled}
-              onClick={(args: any) => onAction(item.action, args as MenuItemEventHandler)}
-            >
-              <Icon name={item.icon} />
-              <FloatRightText>{item.text}</FloatRightText>
-            </StyledItem>
+            <Submenu label={subMenuItem.title} arrow={subMenuItem.arrow}>
+              {subMenuItem.items.map((item) => {
+                return getContextMenuItem(item, onAction)
+              })}
+            </Submenu>
           )
         })}
       </StyledMenu>
     </Portal>
+  )
+}
+
+const getContextMenuItem = <T extends any>(
+  item: ContextMenuItem<T>,
+  onAction: (
+    action: T,
+    args: MenuItemEventHandler,
+    extraData?: any
+  ) => void | Promise<void>
+) => {
+  const disabled = item.disabled ? item.disabled : false
+  const Item = (
+    <StyledItem
+      key={item.text}
+      disabled={disabled}
+      onClick={(args: any) =>
+        onAction(item.action, args as MenuItemEventHandler, item.extraData)
+      }
+    >
+      <Icon name={item.icon} />
+      <FloatRightText>{item.text}</FloatRightText>
+    </StyledItem>
+  )
+  return item.popupContent ? (
+    <Popup content={item.popupContent} trigger={<span>{Item}</span>} />
+  ) : (
+    Item
   )
 }
 
