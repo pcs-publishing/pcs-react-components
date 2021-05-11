@@ -11,6 +11,6 @@ export function instanceOfContextMenuItem<T extends any>(
 
 export function instanceOfSubMenuItem<T extends any>(
   item: ContextMenuItem<T> | SubMenuItem<T> | React.ReactElement
-): item is ContextMenuItem<T> {
+): item is SubMenuItem<T> {
   return 'items' in item
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import ContextMenu, { ContextMenuProps, ContextMenuItems } from './ContextMenu'
 import styled from 'styled-components'
-import { useContextMenu } from 'react-contexify'
+import { useContextMenu, Separator } from 'react-contexify'
 import { Modal } from 'semantic-ui-react'
 import 'react-contexify/dist/ReactContexify.css'
 
@@ -43,6 +43,7 @@ export const Basic = (props: ContextMenuProps<string>) => {
       text: 'Fast-Forward',
       icon: 'forward'
     },
+    <Separator />,
     {
       text: 'Sub Menu',
       items: [
