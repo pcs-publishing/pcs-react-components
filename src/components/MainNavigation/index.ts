@@ -6,5 +6,4 @@ export interface MainNavigationUser {
   firstname: string
   surname: string
   avatar: string
-  onClick: () => void
 }

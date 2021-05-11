@@ -3,6 +3,7 @@ import CollapsedNavigationItem from './CollapsedNavigationItem';
 import ExpandedNavigationItem from './ExpandedNavigationItem'
 import { NavigationItem, Orientation } from '..';
 import NavigationMenu from '../styled-components/NavigationMenu';
+import styled from '../../../theme-styled';
 
 interface NavigationItemsProps {
   items: NavigationItem[],
@@ -24,6 +25,7 @@ const NavigationItems = (props: NavigationItemsProps) => {
   }
 
   return <NavigationMenu orientation={props.orientation}>{items}</NavigationMenu>
+
 }
 
 export default NavigationItems

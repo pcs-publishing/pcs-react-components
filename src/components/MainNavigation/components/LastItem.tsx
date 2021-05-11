@@ -12,10 +12,10 @@ interface LastItemProps extends AdditionalItemProps {
 }
 
 const Container = styled.div < { $orientation: Orientation }>`
-  flex-grow: 1;
   display: flex;
-  flex-direction: ${props => props.$orientation === 'vertical' ? 'column' : 'row-reverse'};
+  flex-flow: ${props => props.$orientation === 'vertical' ? 'column wrap' : 'row-reverse nowrap'};
   align-items: center;
+  flex-grow: 1;
 
   ${props => {
     if (props.$orientation !== 'vertical') {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Input } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 import MainNavigation, { MainNavigationProps } from './MainNavigation'
 
@@ -67,14 +68,29 @@ HorizontalWithUser.args = {
   }
 }
 
+const LastItem = styled.div`
+  width: 100%;
+  justify-self: baseline;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+`
+
+const StyledInput = styled(Input)`
+  align-self: flex-end;
+  flex-grow: 1;
+`
+
+
 export const VerticalWithExtraItems = Template.bind({})
 VerticalWithExtraItems.args = {
   ...defaultProps,
+  version: '1.0.5',
   user: {
     firstname: 'Christopher',
     surname: 'Train',
     avatar: '/avatar.png'
   },
   startItem: () => <p>Extra item at the start</p>,
-  lastItem: () => <p>Extra item at the end</p>
+  lastItem: () => <LastItem><StyledInput value="text field at the end" fluid /></LastItem>
 }

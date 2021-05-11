@@ -13,17 +13,11 @@ const StyledVersion = styled(Version) <{ $orientation: Orientation, $collapsed: 
   ` : `
     width: 100%;
     text-align: center;
+    align-self: flex-end;
   `}
 
 
   ${props => props.$collapsed ? 'font-size: 0.8em;' : ''}
-`
-
-const BottomAligner = styled.div`
-  display: inline-block;
-  height: 100%;
-  vertical-align: bottom;
-  width: 0;
 `
 
 interface VersionItemProps extends AdditionalItemProps {
@@ -32,10 +26,12 @@ interface VersionItemProps extends AdditionalItemProps {
 }
 
 const VersionItem = (props: VersionItemProps) => {
-  return <>
-    {props.orientation === 'vertical' ? <BottomAligner /> : null}
-    <StyledVersion className={props.className} version={props.version} $collapsed={props.collapsed} $orientation={props.orientation} />
-  </>
+  return <StyledVersion
+    className={props.className}
+    version={props.version}
+    $collapsed={props.collapsed}
+    $orientation={props.orientation}
+  />
 }
 
 export default VersionItem
