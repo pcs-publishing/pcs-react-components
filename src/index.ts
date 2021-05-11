@@ -69,6 +69,7 @@ import * as U_date from './util/date'
 import * as U_filename from './util/filename'
 import * as U_format from './util/format'
 import * as U_File from './util/file'
+import * as U_contextMenu from './util/contextMenu'
 //#endregion
 
 //#region theme imports
@@ -150,6 +151,7 @@ export const date = U_date
 export const filename = U_filename
 export const format = U_format
 export const file = U_File
+export const contextMenu = U_contextMenu
 //#region theme exports
 export const defaultTheme = T_defaultTheme
 //#endregion

@@ -1,9 +1,9 @@
 import React from 'react'
-import ContextMenu, { ContextMenuItem, ContextMenuProps } from './ContextMenu';
+import ContextMenu, { ContextMenuProps, ContextMenuItems } from './ContextMenu'
 import styled from 'styled-components'
-import { useContextMenu } from 'react-contexify'
+import { useContextMenu, Separator } from 'react-contexify'
 import { Modal } from 'semantic-ui-react'
-import 'react-contexify/dist/ReactContexify.css';
+import 'react-contexify/dist/ReactContexify.css'
 
 export default {
   title: 'Context Menu',
@@ -21,46 +21,74 @@ const StyledDiv = styled.div`
 `
 
 export const Basic = (props: ContextMenuProps<string>) => {
-  const items: ContextMenuItem<string>[] = [{
-    action: 'rewind',
-    text: 'Rewind',
-    icon: 'backward'
-  }, {
-    action: 'play',
-    text: 'Play',
-    icon: 'play'
-  }, {
-    action: 'pause',
-    text: 'Pause',
-    icon: 'pause'
-  }, {
-    action: 'fast-forward',
-    text: 'Fast-Forward',
-    icon: 'forward'
-  }]
+  const items: ContextMenuItems<string> = [
+    {
+      action: 'rewind',
+      text: 'Rewind',
+      icon: 'backward'
+    },
+    {
+      action: 'play',
+      text: 'Play',
+      icon: 'play',
+      popupContent: 'Play Content!'
+    },
+    {
+      action: 'pause',
+      text: 'Pause',
+      icon: 'pause'
+    },
+    {
+      action: 'fast-forward',
+      text: 'Fast-Forward',
+      icon: 'forward'
+    },
+    <Separator />,
+    {
+      text: 'Sub Menu',
+      items: [
+        {
+          action: 'question',
+          text: 'Ask Question',
+          icon: 'question circle'
+        },
+        {
+          action: 'retweet',
+          text: 'Retweet',
+          icon: 'retweet'
+        }
+      ]
+    }
+  ]
 
   const { show } = useContextMenu({
     id: 'menuId'
   })
 
-
-  return <div>
-    <ContextMenu id="menuId" items={items} onAction={props.onAction} />
-    <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
-  </div>
+  return (
+    <div>
+      <ContextMenu id="menuId" items={items} onAction={props.onAction} />
+      <StyledDiv onContextMenu={show}>
+        Right-click to open the context-menu
+      </StyledDiv>
+    </div>
+  )
 }
 
 export const DisabledItem = (props: ContextMenuProps<string>) => {
-  const items: ContextMenuItem<string>[] = [{
-    action: 'up',
-    text: 'Turn Up',
-    icon: 'volume up'
-  }, {
-    action: 'down',
-    text: 'Turn Off',
-    disabled: true,
-    icon: 'volume down'
-  }]
+  const items: ContextMenuItems<string> = [
+    {
+      action: 'up',
+      text: 'Turn Up',
+      icon: 'volume up'
+    },
+    {
+      action: 'down',
+      text: 'Turn Off',
+      disabled: true,
+      icon: 'volume down'
+    }
+  ]
 
   const menuId = 'second-story'
 
@@ -68,22 +96,29 @@ export const DisabledItem = (props: ContextMenuProps<string>) => {
     id: menuId
   })
 
-  return <div>
-    <ContextMenu id={menuId} items={items} onAction={props.onAction} />
-    <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
-  </div>
+  return (
+    <div>
+      <ContextMenu id={menuId} items={items} onAction={props.onAction} />
+      <StyledDiv onContextMenu={show}>
+        Right-click to open the context-menu
+      </StyledDiv>
+    </div>
+  )
 }
 
 export const InAModal = (props: ContextMenuProps<string>) => {
-  const items: ContextMenuItem<string>[] = [{
-    action: 'up',
-    text: 'Turn Up',
-    icon: 'volume up'
-  }, {
-    action: 'down',
-    text: 'Turn Off',
-    icon: 'volume down'
-  }]
+  const items: ContextMenuItems<string> = [
+    {
+      action: 'up',
+      text: 'Turn Up',
+      icon: 'volume up'
+    },
+    {
+      action: 'down',
+      text: 'Turn Off',
+      icon: 'volume down'
+    }
+  ]
 
   const menuId = 'second-story'
 
@@ -91,10 +126,14 @@ export const InAModal = (props: ContextMenuProps<string>) => {
     id: menuId
   })
 
-  return <Modal open>
-    <Modal.Content>
-      <ContextMenu id={menuId} items={items} onAction={props.onAction} />
-      <StyledDiv onContextMenu={show}>Right-click to open the context-menu</StyledDiv>
-    </Modal.Content>
-  </Modal>
+  return (
+    <Modal open>
+      <Modal.Content>
+        <ContextMenu id={menuId} items={items} onAction={props.onAction} />
+        <StyledDiv onContextMenu={show}>
+          Right-click to open the context-menu
+        </StyledDiv>
+      </Modal.Content>
+    </Modal>
+  )
 }
