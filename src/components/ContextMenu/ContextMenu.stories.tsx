@@ -1,9 +1,5 @@
 import React from 'react'
-import ContextMenu, {
-  ContextMenuItem,
-  ContextMenuProps,
-  SubMenuItem
-} from './ContextMenu'
+import ContextMenu, { ContextMenuProps, ContextMenuItems } from './ContextMenu'
 import styled from 'styled-components'
 import { useContextMenu } from 'react-contexify'
 import { Modal } from 'semantic-ui-react'
@@ -25,7 +21,7 @@ const StyledDiv = styled.div`
 `
 
 export const Basic = (props: ContextMenuProps<string>) => {
-  const items: ContextMenuItem<string>[] = [
+  const items: ContextMenuItems<string> = [
     {
       action: 'rewind',
       text: 'Rewind',
@@ -46,12 +42,9 @@ export const Basic = (props: ContextMenuProps<string>) => {
       action: 'fast-forward',
       text: 'Fast-Forward',
       icon: 'forward'
-    }
-  ]
-
-  const subMenuItems: SubMenuItem<string>[] = [
+    },
     {
-      title: 'Sub Menu',
+      text: 'Sub Menu',
       items: [
         {
           action: 'question',
@@ -73,12 +66,7 @@ export const Basic = (props: ContextMenuProps<string>) => {
 
   return (
     <div>
-      <ContextMenu
-        id="menuId"
-        items={items}
-        subMenuItems={subMenuItems}
-        onAction={props.onAction}
-      />
+      <ContextMenu id="menuId" items={items} onAction={props.onAction} />
       <StyledDiv onContextMenu={show}>
         Right-click to open the context-menu
       </StyledDiv>
@@ -87,7 +75,7 @@ export const Basic = (props: ContextMenuProps<string>) => {
 }
 
 export const DisabledItem = (props: ContextMenuProps<string>) => {
-  const items: ContextMenuItem<string>[] = [
+  const items: ContextMenuItems<string> = [
     {
       action: 'up',
       text: 'Turn Up',
@@ -118,7 +106,7 @@ export const DisabledItem = (props: ContextMenuProps<string>) => {
 }
 
 export const InAModal = (props: ContextMenuProps<string>) => {
-  const items: ContextMenuItem<string>[] = [
+  const items: ContextMenuItems<string> = [
     {
       action: 'up',
       text: 'Turn Up',
