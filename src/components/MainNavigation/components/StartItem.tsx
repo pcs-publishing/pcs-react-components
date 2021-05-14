@@ -19,6 +19,8 @@ const Logo = styled(SVGLogo)`
 
 const CentralProfilePicture = styled(ProfilePicture)`
   margin: 0 auto;
+  min-height: ${props => props.size}px;
+  min-width: ${props => props.size}px;
 `
 
 const HorizontalDivider = styled.div`
@@ -34,12 +36,13 @@ const StartItem: React.FunctionComponent<StartItemProps> = (props) => {
   const size = smaller ? 40 : 150
   const Splitter = horizontal ? <HorizontalDivider /> : <Divider />
   const showUser = props.user && props.orientation === 'vertical'
+  const userSize = Math.round(size / 1.2)
 
   return <>
     <Logo src={props.logo} size={size} onClick={props.onLogoClick} />
     {Splitter}
     {showUser ? <>
-      <CentralProfilePicture size={Math.round(size / 1.2)} showName={!smaller} {...props.user as MainNavigationUser} onClick={props.onUserClick} />
+      <CentralProfilePicture size={userSize} showName={!smaller} {...props.user as MainNavigationUser} onClick={props.onUserClick} />
       {Splitter}
     </>
       : null}

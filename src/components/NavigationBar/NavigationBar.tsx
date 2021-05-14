@@ -11,6 +11,8 @@ export interface NavigationBarProps {
   orientation: Orientation
   startItem?: AdditionalItem
   lastItem?: AdditionalItem
+  className?: string
+  expandedWidth?: number
 }
 
 const NavigationBar = (props: NavigationBarProps) => {
@@ -26,7 +28,7 @@ const NavigationBar = (props: NavigationBarProps) => {
 
   const ExpandCollapse = <ExpandCollapseButton collapsed={collapsed} orientation={props.orientation} onClick={toggleCollapsed} />
 
-  return <NavigationContainer $collapsed={collapsed} $orientation={props.orientation}>
+  return <NavigationContainer $collapsed={collapsed} $orientation={props.orientation} className={props.className} $expandedWidth={props.expandedWidth}>
     {!collapsed && ExpandCollapse}
     {StartItem ? <StartItem {...commonProps} /> : null}
     <NavigationItems {...commonProps} currentLocation={props.currentLocation} items={props.items} onClick={onNavigateItemClick} />

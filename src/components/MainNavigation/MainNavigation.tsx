@@ -15,6 +15,8 @@ export interface MainNavigationProps {
   onNavigate: (path: string) => void
   startItem?: AdditionalItem
   lastItem?: AdditionalItem
+  className?: string
+  expandedWidth?: number
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
@@ -26,6 +28,8 @@ const MainNavigation = (props: MainNavigationProps) => {
     initiallyCollapsed={false}
     startItem={(itemProps: AdditionalItemProps) => getStartItem(props, itemProps)}
     lastItem={(itemProps: AdditionalItemProps) => getLastItem(props, itemProps)}
+    expandedWidth={props.expandedWidth}
+    className={props.className}
   />
 }
 

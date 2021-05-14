@@ -1,7 +1,7 @@
 import { Orientation } from '..'
 import styled from '../../../theme-styled'
 
-export default styled.div < { $collapsed: boolean, $orientation: Orientation } > `
+export default styled.div < { $collapsed: boolean, $orientation: Orientation, $expandedWidth?: number } > `
   padding: ${(props) => (props.$collapsed ? '5px' : '10px')};
 
   width: auto;
@@ -11,14 +11,16 @@ export default styled.div < { $collapsed: boolean, $orientation: Orientation } >
       height: 100%;
       max-width: ${props.$collapsed ? '60px' : '300px'};
       flex-direction: column;
+
+      ${(!props.$collapsed && props.$expandedWidth) ? `min-width: ${props.$expandedWidth}px !important;` : ''}
     ` : `
       width: 100%;
       height: 60px;
       flex-direction: row;
   `}
-  
+
   ${props => props.theme.backgrounds.navigation}
-  
+
   color: ${props => props.theme.colors.text.onNavigation};
 
   ${(props) => {
