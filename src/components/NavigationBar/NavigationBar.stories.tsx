@@ -54,7 +54,8 @@ Horizontal.args = {
   orientation: 'horizontal',
   currentLocation: '/',
   items,
-  initiallyCollapsed: false
+  initiallyCollapsed: false,
+  loadingItems: false
 }
 
 export const Vertical = Template.bind({})
@@ -63,14 +64,15 @@ Vertical.args = {
   orientation: 'vertical',
   currentLocation: '/',
   items,
-  initiallyCollapsed: false
+  initiallyCollapsed: false,
+  loadingItems: false
 }
 
 export const WithStartItem = (props: NavigationBarProps) => {
   const [location, setLocation] = useState(props.currentLocation)
 
   return <Container>
-    <NavigationBar {...props} startItem={LogoItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
+    <NavigationBar  {...props} startItem={LogoItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
       setLocation(path)
       props.onNavigate(path)
     })} />

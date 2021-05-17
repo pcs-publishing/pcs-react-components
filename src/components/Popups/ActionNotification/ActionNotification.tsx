@@ -43,6 +43,8 @@ export interface ActionNotificationProps {
   persist?: boolean
 }
 
+const ANIMATION_LENGTH = 400
+
 function getIconForDisplaying(
   displaying: DisplayNotificationOptions
 ): SemanticICONS {
@@ -50,7 +52,7 @@ function getIconForDisplaying(
     case 'success':
       return 'check circle'
     case 'error':
-      return 'cancel'
+      return 'exclamation triangle'
     case 'warning':
       return 'warning circle'
     case 'message':
@@ -81,9 +83,13 @@ const ActionNotification = (props: ActionNotificationProps) => {
   const [displayMessage, setDisplayMessage] = useState<
     string | React.ReactElement
   >(message)
+  const [hideTimeoutId, setHideTimeoutId] = useState<number | undefined>()
+
   useEffect(() => {
     setShowMessage(show)
-    setDisplayMessage(message)
+    if (message) {
+      setDisplayMessage(message)
+    }
   }, [show, message])
 
   const closeMessage = useCallback(() => {
@@ -91,10 +97,21 @@ const ActionNotification = (props: ActionNotificationProps) => {
     if (persist) {
       return
     }
-    setTimeout(() => {
+
+    if (hideTimeoutId) {
+      clearTimeout(hideTimeoutId)
+    }
+
+    const timeoutId = setTimeout(() => {
       setShowMessage(false)
-      setDisplayMessage('')
+      setTimeout(() => {
+        if (!show) {
+          setDisplayMessage('')
+        }
+      }, ANIMATION_LENGTH)
     }, timeoutLength)
+
+    setHideTimeoutId(timeoutId)
   }, [setShowMessage, setDisplayMessage, close, displayForMs, persist])
 
   return (
@@ -103,7 +120,7 @@ const ActionNotification = (props: ActionNotificationProps) => {
         open={showMessage}
         transition={{
           animation: 'fade up',
-          duration: persist ? undefined : 400
+          duration: persist ? undefined : ANIMATION_LENGTH
         }}
         // initiate the close message on show
         onOpen={() => closeMessage()}

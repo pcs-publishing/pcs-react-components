@@ -6,6 +6,7 @@ import ExpandCollapseButton from './components/ExpandCollapseButton'
 export interface NavigationBarProps {
   currentLocation: string
   items: NavigationItem[]
+  loadingItems?: boolean
   onNavigate: (path: string) => void
   initiallyCollapsed: boolean
   orientation: Orientation
@@ -31,7 +32,7 @@ const NavigationBar = (props: NavigationBarProps) => {
   return <NavigationContainer $collapsed={collapsed} $orientation={props.orientation} className={props.className} $expandedWidth={props.expandedWidth}>
     {!collapsed && ExpandCollapse}
     {StartItem ? <StartItem {...commonProps} /> : null}
-    <NavigationItems {...commonProps} currentLocation={props.currentLocation} items={props.items} onClick={onNavigateItemClick} />
+    <NavigationItems {...commonProps} loading={props.loadingItems} currentLocation={props.currentLocation} items={props.items} onClick={onNavigateItemClick} />
     {collapsed && ExpandCollapse}
     {LastItem ? <LastItem {...commonProps} /> : null}
   </NavigationContainer>

@@ -9,6 +9,7 @@ export interface MainNavigationProps {
   version: string
   currentLocation: string
   items: NavigationItem[]
+  loadingItems?: boolean
   orientation: Orientation
   user?: MainNavigationUser
   onUserClick?: () => void
@@ -22,6 +23,7 @@ export interface MainNavigationProps {
 const MainNavigation = (props: MainNavigationProps) => {
   return <NavigationBar
     items={props.items}
+    loadingItems={props.loadingItems}
     currentLocation={props.currentLocation}
     onNavigate={props.onNavigate}
     orientation={props.orientation}

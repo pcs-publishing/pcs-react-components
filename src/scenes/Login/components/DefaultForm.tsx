@@ -3,14 +3,16 @@ import { Form, Header, Message, SemanticCOLORS } from 'semantic-ui-react';
 import styled from '../../../theme-styled'
 import Button from '../../../components/Button'
 import { ReactElement } from 'react';
+import { ActionNotification } from '../../..';
 
 export interface LoginFormProps {
   className?: string
-  onLogin: (username: string, password: string) => void
+  onLogin: (username: string, password: string) => Promise<void>
   onForgottenPasswordClick: () => void
   appName: string
   message?: string
-  messageLevel?: 'error' | 'warn' | 'info'
+  messageLevel?: 'error' | 'warning' | 'message'
+  onCloseMessage?: () => void
 }
 
 const StyledLink = styled.span`
@@ -42,9 +44,13 @@ const ButtonContainer = styled.div`
 const DefaultForm = (props: LoginFormProps) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const submitForm = () => {
-    props.onLogin(username, password)
+    setLoading(true)
+    props.onLogin(username, password).finally(() => {
+      setLoading(false)
+    })
   }
 
   return <StyledForm className={props.className} onSubmit={submitForm}>
@@ -81,9 +87,9 @@ const DefaultForm = (props: LoginFormProps) => {
         setPassword(e.target.value)
       }}
     />
-    {getMessage(props.message, props.messageLevel)}
+    {getMessage(props.message, props.messageLevel, props.onCloseMessage)}
     <ButtonContainer>
-      <Button primary size="large" type="submit" content={`Login to ${props.appName}`} />
+      <Button primary size="large" loading={loading} type="submit" content={`Login to ${props.appName}`} />
     </ButtonContainer>
     <LinkContainer>
       <StyledLink onClick={() => props.onForgottenPasswordClick()}>Forgot Your Password?</StyledLink>
@@ -91,15 +97,8 @@ const DefaultForm = (props: LoginFormProps) => {
   </StyledForm>
 }
 
-function getMessage(message?: string, messageLevel?: 'error' | 'warn' | 'info'): ReactElement | null {
-  if (!message || !messageLevel) return null
-  let color: SemanticCOLORS = 'blue'
-  if (messageLevel === 'error') {
-    color = 'red'
-  } else if (messageLevel === 'warn') {
-    color = 'yellow'
-  }
-  return <Message content={message} color={color} />
+function getMessage(message?: string, messageLevel?: 'error' | 'warning' | 'message', onCloseMessage?: () => void): ReactElement | null {
+  return <ActionNotification message={message || ''} displayForMs={5000} show={!!message} close={onCloseMessage} position="center" displaying={messageLevel || 'error'} />
 }
 
 export default DefaultForm

@@ -7,14 +7,15 @@ import AuthScene from '../AuthScene'
 import { AppInfoContext } from '../../providers/AppInfoProvider';
 
 export interface LoginProps {
-onLogin: (username: string, password: string) => void
-onForgottenPasswordClick: () => void
+  onLogin: (username: string, password: string) => Promise<void>
+  onForgottenPasswordClick: () => void
   particles?: boolean | IParticlesParams
   form?: React.FunctionComponent<LoginFormProps>
   header?: React.ReactElement
   footer?: React.ReactElement
   message?: string
-  messageLevel?: 'error' | 'warn' | 'info'
+  messageLevel?: 'error' | 'warning' | 'message'
+  onCloseMessage?: () => void
 }
 
 const Login = (props: LoginProps) => {
@@ -28,6 +29,7 @@ const Login = (props: LoginProps) => {
       onForgottenPasswordClick={props.onForgottenPasswordClick}
       message={props.message}
       messageLevel={props.messageLevel}
+      onCloseMessage={props.onCloseMessage}
     />
   </AuthScene>
 }
