@@ -1,4 +1,4 @@
-import { Theme } from '../definitions/theme';
+import { Theme } from '../definitions/theme'
 import { css } from '../theme-styled'
 
 const COLORS = {
@@ -15,7 +15,9 @@ const defaultTheme: Theme = {
     primary: COLORS.PRIMARY,
     text: {
       onBase: COLORS.TEXT,
-      onPrimary: COLORS.BASE
+      onPrimary: COLORS.BASE,
+      onNavigation: COLORS.BASE,
+      onFullScreenScene: COLORS.BASE
     }
   },
   backgrounds: {
@@ -27,6 +29,12 @@ const defaultTheme: Theme = {
     `,
     offsetEmphasis: css`
       background-color: #ddd;
+    `,
+    navigation: css`
+      background-color: #4f5c72;
+    `,
+    fullScreenScene: css`
+      background: linear-gradient(90deg, rgb(43, 77, 130), rgb(40, 144, 172)); ;
     `
   },
   border: css`

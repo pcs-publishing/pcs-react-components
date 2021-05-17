@@ -31,11 +31,11 @@ export const Warning = () => {
     <>
       <Button onClick={() => setShowNotification(true)}>Show warning</Button>
       <ActionNotification
-        message={'This is a warning. It will only last 2 seconds.'}
+        message={'This is a warning. It will only last 500ms.'}
         displaying="warning"
         close={() => setShowNotification(false)}
         show={showNotification}
-        displayForMs={2000}
+        displayForMs={500}
       />
     </>
   )
