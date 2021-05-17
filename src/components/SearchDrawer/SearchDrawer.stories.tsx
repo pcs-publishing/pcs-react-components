@@ -16,6 +16,11 @@ interface ExampleFilter {
 
 const Container = styled.div`
   height: 700px;
+  display: flex;
+`
+
+const MainArea = styled.div`
+  width: 70%;
 `
 
 export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputType>) => {
@@ -44,6 +49,7 @@ export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputT
         currentFilter={filter}
         onClear={() => setFilter({})}
       />
+      <MainArea />
     </Container>
   )
 }

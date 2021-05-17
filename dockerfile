@@ -15,6 +15,7 @@ RUN mkdir /storybook
 WORKDIR /storybook
 
 COPY --from=BUILDER /builder/storybook-static .
+COPY --from=BUILDER /builder/public ../public
 
 RUN npm install -g serve
 

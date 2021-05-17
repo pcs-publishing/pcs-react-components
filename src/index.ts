@@ -46,6 +46,15 @@ import C_UploadButton from './components/UploadButton'
 import C_Uploader from './components/Uploader'
 import C_ViewFileWindow from './components/ViewFileWindow'
 import C_TextViewer from './components/ViewFileWindow/components/TextViewer'
+import C_NavigationBar from './components/NavigationBar'
+import C_MainNavigation from './components/MainNavigation'
+import C_SVGLogo from './components/SVGLogo'
+//#endregion
+
+//#region scene imports
+import SC_LoginScene from './scenes/Login'
+import SC_AuthScene from './scenes/AuthScene'
+import SC_FullScreenScene from './scenes/FullScreenScene'
 //#endregion
 
 //#region hook imports
@@ -78,6 +87,10 @@ import T_defaultTheme from './themes/defaultTheme'
 
 //#region css imports
 import 'react-contexify/dist/ReactContexify.css'
+//#endregion
+
+//#region provider imports
+import * as P_AppInfoProvider from './providers/AppInfoProvider'
 //#endregion
 
 //#region component exports
@@ -128,6 +141,15 @@ export const UploadButton = C_UploadButton
 export const ViewFileWindow = C_ViewFileWindow
 export const TextViewer = C_TextViewer
 export const PopoverButton = C_PopoverButton
+export const NavigationBar = C_NavigationBar
+export const MainNavigation = C_MainNavigation
+export const SVGLogo = C_SVGLogo
+//#endregion
+
+//#region scene exports
+export const LoginScene = SC_LoginScene
+export const AuthScene = SC_AuthScene
+export const FullScreenScene = SC_FullScreenScene
 //#endregion
 
 //#region hook exports
@@ -152,6 +174,18 @@ export const filename = U_filename
 export const format = U_format
 export const file = U_File
 export const contextMenu = U_contextMenu
+
+//#endregion
+
+
 //#region theme exports
 export const defaultTheme = T_defaultTheme
+//#endregion
+
+//#region provider exports
+export const AppInfoProvider = P_AppInfoProvider.AppInfoProvider
+//#endregion
+
+//#region context exports
+export const AppInfoContext = P_AppInfoProvider.AppInfoContext
 //#endregion

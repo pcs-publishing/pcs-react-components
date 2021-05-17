@@ -1,7 +1,7 @@
 import React from 'react'
 import { SemanticICONS, Icon, Portal, Popup } from 'semantic-ui-react'
 import styled, { css } from '../../theme-styled'
-import { Menu, Item, Submenu, Separator } from 'react-contexify'
+import { Menu, Item, Submenu } from 'react-contexify'
 import {
   instanceOfContextMenuItem,
   instanceOfSubMenuItem

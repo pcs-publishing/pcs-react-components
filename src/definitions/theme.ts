@@ -6,6 +6,8 @@ export interface ThemeColors {
   text: {
     onBase: string
     onPrimary: string
+    onNavigation: string
+    onFullScreenScene: string
   }
 }
 
@@ -13,6 +15,8 @@ export interface ThemeBackgrounds {
   main: FlattenSimpleInterpolation
   offset: FlattenSimpleInterpolation
   offsetEmphasis: FlattenSimpleInterpolation
+  navigation: FlattenSimpleInterpolation
+  fullScreenScene: FlattenSimpleInterpolation
 }
 
 export interface Theme {
