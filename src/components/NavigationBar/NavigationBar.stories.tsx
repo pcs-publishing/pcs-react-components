@@ -94,8 +94,6 @@ export const WithLastItem = (props: NavigationBarProps) => {
 export const WithStartAndLastItems = (props: NavigationBarProps) => {
   const [location, setLocation] = useState(props.currentLocation)
 
-  console.log('location: ', location)
-
   return <Container>
     <NavigationBar {...props} startItem={LogoItem} lastItem={VersionItem} items={items} orientation="vertical" currentLocation={location} onNavigate={(path => {
       setLocation(path)
