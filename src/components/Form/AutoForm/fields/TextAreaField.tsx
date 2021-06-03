@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { Form } from 'semantic-ui-react'
 import { FieldProps } from '../definitions'
+import TextArea from '../../../TextArea'
 
 const TextField = (props: FieldProps) => {
   const { onChange, field, value, allValues } = props
@@ -8,9 +8,7 @@ const TextField = (props: FieldProps) => {
   const rows = field.rows ?? 4
 
   const onTextAreaChange = useCallback(
-    (e: unknown) => {
-      const { target } = e as { target: { value: string } }
-      const value = target.value
+    (value?: string | number) => {
       onChange(field.key, value)
     },
     [onChange, field]
@@ -18,14 +16,16 @@ const TextField = (props: FieldProps) => {
   const error = field.error ? field.error(value, allValues ?? {}) : undefined
 
   return (
-    <Form.TextArea
-      autoFocus={!!field.autoFocus}
-      label={field.label}
+    <TextArea
       value={value as string | number | undefined}
+      label={field.label}
       onChange={onTextAreaChange}
-      disabled={!!field.disabled}
-      error={error}
-      rows={rows}
+      textAreaProps={{
+        autoFocus: !!field.autoFocus,
+        disabled: !!field.disabled,
+        error,
+        rows
+      }}
     />
   )
 }

@@ -1,13 +1,12 @@
-import React, { useCallback, SyntheticEvent } from 'react'
-import { Dropdown, Form } from 'semantic-ui-react'
+import React, { useCallback } from 'react'
 import { FieldProps } from '../definitions'
+import Dropdown from '../../../Dropdown'
 
 const DropdownField = (props: FieldProps) => {
   const { onChange, field, defaultValue, value, allValues } = props
   const { options, label, autoFocus, multiple } = field
   const onValueChange = useCallback(
-    (e: SyntheticEvent<HTMLElement, Event>, data: any) => {
-      const { value } = data
+    (value: any) => {
       onChange(field.key, value)
     },
     [onChange, field]
@@ -15,23 +14,22 @@ const DropdownField = (props: FieldProps) => {
   const error = field.error ? field.error(value, allValues ?? {}) : undefined
 
   return (
-    <Form.Field>
-      <label>{label}</label>
-      <Dropdown
-        autoFocus={!!autoFocus}
-        placeholder={label}
-        label={label}
-        options={options}
-        fluid
-        labeled
-        selection
-        defaultValue={defaultValue as string | string[] | number}
-        onChange={onValueChange}
-        clearable={true}
-        error={error ? true : false}
-        multiple={multiple}
-      />
-    </Form.Field>
+    <Dropdown
+      label={label}
+      onChange={onValueChange}
+      value={undefined}
+      options={options}
+      dropdownProps={{
+        autoFocus: !!autoFocus,
+        placeholder: label,
+        fluid: true,
+        labeled: true,
+        defaultValue: defaultValue as string | string[] | number,
+        clearable: true,
+        error: error ? true : false,
+        multiple: multiple
+      }}
+    />
   )
 }
 
