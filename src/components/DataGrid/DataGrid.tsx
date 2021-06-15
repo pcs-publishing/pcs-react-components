@@ -25,8 +25,6 @@ import DataPager from './DataPager'
 import useRecordSelection from '../../hooks/useRecordSelection'
 import ReactResizeDetector from 'react-resize-detector'
 import LoadingMask from '../LoadingMask'
-import { css } from '../../theme-styled'
-
 export interface DataGridProps<T> {
   idField: keyof SubType<T, string | number>
   data: T[]
@@ -46,6 +44,7 @@ export interface DataGridProps<T> {
   onDoubleClickRow?: (record: T) => void
   onRefreshClick?: () => void
   getRowStyle?: (record: T) => FlattenSimpleInterpolation
+  autoSize?: boolean
 }
 
 const Container = styled.div`
@@ -149,7 +148,8 @@ const DataGrid = <T extends any>(props: DataGridProps<T>) => {
               />
               <DataBody
                 records={data}
-                height={calculateTableBodyHeight(
+                autoSize={props.autoSize}
+                height={props.autoSize === false ? undefined : calculateTableBodyHeight(
                   containerRef.current?.offsetHeight || 0,
                   hasPaging
                 )}

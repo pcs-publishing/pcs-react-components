@@ -11,7 +11,7 @@ interface TableBodyProps {
 
 interface DataBodyProps<T> {
   records: T[]
-  height: number
+  height?: number
   isRecordSelected: (record: T) => boolean
   columnDefinitions: ColumnDefinition<T>[]
   onRowClick: (record: T, isMultiSelect: boolean) => void
@@ -20,18 +20,19 @@ interface DataBodyProps<T> {
   mapContextMenuProps?: (record: T) => { [key: string]: any }
   onRowDoubleClick?: (record: T) => void
   getRowStyle?: (record: T) => FlattenSimpleInterpolation
+  autoSize?: boolean
 }
 
-const TableBody = styled(Table.Body)<TableBodyProps>`
+const TableBody = styled(Table.Body) <TableBodyProps>`
   display: block;
   overflow-y: auto;
   width: 100%;
-  max-height: ${(props) => props.$height};
+  ${props => props.autosize !== false ? `max-height: ${props.$height};` : ''}
 `
 
 const DataBody = <T extends any>(props: DataBodyProps<T>) => {
   const { records, isRecordSelected } = props
-  const height: string = isNaN(props.height) ? '100%' : `${props.height}px`
+  const height: string = isNaN(parseFloat(props.height?.toString() || '')) ? '100%' : `${props.height}px`
 
   const rowProps = _.pick(props, [
     'columnDefinitions',

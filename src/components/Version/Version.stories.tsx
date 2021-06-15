@@ -10,5 +10,5 @@ const Template = (props: VersionProps) => {
   return <Version {...props} />
 }
 
-const Example = Template.bind({})
+export const Example = Template.bind({})
 Example.props = { version: '1.0.1' }

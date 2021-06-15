@@ -33,8 +33,8 @@ const NavigationBar = (props: NavigationBarProps) => {
     {!collapsed && ExpandCollapse}
     {StartItem ? <StartItem {...commonProps} /> : null}
     <NavigationItems {...commonProps} loading={props.loadingItems} currentLocation={props.currentLocation} items={props.items} onClick={onNavigateItemClick} />
-    {collapsed && ExpandCollapse}
     {LastItem ? <LastItem {...commonProps} /> : null}
+    {collapsed && ExpandCollapse}
   </NavigationContainer>
 }
 

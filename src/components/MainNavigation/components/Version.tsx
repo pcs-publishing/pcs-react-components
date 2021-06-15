@@ -13,7 +13,7 @@ const StyledVersion = styled(Version) <{ $orientation: Orientation, $collapsed: 
   ` : `
     width: 100%;
     text-align: center;
-    align-self: flex-end;
+    align-self: flex-end !important;
   `}
 
 

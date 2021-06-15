@@ -13,7 +13,7 @@ interface LastItemProps extends AdditionalItemProps {
 
 const Container = styled.div < { $orientation: Orientation }>`
   display: flex;
-  flex-flow: ${props => props.$orientation === 'vertical' ? 'column wrap' : 'row-reverse nowrap'};
+  flex-flow: ${props => props.$orientation === 'vertical' ? 'row wrap' : 'row-reverse nowrap'};
   align-items: center;
   flex-grow: 1;
 
@@ -35,7 +35,6 @@ const LastItem: React.FunctionComponent<LastItemProps> = (props) => {
     {props.children}
     <Version {...props} />
     {showUser ? <ProfilePicture {...(props.user as MainNavigationUser)} size={40} onClick={props.onUserClick} /> : null}
-
   </Container>
 }
 

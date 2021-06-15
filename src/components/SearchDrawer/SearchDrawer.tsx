@@ -7,6 +7,7 @@ import Box from '../Styled/Box'
 import { ReactElement } from 'react';
 import DateRangeFilter from './fields/DateRangeFilter';
 import TextFilter from './fields/TextFilter';
+import DateFilter from './fields/DateFilter';
 
 const Container = styled(Box)`
   box-shadow: none;
@@ -100,6 +101,8 @@ function getBaseFilterComponent<T, U extends string>(filterDefinition: FilterDef
       return <TextFilter {...props} />
     case 'daterange':
       return <DateRangeFilter {...props} />
+    case 'date':
+      return <DateFilter {...props} />
     case 'format':
       if (filterDefinition.format) return filterDefinition.format(filterDefinition)
       return <div key={filterDefinition.name as string}>No format function specified for {filterDefinition.name}</div>

@@ -12,6 +12,7 @@ export default {
 interface ExampleFilter {
   identifier: string
   dateRange: DateRange
+  date: Date
 }
 
 const Container = styled.div`
@@ -24,7 +25,7 @@ const MainArea = styled.div`
 `
 
 export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputType>) => {
-  const [filter, setFilter] = useState<Partial<ExampleFilter>>({})
+  const [filter, setFilter] = useState<Partial<ExampleFilter>>({ date: new Date() })
 
   const filterDefinitions: FilterDefinition<ExampleFilter, InputType>[] = [{
     type: 'textfield',
@@ -33,6 +34,10 @@ export const DefaultFieldTypes = (props: SearchDrawerProps<ExampleFilter, InputT
     type: 'daterange',
     name: 'dateRange',
     label: 'Date Range'
+  }, {
+    type: 'date',
+    name: 'date',
+    label: 'Date'
   }]
 
   const onFilterChange = (name: keyof ExampleFilter, value: FilterValue) => {

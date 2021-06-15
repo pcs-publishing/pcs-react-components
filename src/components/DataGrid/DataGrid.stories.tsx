@@ -13,7 +13,7 @@ export default {
 
 const GridContainer = styled.div`
   height: 500px;
-  width: 100%;
+  width: 100%
 `
 
 interface Record {
@@ -120,6 +120,13 @@ export const StyledRow = Template.bind({})
 StyledRow.args = {
   ...Basic.args,
   getRowStyle
+}
+
+export const NoAutoFit = Template.bind({})
+
+NoAutoFit.args = {
+  ...Basic.args,
+  autoSize: false
 }
 
 function generateTestData() {
