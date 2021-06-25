@@ -184,10 +184,7 @@ const RichTextEditor = ({
                 trigger={
                   <span>
                     <StyledButton
-                      onClick={(e: any) => {
-                        e.preventDefault()
-                        onHandleButtonClick(button.action)
-                      }}
+                      onClick={() => onHandleButtonClick(button.action)}
                       icon={button.icon}
                       active={isActive}
                     />
