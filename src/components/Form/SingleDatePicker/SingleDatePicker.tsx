@@ -1,11 +1,12 @@
 import React from 'react'
 import { Calendar, OnChangeProps } from 'react-date-range'
 import { Form } from 'semantic-ui-react'
-import useTheme from '../../../hooks/useTheme'
 import styled from '../../../theme-styled'
 
 export interface SingleDatePickerProps {
   date: Date
+  minDate?: Date
+  maxDate?: Date
   onChange: (date: Date) => void
   label?: string
 }
@@ -48,7 +49,7 @@ const SingleDatePicker = (props: SingleDatePickerProps) => {
 
   return <StyledFormField>
     {props.label ? <label>{props.label}</label> : null}
-    <StyledCalendar date={props.date} onChange={handleChange} />
+    <StyledCalendar date={props.date} minDate={props.minDate} maxDate={props.maxDate} onChange={handleChange} />
   </StyledFormField>
 }
 

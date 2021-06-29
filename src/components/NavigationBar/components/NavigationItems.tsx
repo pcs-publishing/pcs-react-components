@@ -17,8 +17,9 @@ interface NavigationItemsProps {
 
 const NavigationItems = (props: NavigationItemsProps) => {
   const NavigationItemComponent = props.orientation === 'vertical' && props.collapsed ? CollapsedNavigationItem : ExpandedNavigationItem
+  const activeItem = getActiveItem(props.items, props.currentLocation)
   const loader = <Loader active inline='centered' />
-  const items = props.items.map(item => (<NavigationItemComponent active={item.path === props.currentLocation} key={item.path} orientation={props.orientation} item={item} onClick={props.onClick} />))
+  const items = props.items.map(item => (<NavigationItemComponent active={activeItem?.path === item.path} key={item.path} orientation={props.orientation} item={item} onClick={props.onClick} />))
 
   const children = props.loading ? loader : items
 
@@ -30,6 +31,16 @@ const NavigationItems = (props: NavigationItemsProps) => {
 
   return <NavigationMenu orientation={props.orientation}>{children}</NavigationMenu>
 
+}
+
+function getActiveItem(items: NavigationItem[], currentLocation: string): NavigationItem | undefined {
+  const exactMatch = items.find(item => item.path === currentLocation)
+
+  if (exactMatch) {
+    return exactMatch
+  }
+
+  return items.find(item => currentLocation.startsWith(item.path))
 }
 
 export default NavigationItems
