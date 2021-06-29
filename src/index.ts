@@ -37,6 +37,7 @@ import C_Overlay from './components/Popups/Overlay'
 import C_TextAreaModal from './components/Popups/TextAreaModal'
 import C_PopoverButton from './components/Popups/PopoverButton'
 import C_RecordsSummary from './components/RecordsSummary'
+import C_RichTextEditor from './components/RichTextEditor'
 import C_SearchBar from './components/SearchBar'
 import C_SearchDrawer from './components/SearchDrawer'
 import C_Slider from './components/Slider'
@@ -137,6 +138,7 @@ export const LoadingModal = C_LoadingModal
 export const Overlay = C_Overlay
 export const TextAreaModal = C_TextAreaModal
 export const RecordsSummary = C_RecordsSummary
+export const RichTextEditor = C_RichTextEditor
 export const SearchBar = C_SearchBar
 export const SearchDrawer = C_SearchDrawer
 export const Slider = C_Slider
