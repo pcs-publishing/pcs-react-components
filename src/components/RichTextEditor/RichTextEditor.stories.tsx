@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import RichTextEditor, { RichTextEditorAction } from './RichTextEditor'
+import RichTextEditor from './RichTextEditor'
 import { Form } from 'semantic-ui-react'
 import { EditorState } from 'draft-js'
 import { useCallback } from 'react'
+import { RichTextEditorAction } from '.'
 
 export default {
   title: 'RichTextEditor',

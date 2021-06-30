@@ -14,21 +14,7 @@ import 'draft-js/dist/Draft.css'
 import styled from '../../theme-styled'
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic'
 import _ from 'lodash'
-
-export enum RichTextEditorAction {
-  BOLD = 'bold',
-  ITALIC = 'italic',
-  HEADING = 'heading',
-  UNDERLINE = 'underline',
-  CODE = 'code'
-}
-
-// export type RichTextEditorAction =
-//   | 'bold'
-//   | 'italic'
-//   | 'heading'
-//   | 'underline'
-//   | 'code'
+import { RichTextEditorAction } from '.'
 
 const styleMap: DraftStyleMap = {
   HEADING: {
