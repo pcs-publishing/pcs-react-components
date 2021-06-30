@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import RichTextEditor from './RichTextEditor'
+import RichTextEditor, { RichTextEditorAction } from './RichTextEditor'
 import { Form } from 'semantic-ui-react'
 import { EditorState } from 'draft-js'
 import { useCallback } from 'react'
@@ -21,12 +21,16 @@ export const Example = () => {
     [setEditorState]
   )
 
+  const allRichTextEditorActions = Object.keys(RichTextEditorAction).map(
+    (key) => RichTextEditorAction[key]
+  ) as RichTextEditorAction[]
+
   return (
     <Form>
       <RichTextEditor
         editorState={editorState}
         onChange={onChange}
-        availableActions={['bold', 'code', 'heading', 'italic', 'underline']}
+        availableActions={allRichTextEditorActions}
         label="Rich Text Editor"
       />
     </Form>

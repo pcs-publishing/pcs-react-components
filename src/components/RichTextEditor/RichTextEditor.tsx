@@ -15,12 +15,20 @@ import styled from '../../theme-styled'
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic'
 import _ from 'lodash'
 
-export type RichTextEditorAction =
-  | 'bold'
-  | 'italic'
-  | 'heading'
-  | 'underline'
-  | 'code'
+export enum RichTextEditorAction {
+  BOLD = 'bold',
+  ITALIC = 'italic',
+  HEADING = 'heading',
+  UNDERLINE = 'underline',
+  CODE = 'code'
+}
+
+// export type RichTextEditorAction =
+//   | 'bold'
+//   | 'italic'
+//   | 'heading'
+//   | 'underline'
+//   | 'code'
 
 const styleMap: DraftStyleMap = {
   HEADING: {
@@ -52,11 +60,15 @@ const ButtonGroupContainer = styled.div`
 `
 
 const buttons: RichTextEditorButton[] = [
-  { content: 'Bold', icon: 'bold', action: 'bold' },
-  { content: 'Italic', icon: 'italic', action: 'italic' },
-  { content: 'Heading', icon: 'heading', action: 'heading' },
-  { content: 'Underline', icon: 'underline', action: 'underline' },
-  { content: 'Code', icon: 'code', action: 'code' }
+  { content: 'Bold', icon: 'bold', action: RichTextEditorAction.BOLD },
+  { content: 'Italic', icon: 'italic', action: RichTextEditorAction.ITALIC },
+  { content: 'Heading', icon: 'heading', action: RichTextEditorAction.HEADING },
+  {
+    content: 'Underline',
+    icon: 'underline',
+    action: RichTextEditorAction.UNDERLINE
+  },
+  { content: 'Code', icon: 'code', action: RichTextEditorAction.CODE }
 ]
 
 const StyledButton = styled(Button)<{ active: boolean }>`
