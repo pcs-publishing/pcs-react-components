@@ -15,7 +15,12 @@ import styled from '../../theme-styled'
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic'
 import _ from 'lodash'
 
-type RichTextEditorAction = 'bold' | 'italic' | 'heading' | 'underline' | 'code'
+export type RichTextEditorAction =
+  | 'bold'
+  | 'italic'
+  | 'heading'
+  | 'underline'
+  | 'code'
 
 const styleMap: DraftStyleMap = {
   HEADING: {
