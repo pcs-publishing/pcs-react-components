@@ -26,7 +26,8 @@ export const Example = () => {
       <RichTextEditor
         editorState={editorState}
         onChange={onChange}
-        availableActions={['bold', 'italic', 'heading', 'underline', 'code']}
+        availableActions={['bold', 'code', 'heading', 'italic', 'underline']}
+        label="Rich Text Editor"
       />
     </Form>
   )

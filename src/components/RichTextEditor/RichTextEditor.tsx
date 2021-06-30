@@ -27,6 +27,7 @@ export interface RichTextEditorProps {
   editorState: EditorState
   onChange: (editorState: EditorState) => void
   availableActions: RichTextEditorAction[]
+  label: string
 }
 
 const EditorContainer = styled.div`
@@ -65,7 +66,8 @@ const StyledButton = styled(Button)<{ active: boolean }>`
 const RichTextEditor = ({
   editorState,
   onChange,
-  availableActions
+  availableActions,
+  label
 }: RichTextEditorProps) => {
   const [activeButtons, setActiveButtons] = useState<RichTextEditorAction[]>([])
   const availableButtons = availableActions.map(
@@ -174,27 +176,30 @@ const RichTextEditor = ({
 
   return (
     <Form.Field>
-      <ButtonGroupContainer>
-        <ButtonGroup>
-          {availableButtons.map((button) => {
-            const isActive = isButtonActive(button)
-            return (
-              <Popup
-                content={button.content}
-                trigger={
-                  <span>
-                    <StyledButton
-                      onClick={() => onHandleButtonClick(button.action)}
-                      icon={button.icon}
-                      active={isActive}
-                    />
-                  </span>
-                }
-              />
-            )
-          })}
-        </ButtonGroup>
-      </ButtonGroupContainer>
+      <label>{label}</label>
+      {availableButtons.length > 0 ? (
+        <ButtonGroupContainer>
+          <ButtonGroup>
+            {availableButtons.map((button) => {
+              const isActive = isButtonActive(button)
+              return (
+                <Popup
+                  content={button.content}
+                  trigger={
+                    <span>
+                      <StyledButton
+                        onClick={() => onHandleButtonClick(button.action)}
+                        icon={button.icon}
+                        active={isActive}
+                      />
+                    </span>
+                  }
+                />
+              )
+            })}
+          </ButtonGroup>
+        </ButtonGroupContainer>
+      ) : null}
 
       <EditorContainer>
         <Editor
