@@ -3,7 +3,6 @@ import RichTextEditor from './RichTextEditor'
 import { Form } from 'semantic-ui-react'
 import { EditorState } from 'draft-js'
 import { useCallback } from 'react'
-import { RichTextEditorAction } from '.'
 
 export default {
   title: 'RichTextEditor',
@@ -22,16 +21,12 @@ export const Example = () => {
     [setEditorState]
   )
 
-  const allRichTextEditorActions = Object.keys(RichTextEditorAction).map(
-    (key) => RichTextEditorAction[key]
-  ) as RichTextEditorAction[]
-
   return (
     <Form>
       <RichTextEditor
         editorState={editorState}
         onChange={onChange}
-        availableActions={allRichTextEditorActions}
+        availableActions={['bold', 'code', 'heading', 'italic', 'underline']}
         label="Rich Text Editor"
       />
     </Form>

@@ -79,3 +79,10 @@ export interface FileRecord {
   mimeType: string
   textContent?: string
 }
+
+export type RichTextEditorAction =
+  | 'bold'
+  | 'italic'
+  | 'heading'
+  | 'underline'
+  | 'code'

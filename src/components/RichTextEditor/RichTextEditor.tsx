@@ -14,7 +14,7 @@ import 'draft-js/dist/Draft.css'
 import styled from '../../theme-styled'
 import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic'
 import _ from 'lodash'
-import { RichTextEditorAction } from '.'
+import { RichTextEditorAction } from '../../definitions'
 
 const styleMap: DraftStyleMap = {
   HEADING: {
@@ -46,15 +46,15 @@ const ButtonGroupContainer = styled.div`
 `
 
 const buttons: RichTextEditorButton[] = [
-  { content: 'Bold', icon: 'bold', action: RichTextEditorAction.BOLD },
-  { content: 'Italic', icon: 'italic', action: RichTextEditorAction.ITALIC },
-  { content: 'Heading', icon: 'heading', action: RichTextEditorAction.HEADING },
+  { content: 'Bold', icon: 'bold', action: 'bold' },
+  { content: 'Italic', icon: 'italic', action: 'italic' },
+  { content: 'Heading', icon: 'heading', action: 'heading' },
   {
     content: 'Underline',
     icon: 'underline',
-    action: RichTextEditorAction.UNDERLINE
+    action: 'underline'
   },
-  { content: 'Code', icon: 'code', action: RichTextEditorAction.CODE }
+  { content: 'Code', icon: 'code', action: 'code' }
 ]
 
 const StyledButton = styled(Button)<{ active: boolean }>`
