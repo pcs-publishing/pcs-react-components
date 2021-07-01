@@ -194,6 +194,7 @@ const RichTextEditor = ({
                         onClick={() => onHandleButtonClick(button.action)}
                         icon={button.icon}
                         active={isActive}
+                        type="button"
                       />
                     </span>
                   }
