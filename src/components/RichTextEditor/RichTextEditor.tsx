@@ -161,7 +161,6 @@ const RichTextEditor = ({
       )
       let newState: EditorState | null
       const isBaseButton = isBaseButtonType(command)
-      newState = RichUtils.handleKeyCommand(state, command)
       if (isBaseButton || (!isBaseButton && !customKeyCommandFn)) {
         newState = RichUtils.handleKeyCommand(state, command)
       } else {
