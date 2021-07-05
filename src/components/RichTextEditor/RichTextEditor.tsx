@@ -5,28 +5,23 @@ import {
   EditorState,
   RichUtils,
   CharacterMetadata,
-  DraftStyleMap,
-  getDefaultKeyBinding,
-  KeyBindingUtil
+  DraftStyleMap
 } from 'draft-js'
 import { ButtonGroup, Form, Popup, Button } from 'semantic-ui-react'
 import 'draft-js/dist/Draft.css'
 import styled from '../../theme-styled'
-import { SemanticICONS } from 'semantic-ui-react/dist/commonjs/generic'
 import _ from 'lodash'
-import { RichTextEditorAction } from '../../definitions'
-
-const styleMap: DraftStyleMap = {
-  HEADING: {
-    fontSize: '18px'
-  }
-}
+import { RichTextEditorAction, RichTextEditorButton } from '../../definitions'
 
 export interface RichTextEditorProps {
   editorState: EditorState
   onChange: (editorState: EditorState) => void
-  availableActions: RichTextEditorAction[]
+  availableBaseActions: RichTextEditorAction[]
   label: string
+  customStyleMap?: DraftStyleMap
+  customActions?: RichTextEditorButton[]
+  customKeyBindingFn?: (e: any) => string | null
+  customKeyCommandFn?: (command: string, state: EditorState) => EditorState
 }
 
 const EditorContainer = styled.div`
@@ -35,20 +30,13 @@ const EditorContainer = styled.div`
   padding: 10px;
 `
 
-interface RichTextEditorButton {
-  content: string
-  icon: SemanticICONS
-  action: RichTextEditorAction
-}
-
 const ButtonGroupContainer = styled.div`
   margin-bottom: 10px;
 `
 
-const buttons: RichTextEditorButton[] = [
+const baseButtons: RichTextEditorButton[] = [
   { content: 'Bold', icon: 'bold', action: 'bold' },
   { content: 'Italic', icon: 'italic', action: 'italic' },
-  { content: 'Heading', icon: 'heading', action: 'heading' },
   {
     content: 'Underline',
     icon: 'underline',
@@ -69,14 +57,22 @@ const StyledButton = styled(Button)<{ active: boolean }>`
 const RichTextEditor = ({
   editorState,
   onChange,
-  availableActions,
-  label
+  availableBaseActions,
+  label,
+  customStyleMap,
+  customActions,
+  customKeyBindingFn,
+  customKeyCommandFn
 }: RichTextEditorProps) => {
   const [activeButtons, setActiveButtons] = useState<RichTextEditorAction[]>([])
-  const availableButtons = availableActions.map(
+  const availableBaseButtons = availableBaseActions.map(
     (action) =>
-      buttons.find((button) => button.action === action) as RichTextEditorButton
+      baseButtons.find(
+        (button) => button.action === action
+      ) as RichTextEditorButton
   )
+
+  const allActiveButtons = [...availableBaseButtons, ...(customActions ?? [])]
 
   const onGetCurrentActiveInlineStyles = useCallback(() => {
     const contentBlocks = _.flattenDeep(
@@ -98,7 +94,9 @@ const RichTextEditor = ({
       )[0] ?? {}
 
     const activeStyleArray = Object.keys(activeStyleObject).map((key) =>
-      _.toLower(activeStyleObject[key])
+      isBaseButtonType(_.lowerCase(activeStyleObject[key]))
+        ? _.lowerCase(activeStyleObject[key])
+        : activeStyleObject[key]
     ) as RichTextEditorAction[]
     return activeStyleArray
   }, [editorState])
@@ -112,10 +110,10 @@ const RichTextEditor = ({
   }, [onGetCurrentActiveInlineStyles, setActiveButtons, activeButtons])
 
   const onHandleButtonClick = useCallback(
-    (action: RichTextEditorAction) => {
+    (action: RichTextEditorAction | string) => {
       const newState = RichUtils.toggleInlineStyle(
         editorState,
-        _.upperCase(action)
+        isBaseButtonType(action) ? _.upperCase(action) : action
       )
       if (newState) {
         onChange(newState)
@@ -124,66 +122,69 @@ const RichTextEditor = ({
     [onChange, editorState]
   )
 
-  const handleKeyCommand = useCallback(
-    (command: string, state: EditorState): DraftHandleValue => {
-      const isAvailable = availableButtons.find(
-        (button) => button.action === command
-      )
-
-      let newState: EditorState | null
-
-      switch (command) {
-        case 'heading':
-          newState = RichUtils.toggleInlineStyle(editorState, 'HEADING')
-          break
-
-        default:
-          newState = RichUtils.handleKeyCommand(
-            state,
-            command
-          ) as EditorState | null
-          break
-      }
-
-      if (!isAvailable || !newState) {
-        return 'not-handled'
-      }
-
-      onChange(newState)
-
-      return 'handled'
-    },
-    [availableButtons, onChange]
-  )
+  const isBaseButtonType = (command: string): boolean => {
+    switch (command) {
+      case 'bold':
+      case 'italic':
+      case 'underline':
+      case 'code':
+      case 'strikethrough':
+        return true
+      default:
+        return false
+    }
+  }
 
   const isButtonActive = useCallback(
     (button: RichTextEditorButton) => {
       const isButtonActive = !!activeButtons.find(
         (action) => button.action === action
       )
-      const currentSelectionHasInlineStyle = editorState
+
+      const currentlyAppliedStyles = editorState
         .getCurrentInlineStyle()
-        .has(_.upperCase(button.action))
+        .toArray()
+
+      const currentSelectionHasInlineStyle = currentlyAppliedStyles.find(
+        (value) => _.lowerCase(value as string) === _.lowerCase(button.action)
+      )
+
       return isButtonActive && currentSelectionHasInlineStyle
     },
-    [activeButtons, editorState]
+    [activeButtons, editorState, isBaseButtonType]
   )
 
-  const customKeyBindingFn = (e: any) => {
-    const hasCommandKey = KeyBindingUtil.hasCommandModifier(e) // command or ctrl key
-    if (e.keyCode === 72 /** h key */ && hasCommandKey) {
-      return 'heading'
-    }
-    return getDefaultKeyBinding(e)
-  }
+  const handleKeyCommand = useCallback(
+    (command: string, state: EditorState): DraftHandleValue => {
+      const isAvailable = !!allActiveButtons.find(
+        (button) => button.action === command
+      )
+      let newState: EditorState | null
+      const isBaseButton = isBaseButtonType(command)
+      newState = RichUtils.handleKeyCommand(state, command)
+      if (isBaseButton || (!isBaseButton && !customKeyCommandFn)) {
+        newState = RichUtils.handleKeyCommand(state, command)
+      } else {
+        newState = customKeyCommandFn
+          ? customKeyCommandFn(command, state)
+          : null
+      }
+      if (!isAvailable || !newState) {
+        return 'not-handled'
+      }
+      onChange(newState)
+      return 'handled'
+    },
+    [allActiveButtons, isBaseButtonType, customKeyCommandFn, onChange]
+  )
 
   return (
     <Form.Field>
       <label>{label}</label>
-      {availableButtons.length > 0 ? (
+      {allActiveButtons.length > 0 ? (
         <ButtonGroupContainer>
           <ButtonGroup>
-            {availableButtons.map((button) => {
+            {allActiveButtons.map((button) => {
               const isActive = isButtonActive(button)
               return (
                 <Popup
@@ -210,7 +211,7 @@ const RichTextEditor = ({
           editorState={editorState}
           onChange={onChange}
           handleKeyCommand={handleKeyCommand}
-          customStyleMap={styleMap}
+          customStyleMap={customStyleMap}
           keyBindingFn={customKeyBindingFn}
         />
       </EditorContainer>
