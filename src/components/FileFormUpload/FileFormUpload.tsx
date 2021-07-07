@@ -19,14 +19,13 @@ export interface FileData {
 }
 
 export interface FileUploadProps extends UploaderProps {
-  label: string
+  label: string | JSX.Element
   fileData: FileData[]
   fileFormDefinitions?: FileFormDefinition[]
   onDelete?: (index: number, file: File) => void
   onChangeForm?: (index: number, key: string, value: any) => void
   maxImageHeight?: number
   maxImageWidth?: number
-  labelControl?: JSX.Element
 }
 
 const FileUploadContainer = styled.div``
@@ -52,15 +51,13 @@ const FileUpload = ({
   onDelete,
   onChangeForm,
   maxImageWidth,
-  maxImageHeight,
-  labelControl: LabelControl
+  maxImageHeight
 }: FileUploadProps) => {
+  const isLabelAString = typeof label === 'string' || label instanceof String
+
   return (
     <FileUploadContainer>
-      <Form.Field>
-        <label>{label}</label>
-        {LabelControl && LabelControl}
-      </Form.Field>
+      <Form.Field>{isLabelAString ? <label>{label}</label> : label}</Form.Field>
       <Uploader
         onDrop={onDrop}
         uploadType={uploadType}
