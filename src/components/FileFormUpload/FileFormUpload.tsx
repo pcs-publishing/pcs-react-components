@@ -53,7 +53,7 @@ const FileUpload = ({
   maxImageWidth,
   maxImageHeight
 }: FileUploadProps) => {
-  const isLabelAString = typeof label === 'string' || label instanceof String
+  const isLabelAString = _.isString(label)
 
   return (
     <FileUploadContainer>
