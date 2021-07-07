@@ -92,7 +92,6 @@
     "react-pdf": "^5.1.0",
     "react-resize-detector": "^5.2.0",
     "react-semantic-ui-range": "^0.7.0",
-    "react-svg": "^12.1.0",
-    "unsplash-js": "^7.0.13"
+    "react-svg": "^12.1.0"
   }
 }
