@@ -41,7 +41,7 @@ const ImageHolder = ({
   maxImageHeight,
   maxImageWidth
 }: ImageContainerProps) => {
-  const { file, data } = fileData
+  const { file } = fileData
 
   const [confirm, setConfirm] = useState(false)
 

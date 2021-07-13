@@ -1,9 +1,10 @@
 import React from 'react'
-import { DropdownItemProps } from 'semantic-ui-react'
+import { DropdownItemProps, Form } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 import Uploader from '../Uploader'
 import { UploaderProps } from '../Uploader/Uploader'
 import ImageHolder from './components/ImageHolder'
+import _ from 'lodash'
 
 export interface FileFormDefinition {
   type: 'dropdown' | 'input' | 'textarea'
@@ -18,7 +19,7 @@ export interface FileData {
 }
 
 export interface FileUploadProps extends UploaderProps {
-  label: string
+  label: string | JSX.Element
   fileData: FileData[]
   fileFormDefinitions?: FileFormDefinition[]
   onDelete?: (index: number, file: File) => void
@@ -26,11 +27,6 @@ export interface FileUploadProps extends UploaderProps {
   maxImageHeight?: number
   maxImageWidth?: number
 }
-
-const StyledLabel = styled.label`
-  font-weight: bold;
-  margin-bottom: 5px;
-`
 
 const FileUploadContainer = styled.div``
 
@@ -57,9 +53,11 @@ const FileUpload = ({
   maxImageWidth,
   maxImageHeight
 }: FileUploadProps) => {
+  const isLabelAString = _.isString(label)
+
   return (
     <FileUploadContainer>
-      <StyledLabel>{label}</StyledLabel>
+      <Form.Field>{isLabelAString ? <label>{label}</label> : label}</Form.Field>
       <Uploader
         onDrop={onDrop}
         uploadType={uploadType}
