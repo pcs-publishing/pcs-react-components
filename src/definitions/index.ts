@@ -1,4 +1,6 @@
 import { ReactElement } from 'react'
+import { DraftStyleMap } from 'draft-js'
+import { SemanticICONS } from 'semantic-ui-react'
 
 export type DisplayNotificationOptions =
   | 'success'
@@ -78,4 +80,12 @@ export interface FileRecord {
   name: string
   mimeType: string
   textContent?: string
+}
+
+export type RichTextEditorAction = 'bold' | 'italic' | 'underline' | 'code'
+
+export interface RichTextEditorButton {
+  content: string
+  icon: SemanticICONS
+  action: RichTextEditorAction | string
 }
