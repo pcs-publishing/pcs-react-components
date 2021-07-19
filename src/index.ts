@@ -36,6 +36,7 @@ import C_LoadingModal from './components/Popups/LoadingModal'
 import C_Overlay from './components/Popups/Overlay'
 import C_TextAreaModal from './components/Popups/TextAreaModal'
 import C_PopoverButton from './components/Popups/PopoverButton'
+import C_PushNotification from './components/PushNotification'
 import C_RecordsSummary from './components/RecordsSummary'
 import C_RichTextEditor from './components/RichTextEditor'
 import C_SearchBar from './components/SearchBar'
@@ -137,6 +138,7 @@ export const Confirm = C_Confirm
 export const LoadingModal = C_LoadingModal
 export const Overlay = C_Overlay
 export const TextAreaModal = C_TextAreaModal
+export const PushNotification = C_PushNotification
 export const RecordsSummary = C_RecordsSummary
 export const RichTextEditor = C_RichTextEditor
 export const SearchBar = C_SearchBar

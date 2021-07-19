@@ -89,3 +89,12 @@ export interface RichTextEditorButton {
   icon: SemanticICONS
   action: RichTextEditorAction | string
 }
+
+export interface PushNotification {
+  _id: string
+  title: string
+  message: string
+  createdAt: Date
+  from?: string
+  avatarUrl?: string
+}
