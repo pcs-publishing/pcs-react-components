@@ -95,6 +95,6 @@ export interface PushNotification {
   title: string
   message: string
   createdAt: Date
-  from: string
+  from?: string
   avatarUrl?: string
 }

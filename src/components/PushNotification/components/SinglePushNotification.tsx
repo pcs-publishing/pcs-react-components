@@ -1,8 +1,4 @@
-import {
-  differenceInHours,
-  differenceInMinutes,
-  differenceInSeconds
-} from 'date-fns'
+import { formatDistance } from 'date-fns'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Button, Transition, Image, Icon } from 'semantic-ui-react'
 import { PushNotification } from '../../../definitions'
@@ -15,13 +11,13 @@ interface SinglePushNotificationProps {
 }
 
 const NotificationContainer = styled.div`
-  background-color: white;
+  background-color: ${(props) => props.theme.pushNotification.background};
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid ${(props) => props.theme.pushNotification.border};
   margin: 10px 0px 10px 0px;
   padding: 10px;
   width: 100%;
-  color: black;
+  color: ${(props) => props.theme.pushNotification.text};
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `
 
@@ -29,12 +25,6 @@ const TopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
-
-const Span = styled.span`
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-left: 3px;
 `
 
 const ImageContainer = styled.div`
@@ -68,21 +58,12 @@ const ButtonContainer = styled.div`
 
 const StyledButton = styled(Button)`
   background: none !important;
-  color: black !important;
-  border: 1px solid black !important;
+  color: ${(props) => props.theme.pushNotification.text} !important;
+  border: 1px solid ${(props) => props.theme.pushNotification.border} !important;
 `
 
 const getDateDifference = (createdAt: string | Date): string => {
-  const secondsDifference = differenceInSeconds(new Date(), new Date(createdAt))
-  if (secondsDifference < 60) return `${secondsDifference}s ago`
-  const minutesDifference = differenceInMinutes(new Date(), new Date(createdAt))
-  if (minutesDifference < 60) return `${minutesDifference}m ago`
-  const hoursDifference = differenceInHours(new Date(), new Date(createdAt))
-  const leftOverMinutesPercentage =
-    1 - Math.round((hoursDifference * 60) / minutesDifference)
-  const leftOverMinutes = Math.round(60 * leftOverMinutesPercentage)
-  if (hoursDifference < 24) return `${hoursDifference}h ${leftOverMinutes}m`
-  return 'Unknown difference'
+  return formatDistance(new Date(), new Date(createdAt))
 }
 
 const SinglePushNotification = ({
@@ -150,7 +131,9 @@ const SinglePushNotification = ({
           <TimeContainer>{timeAgo}</TimeContainer>
         </TopContainer>
         <MessageContainer>
-          <FromContainer>New message from {from}</FromContainer>
+          <FromContainer>
+            New message {from ? `from ${from}` : ''}
+          </FromContainer>
           <TitleContainer>{title}</TitleContainer>
           {message}
         </MessageContainer>

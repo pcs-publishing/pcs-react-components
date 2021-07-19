@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { PushNotification } from '../../definitions'
 import PushNotificationList from './components/PushNotificationList'
+import { Portal } from 'semantic-ui-react'
 
 export interface PushNotificationProps {
   notifications: PushNotification[]
@@ -14,14 +14,13 @@ export default ({
   onClose,
   onMarkNotificationAsRead
 }: PushNotificationProps) => {
-  const body = document.getElementsByTagName('body')[0]
-
-  return ReactDOM.createPortal(
-    <PushNotificationList
-      notifications={notifications}
-      onClose={onClose}
-      onMarkNotificationAsRead={onMarkNotificationAsRead}
-    />,
-    body
+  return (
+    <Portal open={true}>
+      <PushNotificationList
+        notifications={notifications}
+        onClose={onClose}
+        onMarkNotificationAsRead={onMarkNotificationAsRead}
+      />
+    </Portal>
   )
 }

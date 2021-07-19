@@ -62,7 +62,12 @@ const alternateTheme: Theme = {
   `,
   dragOverOutline: css`
     outline: 2px dashed ${COLORS.BORDER};
-  `
+  `,
+  pushNotification: {
+    text: 'white',
+    background: 'rgba(0,0,0,0.65)',
+    border: 'white'
+  }
 }
 
 export default alternateTheme

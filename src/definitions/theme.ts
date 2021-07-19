@@ -19,10 +19,17 @@ export interface ThemeBackgrounds {
   fullScreenScene: FlattenSimpleInterpolation
 }
 
+export interface PushNotificationTheme {
+  text: string
+  background: string
+  border: string
+}
+
 export interface Theme {
   name: string
   colors: ThemeColors
   backgrounds: ThemeBackgrounds
   border: FlattenSimpleInterpolation
   dragOverOutline: FlattenSimpleInterpolation
+  pushNotification: PushNotificationTheme
 }
