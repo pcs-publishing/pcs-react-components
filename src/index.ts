@@ -74,6 +74,7 @@ import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
 import H_useTheme from './hooks/useTheme'
 import { useContextMenu as H_useContextMenu } from 'react-contexify'
+import { useActionNotification as H_useActionNotification } from './providers/ActionNotificationProvider'
 //#endregion
 
 //#region service imports
@@ -99,6 +100,7 @@ import 'react-contexify/dist/ReactContexify.css'
 
 //#region provider imports
 import * as P_AppInfoProvider from './providers/AppInfoProvider'
+import { ActionNotificationProvider as P_ActionNotificationProvider } from './providers/ActionNotificationProvider'
 //#endregion
 
 //#region component exports
@@ -177,6 +179,7 @@ export const useTheme = H_useTheme
 export const useDebouncedCallback = H_useDebouncedCallback
 export const useDelayedFunction = H_useDelayedFunction
 export const useContextMenu = H_useContextMenu
+export const useActionNotification = H_useActionNotification
 //#endregion
 
 //#region service exports
@@ -199,6 +202,7 @@ export const defaultTheme = T_defaultTheme
 
 //#region provider exports
 export const AppInfoProvider = P_AppInfoProvider.AppInfoProvider
+export const ActionNotificationProvider = P_ActionNotificationProvider
 //#endregion
 
 //#region context exports
