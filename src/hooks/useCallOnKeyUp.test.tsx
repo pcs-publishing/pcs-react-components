@@ -3,8 +3,8 @@ import useCallOnKeyUp from './useCallOnKeyUp'
 import { render, screen, fireEvent } from '@testing-library/react'
 
 
-const TestComponent = (props: { keyCode: number, callback: () => void }) => {
-  useCallOnKeyUp(props.keyCode, props.callback)
+const TestComponent = (props: { code: string, callback: () => void }) => {
+  useCallOnKeyUp(props.code, props.callback)
   return <input data-testid="input" type="text" />
 }
 
@@ -13,14 +13,12 @@ describe('useCallOnKeyUp', () => {
 
     const callback = jest.fn()
 
-    render(<TestComponent keyCode={65} callback={callback} />)
+    render(<TestComponent code={'KeyA'} callback={callback} />)
 
     const field = screen.getByTestId('input')
 
     expect(callback).not.toBeCalled()
-    fireEvent.keyUp(field, { key: 'a', code: 65, charCode: 65 })
+    fireEvent.keyUp(field, { key: 'a', code: 'KeyA', charCode: 65 })
     expect(callback).toBeCalled()
-
-    
   })
 })

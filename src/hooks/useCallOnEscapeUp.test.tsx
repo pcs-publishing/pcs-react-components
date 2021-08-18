@@ -18,7 +18,7 @@ describe('useCallOnEscapeUp', () => {
     const field = screen.getByTestId('input')
 
     expect(callback).not.toBeCalled()
-    fireEvent.keyUp(field, { key: 'Escape', code: 27, charCode: 27 })
+    fireEvent.keyUp(field, { key: 'Escape', code: 'Escape', charCode: 27 })
     expect(callback).toBeCalled()
   })
 })

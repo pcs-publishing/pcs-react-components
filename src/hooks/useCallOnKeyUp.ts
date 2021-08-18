@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 
-export default function useCallOnKeyUp(keyCode: number, fn: () => void) {
+export default function useCallOnKeyUp(key: string, fn: () => void) {
   useEffect(() => {
     const keyListener = (event: KeyboardEvent) => {
-      if (event.code.toString() === keyCode.toString()) fn()
+      if (event.code === key) fn()
     }
 
     document.addEventListener('keyup', keyListener)
     return () => {
       document.removeEventListener('keyup', keyListener)
     }
-  }, [keyCode, fn])
+  }, [key, fn])
 }
