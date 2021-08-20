@@ -71,6 +71,7 @@ import H_useCallOnEscapeUp from './hooks/useCallOnEscapeUp'
 import H_useCallOnKeyUp from './hooks/useCallOnKeyUp'
 import H_useCallOnKeyPress from './hooks/useCallOnKeyPress'
 import H_useCallOnKeyDown from './hooks/useCallOnKeyDown'
+import H_useIsKeyDown from './hooks/useIsKeyDown'
 import H_useDebouncedCallback from './hooks/useDebouncedCallback'
 import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
@@ -178,6 +179,7 @@ export const useCallOnEscapeUp = H_useCallOnEscapeUp
 export const useCallOnKeyUp = H_useCallOnKeyUp
 export const useCallOnKeyPress = H_useCallOnKeyPress
 export const useCallOnKeyDown = H_useCallOnKeyDown
+export const useIsKeyDown = H_useIsKeyDown
 export const useRecordSelection = H_useRecordSelection
 export const useTheme = H_useTheme
 export const useDebouncedCallback = H_useDebouncedCallback
