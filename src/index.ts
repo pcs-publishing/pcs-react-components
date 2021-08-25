@@ -1,4 +1,5 @@
 //#region component imports
+import C_AvatarUploader from './components/AvatarUploader'
 import C_Button from './components/Button'
 import C_CollapsiblePanel from './components/CollapsiblePanel'
 import C_ContextMenu from './components/ContextMenu'
@@ -99,6 +100,7 @@ import T_defaultTheme from './themes/defaultTheme'
 
 //#region css imports
 import 'react-contexify/dist/ReactContexify.css'
+import 'react-image-crop/dist/ReactCrop.css'
 //#endregion
 
 //#region provider imports
@@ -107,6 +109,7 @@ import { ActionNotificationProvider as P_ActionNotificationProvider } from './pr
 //#endregion
 
 //#region component exports
+export const AvatarUploader = C_AvatarUploader
 export const Button = C_Button
 export const CollapsiblePanel = C_CollapsiblePanel
 export const ContextMenu = C_ContextMenu
