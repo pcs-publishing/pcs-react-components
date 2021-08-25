@@ -94,6 +94,8 @@ const AvatarUploader = (props: AvatarUploaderProps) => {
             crop={crop as Crop}
             circularCrop
             keepSelection
+            minWidth={30}
+            minHeight={30}
             onChange={newCrop => setCrop(newCrop)}
           />
         ) : null}
