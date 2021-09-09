@@ -7,7 +7,7 @@ const DropdownField = (props: FieldProps) => {
   const { options, label, autoFocus, multiple } = field
   const onValueChange = useCallback(
     (value: any) => {
-      onChange(field.key, value)
+      onChange(field.key, value || undefined)
     },
     [onChange, field]
   )

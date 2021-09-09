@@ -7,6 +7,7 @@ export type FormFieldValue =
   | string[]
   | number
   | boolean
+  | Date
   | WeekDay
   | DateRangeOptions
   | File

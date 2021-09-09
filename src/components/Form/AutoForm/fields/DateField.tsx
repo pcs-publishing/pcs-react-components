@@ -1,29 +1,24 @@
 import React, { useCallback } from 'react'
 import { Form } from 'semantic-ui-react'
+import SingleDatePicker from '../../SingleDatePicker'
 import { FieldProps } from '../definitions'
 
 const DateField = (props: FieldProps) => {
-  const { onChange, field, value, allValues } = props
-  const error = field.error ? field.error(value, allValues ?? {}) : undefined
+  const { onChange, field, value } = props
   const onDateChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
+    (value: Date) => {
       onChange(field.key, value)
     },
     [onChange, field]
   )
 
-  return (
-    <Form.Input
-      autoFocus={!!field.autoFocus}
-      label={field.label}
-      value={value}
-      type={'date'}
-      onChange={onDateChange}
-      disabled={!!field.disabled}
-      error={error}
-    />
-  )
+
+  return <Form.Field>
+    {props.field.label ? <label>{props.field.label}</label> : null}
+    <SingleDatePicker date={value as Date || new Date()} onChange={onDateChange} />
+  </Form.Field>
 }
+
+
 
 export default DateField

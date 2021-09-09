@@ -1,14 +1,12 @@
 import React from 'react'
-import Version, { VersionProps } from './Version'
+import Version from './Version'
 
 export default {
   title: 'Version',
   component: Version
 }
 
-const Template = (props: VersionProps) => {
-  return <Version {...props} />
+export const Example = () => {
+  return <Version version="1.0.1" />
 }
 
-export const Example = Template.bind({})
-Example.props = { version: '1.0.1' }

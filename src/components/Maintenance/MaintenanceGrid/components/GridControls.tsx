@@ -14,6 +14,7 @@ interface GridControls<T> {
 
 const Container = styled.div`
   width: 100%;
+  flex: 1;
   text-align: center;
 `
 
@@ -29,11 +30,11 @@ const GridControls = <T extends any>(props: GridControls<T>) => {
       open={showDeleteConfirm}
       close={close}
       title="Are you sure?"
-      message={`Are you sure you want to delete ${name}`}
+      message={`Are you sure you want to delete ${name}?`}
       onConfirmCallback={() => props.onDelete && props.onDelete(id)}
     />
-    {props.onEdit ? <Button color="blue" icon="pencil" /> : null}
-    {props.onDelete ? <Button color="red" icon="trash" onClick={() => setShowDeleteConfirm(true)} /> : null}
+    {props.onEdit ? <Button icon="pencil" onClick={() => props.onEdit && props.onEdit(id)} /> : null}
+    {props.onDelete ? <Button icon="trash" onClick={() => setShowDeleteConfirm(true)} /> : null}
   </Container>
 }
 

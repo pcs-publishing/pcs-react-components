@@ -27,7 +27,6 @@ const HeaderContainer = styled.div`
 const Content = styled.div`
   align-self: stretch;
   flex-grow: 1;
-  height: 0;
   overflow-y: auto;
   align-items: baseline;
 `
