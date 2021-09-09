@@ -14,14 +14,14 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook -s ./public",
+    "build-storybook": "build-storybook -s ./public -o ./docs",
     "rollup": "rollup -c",
     "prepare": "npm run rollup && npm t",
     "docker-build": "docker build -t pcs-react-components-storybook .",
     "docker-tag": "docker tag pcs-react-components-storybook registry.presscomputer.systems/pcs-react-components-storybook:latest",
     "docker-publish": "docker push registry.presscomputer.systems/pcs-react-components-storybook:latest",
     "predeploy": "npm run build-storybook",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "deploy-storybook": "gh-pages -d docs"
   },
   "author": "PCS-Publishing",
   "license": "ISC",
