@@ -18,7 +18,8 @@ export interface DropdownProps {
   value: DropdownValue
   onChange: (value: DropdownValue) => void
   dropdownProps?: FormDropdownProps
-  label: string
+  label?: string
+  className?: string
 }
 
 const Dropdown = ({
@@ -26,11 +27,12 @@ const Dropdown = ({
   onChange,
   value,
   options,
-  label
+  label,
+  className
 }: DropdownProps) => {
   return (
-    <Form.Field>
-      <label>{label}</label>
+    <Form.Field className={className}>
+      {label && <label>{label}</label>}
       <SemanticDropdown
         selection
         options={options}

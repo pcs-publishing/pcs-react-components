@@ -29,7 +29,7 @@ To use a component from the component library, import and use it like so (exampl
   export default App
 ```
 
-This example demonstrates how to use one of the many components available within the pcs-react-components library, to see examples and demos of all the components available visit: http://react-components.dev.presscomputer.systems
+This example demonstrates how to use one of the many components available within the pcs-react-components library, to see examples and demos of all the components available visit: https://pcs-publishing.github.io/pcs-react-components
 
 ## Contributing
 
