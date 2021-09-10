@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MaintenanceContainer from '../components/MaintenanceContainer'
-import { ColumnDefinition, PageInfo, SubType } from '../../../definitions'
+import { ColumnDefinition, PageInfo, SortDirection, SubType } from '../../../definitions'
 import DataGrid, { DataGridProps } from '../../DataGrid/DataGrid'
 import styled from '../../../theme-styled'
 import GridControls from './components/GridControls'
@@ -25,6 +25,8 @@ export interface MaintenanceGridProps<T> {
   onEdit?: (record: T) => Promise<void>
   onDelete?: (id: string | number) => Promise<void>
   onSearch?: (search: string) => void
+  onSortChange?: (column: ColumnDefinition<T>, direction: SortDirection) => void
+  onRefreshClick?: () => void
   formFieldDefinition?: FieldDefinition[]
   toolbar?: React.ReactElement
   toolbarClassName?: string
@@ -46,6 +48,12 @@ const Toolbar = styled.div`
   padding-bottom: 5px;
   display: flex;
   justify-content: space-between;
+`
+
+const FilterContainer = styled.div`
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
 `
 
 const MaintenanceGrid = <T extends any>(props: MaintenanceGridProps<T>) => {
@@ -84,7 +92,9 @@ const MaintenanceGrid = <T extends any>(props: MaintenanceGridProps<T>) => {
     columnDefinitions: columnsWithControls,
     pageInfo,
     onPageInfoChange,
-    selectionMode: 'single'
+    selectionMode: 'single',
+    onSortChange: props.onSortChange,
+    onRefreshClick: props.onRefreshClick
   }
 
   return <>
@@ -92,10 +102,10 @@ const MaintenanceGrid = <T extends any>(props: MaintenanceGridProps<T>) => {
       <Container>
         <Toolbar>
           {props.onCreate && <Button primary onClick={onCreateClick} content={`Create ${props.name}`} />}
-          <div className={props.toolbarClassName}>
+          <FilterContainer className={props.toolbarClassName}>
             {props.toolbar}
             {props.onSearch && <SearchBar onSearchChange={props.onSearch} placeholder="Search" />}
-          </div>
+          </FilterContainer>
         </Toolbar>
         <GridContainer>
           <DataGrid {...gridProps} />
