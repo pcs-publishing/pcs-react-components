@@ -23,6 +23,6 @@ const Template = (props: LoadingMaskProps) => {
 
 export const Example = Template.bind({})
 
-Example.args({
+Example.args = {
   active: false
-})
+}

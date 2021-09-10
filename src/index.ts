@@ -58,6 +58,7 @@ import C_TextViewer from './components/ViewFileWindow/components/TextViewer'
 import C_NavigationBar from './components/NavigationBar'
 import C_MainNavigation from './components/MainNavigation'
 import C_SVGLogo from './components/SVGLogo'
+import C_MaintenanceGrid from './components/Maintenance/MaintenanceGrid'
 //#endregion
 
 //#region scene imports
@@ -168,6 +169,7 @@ export const PopoverButton = C_PopoverButton
 export const NavigationBar = C_NavigationBar
 export const MainNavigation = C_MainNavigation
 export const SVGLogo = C_SVGLogo
+export const MaintenanceGrid = C_MaintenanceGrid
 //#endregion
 
 //#region scene exports

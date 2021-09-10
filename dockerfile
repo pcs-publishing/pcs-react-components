@@ -1,4 +1,4 @@
-FROM node:10-alpine AS BUILDER 
+FROM node:10-alpine AS BUILDER
 
 RUN mkdir /builder
 WORKDIR /builder
@@ -14,7 +14,7 @@ FROM node:10-alpine AS SERVER
 RUN mkdir /storybook
 WORKDIR /storybook
 
-COPY --from=BUILDER /builder/storybook-static .
+COPY --from=BUILDER /builder/docs .
 COPY --from=BUILDER /builder/public ../public
 
 RUN npm install -g serve
