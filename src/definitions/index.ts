@@ -1,5 +1,4 @@
 import { ReactElement } from 'react'
-import { DraftStyleMap } from 'draft-js'
 import { SemanticICONS } from 'semantic-ui-react'
 
 export type DisplayNotificationOptions =
@@ -97,4 +96,11 @@ export interface PushNotification {
   createdAt: Date
   from?: string
   avatarUrl?: string
+}
+
+export interface Margin {
+  top: number
+  bottom: number
+  inside: number
+  outside: number
 }
