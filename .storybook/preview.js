@@ -1,14 +1,13 @@
-import { addDecorator } from "@storybook/react";
-import { withThemesProvider } from "storybook-addon-styled-component-theme";
-import defaultTheme from '../src/themes/defaultTheme'
-import alternateTheme from '../src/themes/alternateTheme'
+import { addDecorator } from '@storybook/react'
+import { withThemesProvider } from 'storybook-addon-styled-component-theme'
+import themes from '../src/themes'
 
 import 'react-image-lightbox/style.css'
 
-const themes = [defaultTheme, alternateTheme]
+const allThemes = Object.keys(themes).map((key) => themes[key])
 
-addDecorator(withThemesProvider(themes));
+addDecorator(withThemesProvider(allThemes))
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' }
 }

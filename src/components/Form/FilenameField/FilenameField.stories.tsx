@@ -5,7 +5,7 @@ import styled from 'styled-components'
 export default {
   title: 'Form/Filename Field',
   component: FilenameField,
-  args: { onChange: { action: ''}}
+  args: { onChange: { action: '' } }
 }
 
 const Container = styled.div`
@@ -15,9 +15,9 @@ const Container = styled.div`
 
 const Template = (props: FilenameFieldProps) => {
   const [value, setValue] = useState(props.value)
-    return <Container>
-      <FilenameField value={value} onChange={setValue} />
-    </Container>
+  return <Container>
+    <FilenameField value={value} onChange={setValue} />
+  </Container>
 }
 
 export const PdfField = Template.bind({})
