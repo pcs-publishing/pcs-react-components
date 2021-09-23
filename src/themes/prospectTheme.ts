@@ -3,7 +3,7 @@ import { css } from '../theme-styled'
 
 const COLORS = {
   BASE: 'white',
-  PRIMARY: '#7ed6df',
+  PRIMARY: '#F89E4C',
   BORDER: '#eee',
   TEXT: '#2c3e50'
 }
