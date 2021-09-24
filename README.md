@@ -31,7 +31,10 @@ To use a component from the component library, import and use it like so (exampl
 
 This example demonstrates how to use one of the many components available within the pcs-react-components library, to see examples and demos of all the components available visit: https://pcs-publishing.github.io/pcs-react-components
 
-## Contributing
+## Contributing Guidelines
 
-If you have an idea for a generic component that you think would be a good addition to the library then feel free to submit a pull-request to 
-https://bitbucket.org/pcs-developers/pcs-react-components 
+* All components must be application agnostic and contain no references or mentions to applications that they're being used in.
+* All components must have an accompanying `stories` file, that demonstrates its functionality.
+* All components must be functional components and not use the old class based approach.
+* Components should be as dumb as possible, in that they hold as little state and logic as possible and are instead controlled via their props.
+
