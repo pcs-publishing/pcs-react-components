@@ -32,4 +32,5 @@ export interface Theme {
   border: FlattenSimpleInterpolation
   dragOverOutline: FlattenSimpleInterpolation
   pushNotification: PushNotificationTheme
+  prospectButtonColor: FlattenSimpleInterpolation
 }

@@ -10,6 +10,9 @@ const COLORS = {
 
 const prospectTheme: Theme = {
   name: 'Prospect Theme',
+  prospectButtonColor: `css
+    background-color: #F89E4C;
+    `
   colors: {
     base: COLORS.BASE,
     primary: COLORS.PRIMARY,

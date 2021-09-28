@@ -11,6 +11,8 @@ const ThemedButton = styled(SemanticButton) <SemanticButtonProps>`
       color: ${props.theme.colors.text.onPrimary} !important;
     `
   }}
+
+  ${props => props.theme.prospectButtonColor}
 `
 
 export default ThemedButton

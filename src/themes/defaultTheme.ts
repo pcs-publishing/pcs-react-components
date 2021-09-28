@@ -10,6 +10,9 @@ const COLORS = {
 
 const defaultTheme: Theme = {
   name: 'Default Theme',
+  prospectButtonColor: `css
+  background-color: #273c75;
+  `
   colors: {
     base: COLORS.BASE,
     primary: COLORS.PRIMARY,
