@@ -24,5 +24,6 @@ const Template = (props: LoadingMaskProps) => {
 export const Example = Template.bind({})
 
 Example.args = {
-  active: false
+  active: false,
+  message: 'Loading...'
 }

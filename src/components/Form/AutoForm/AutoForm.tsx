@@ -1,6 +1,6 @@
 import React, { useState, useCallback, ReactNode } from 'react'
 import { Form } from 'semantic-ui-react'
-import Button from '../../Button'
+import Button from '../../Buttons/Button'
 import TextField from './fields/TextField'
 import ColorField from './fields/ColorField'
 import BooleanField from './fields/BooleanField'

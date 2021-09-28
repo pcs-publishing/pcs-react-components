@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import Uploader from '../Uploader'
 import { Modal } from 'semantic-ui-react'
-import Button from '../Button'
+import Button from '../Buttons/Button'
 import ReactCrop, { Crop } from 'react-image-crop'
 
 

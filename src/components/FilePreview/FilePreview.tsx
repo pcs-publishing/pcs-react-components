@@ -3,7 +3,7 @@ import { Icon } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 import CenteredImage from '../Image/CenteredImage'
 import FailedToLoadError from '../FailedToLoadError'
-import Button from '../Button'
+import Button from '../Buttons/Button'
 
 export interface FilePreviewProps {
   previewImageUrl: string

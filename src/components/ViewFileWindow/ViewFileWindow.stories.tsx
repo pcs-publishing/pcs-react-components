@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ViewFileWindow, { ViewFileWindowProps } from './ViewFileWindow'
-import Button from '../Button'
+import Button from '../Buttons/Button'
 
 export default {
   title: 'View File Window',

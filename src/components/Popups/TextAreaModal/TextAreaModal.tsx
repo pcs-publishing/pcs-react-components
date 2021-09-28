@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, TextArea, Label } from 'semantic-ui-react'
-import Button from '../../Button'
+import Button from '../../Buttons/Button'
 import styled from '../../../theme-styled'
 import { isEmpty } from 'lodash'
 

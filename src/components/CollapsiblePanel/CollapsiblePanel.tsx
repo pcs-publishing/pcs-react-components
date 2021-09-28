@@ -1,7 +1,7 @@
 import React, { useState, useCallback, ReactNode } from 'react'
 import styled from 'styled-components'
 import { Header } from 'semantic-ui-react'
-import Button from '../Button'
+import Button from '../Buttons/Button'
 
 export interface CollapsiblePanelProps {
   children: ReactNode

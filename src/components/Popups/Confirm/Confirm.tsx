@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Header, SemanticCOLORS } from 'semantic-ui-react'
-import Button from '../../Button'
+import Button from '../../Buttons/Button'
 import useCallOnEnterUp from '../../../hooks/useCallOnEnterUp'
 import useCallOnEscapeUp from '../../../hooks/useCallOnEscapeUp'
 import { isString } from 'lodash'

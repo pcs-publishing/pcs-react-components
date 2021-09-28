@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Header, Message, SemanticCOLORS } from 'semantic-ui-react';
 import styled from '../../../theme-styled'
-import Button from '../../../components/Button'
+import Button from '../../../components/Buttons/Button'
 import { ReactElement } from 'react';
 import { ActionNotification } from '../../..';
 

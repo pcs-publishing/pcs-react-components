@@ -10,7 +10,7 @@ const InnerContainer = styled.div`
 `
 
 const FullScreenLoadingMask = (props: Omit<LoadingMaskProps, 'children'>) => {
-  return <Portal>
+  return <Portal open={props.active}>
     <LoadingMask {...props}>
       <InnerContainer />
     </LoadingMask>

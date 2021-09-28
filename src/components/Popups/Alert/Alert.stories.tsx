@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Alert, { AlertProps } from './Alert'
-import Button from '../../Button'
+import Button from '../../Buttons/Button'
 
 export default {
   title: 'Popups/Alert',
@@ -8,15 +8,15 @@ export default {
 }
 
 const Template = (args: Omit<AlertProps, 'close' | 'open'>) => {
-   const [showAlert, setShowAlert] = useState(false)
-    return <>
-      <Button onClick={() => setShowAlert(true)}>Open Alert</Button>
-      <Alert
-          {...args}
-        close={() => setShowAlert(false)}
-        open={showAlert}
-      />
-    </>
+  const [showAlert, setShowAlert] = useState(false)
+  return <>
+    <Button onClick={() => setShowAlert(true)}>Open Alert</Button>
+    <Alert
+      {...args}
+      close={() => setShowAlert(false)}
+      open={showAlert}
+    />
+  </>
 
 }
 

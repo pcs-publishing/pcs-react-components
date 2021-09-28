@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form } from 'semantic-ui-react'
-import LinkButton from '../../LinkButton'
+import LinkButton from '../../Buttons/LinkButton'
 import NumberField from '../NumberField'
 import styled from '../../../theme-styled'
 import { Margin } from '../../../definitions'
@@ -72,14 +72,14 @@ const MarginFields = (props: MarginFieldsProps) => {
   return <Container>
     <Label>Margin</Label>
     <Form.Group widths="equal">
-      <NumberField label="Top" {...commonProps} {...getFieldProps('top')} />
+      <NumberField label="Top" {...commonProps} {...getFieldProps('top')} width={8} />
       <LinkButton linked={linkVertically} onChange={setLinkVertically} />
-      <NumberField label="Bottom" {...commonProps} {...getFieldProps('bottom')} />
+      <NumberField label="Bottom" {...commonProps} {...getFieldProps('bottom')} width={8} />
     </Form.Group>
     <Form.Group widths="equal">
-      <NumberField label="Inside" {...commonProps} {...getFieldProps('inside')} />
+      <NumberField label="Inside" {...commonProps} {...getFieldProps('inside')} width={8} />
       <LinkButton linked={linkHorizontally} onChange={setLinkHorizontally} />
-      <NumberField label="Outside" {...commonProps} {...getFieldProps('outside')} />
+      <NumberField label="Outside" {...commonProps} {...getFieldProps('outside')} width={8} />
     </Form.Group>
   </Container >
 }

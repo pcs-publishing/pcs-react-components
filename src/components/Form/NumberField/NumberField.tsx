@@ -14,6 +14,7 @@ export interface NumberFieldProps {
   error?: string
   fallbackValue?: number
   unit?: string
+  width?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 }
 
 function NumberField(props: NumberFieldProps) {
@@ -50,7 +51,7 @@ function NumberField(props: NumberFieldProps) {
   const unitProps = (props.unit ? { label: { content: props.unit, basic: true, size: 'massive' }, labelPosition: 'right' } : undefined) as { label: { content: string, basic: true }, labelPosition: 'right' } | undefined
 
   const inputProps = {
-    ...omit(props, ['fallbackValue', 'label', 'format', 'error', 'value']),
+    ...omit(props, ['fallbackValue', 'label', 'format', 'error', 'value', 'width']) as Omit<NumberFieldProps, 'fallbackValue' | 'label' | 'format' | 'error' | 'value' | 'width'>,
     ...unitProps,
     value: internalValue,
     onChange,
@@ -58,7 +59,7 @@ function NumberField(props: NumberFieldProps) {
     error: !!props.error
   }
 
-  return <Form.Field error={!!props.error || !isValid(internalValue, props)}>
+  return <Form.Field error={!!props.error || !isValid(internalValue, props)} width={props.width}>
     {props.label ? (<label>{props.label}</label>) : null}
     <Input type="number" {...inputProps} step="any" />
   </Form.Field>

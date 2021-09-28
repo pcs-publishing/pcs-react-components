@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PdfViewerWindow, { PdfViewerWindowProps } from './PdfViewerWindow';
-import Button from '../Button'
+import Button from '../Buttons/Button'
 
 export default {
   title: 'Pdf Viewer Window',

@@ -5,10 +5,9 @@ import DataGrid, { DataGridProps } from '../../DataGrid/DataGrid'
 import styled from '../../../theme-styled'
 import GridControls from './components/GridControls'
 import CreateEditFormModal from './components/CreateEditFormModal'
-import Button from '../../Button'
+import Button from '../../Buttons/Button'
 import { FieldDefinition } from '../../Form/AutoForm/definitions'
 import SearchBar from '../../SearchBar'
-import { ReactElement } from 'react';
 
 export interface MaintenanceGridProps<T> {
   name: string

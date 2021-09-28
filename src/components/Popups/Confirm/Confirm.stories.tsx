@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Confirm, { ConfirmProps } from './Confirm'
-import Button from '../../Button'
+import Button from '../../Buttons/Button'
 
 export default {
   title: 'Popups/Confirm',
