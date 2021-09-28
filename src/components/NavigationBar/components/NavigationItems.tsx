@@ -33,14 +33,14 @@ const NavigationItems = (props: NavigationItemsProps) => {
 
 }
 
-function getActiveItem(items: NavigationItem[], currentLocation: string): NavigationItem | undefined {
+function getActiveItem(items: NavigationItem[], currentLocation: string | undefined): NavigationItem | undefined {
   const exactMatch = items.find(item => item.path === currentLocation)
 
   if (exactMatch) {
     return exactMatch
   }
 
-  return items.find(item => currentLocation.startsWith(item.path))
+  return items.find(item => currentLocation?.startsWith(item.path))
 }
 
 export default NavigationItems
