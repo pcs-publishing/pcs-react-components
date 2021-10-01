@@ -65,6 +65,7 @@ import C_NumberField from './components/Form/NumberField'
 import C_LinkButton from './components/Buttons/LinkButton'
 import C_StepForm from './components/Form/StepForm'
 import C_Steps from './components/Steps'
+import C_Page from './components/Page'
 //#endregion
 
 //#region scene imports
@@ -113,6 +114,11 @@ import 'react-image-crop/dist/ReactCrop.css'
 //#region provider imports
 import * as P_AppInfoProvider from './providers/AppInfoProvider'
 import { ActionNotificationProvider as P_ActionNotificationProvider } from './providers/ActionNotificationProvider'
+//#endregion
+
+//#region plugin imports
+import P_withColumns from './components/Page/plugins/withColumns'
+import P_withMargin from './components/Page/plugins/withMargin'
 //#endregion
 
 //#region component exports
@@ -182,6 +188,7 @@ export const NumberField = C_NumberField
 export const LinkButton = C_LinkButton
 export const StepForm = C_StepForm
 export const Steps = C_Steps
+export const Page = C_Page
 //#endregion
 
 //#region scene exports
@@ -230,4 +237,9 @@ export const ActionNotificationProvider = P_ActionNotificationProvider
 
 //#region context exports
 export const AppInfoContext = P_AppInfoProvider.AppInfoContext
+//#endregion
+
+//#region plugin exports
+export const withColumns = P_withColumns
+export const withMargin = P_withMargin
 //#endregion
