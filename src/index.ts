@@ -85,6 +85,7 @@ import H_useDebouncedCallback from './hooks/useDebouncedCallback'
 import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
 import H_useTheme from './hooks/useTheme'
+import H_useDrag from './hooks/useDrag'
 import { useContextMenu as H_useContextMenu } from 'react-contexify'
 import { useActionNotification as H_useActionNotification } from './providers/ActionNotificationProvider'
 //#endregion
@@ -119,6 +120,7 @@ import { ActionNotificationProvider as P_ActionNotificationProvider } from './pr
 //#region plugin imports
 import P_withColumns from './components/Page/plugins/withColumns'
 import P_withMargin from './components/Page/plugins/withMargin'
+import P_withImage from './components/Page/plugins/withImage'
 //#endregion
 
 //#region component exports
@@ -206,6 +208,7 @@ export const useCallOnKeyDown = H_useCallOnKeyDown
 export const useIsKeyDown = H_useIsKeyDown
 export const useRecordSelection = H_useRecordSelection
 export const useTheme = H_useTheme
+export const useDrag = H_useDrag
 export const useDebouncedCallback = H_useDebouncedCallback
 export const useDelayedFunction = H_useDelayedFunction
 export const useContextMenu = H_useContextMenu
@@ -242,4 +245,5 @@ export const AppInfoContext = P_AppInfoProvider.AppInfoContext
 //#region plugin exports
 export const withColumns = P_withColumns
 export const withMargin = P_withMargin
+export const withImage = P_withImage
 //#endregion
