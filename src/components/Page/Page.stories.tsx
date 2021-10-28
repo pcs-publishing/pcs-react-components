@@ -4,6 +4,7 @@ import styled from '../../theme-styled'
 import { Margin } from '../../definitions'
 import withMargin from './plugins/withMargin'
 import withColumns from './plugins/withColumns'
+import withImage from './plugins/withImage'
 
 export default {
   title: 'Page',
@@ -39,9 +40,11 @@ const Container = styled.div`
 `
 
 export const BasePage = (props: PageProps) => {
-  return <Container>
-    <Page {...props} />
-  </Container>
+  return (
+    <Container>
+      <Page {...props} />
+    </Container>
+  )
 }
 
 BasePage.args = {
@@ -52,9 +55,11 @@ BasePage.args = {
 
 export const PageWithMargin = (props: PageProps & { margin: Margin }) => {
   const PageWithMarginComponent = withMargin(Page)
-  return <Container>
-    <PageWithMarginComponent {...props} />
-  </Container>
+  return (
+    <Container>
+      <PageWithMarginComponent {...props} />
+    </Container>
+  )
 }
 
 PageWithMargin.args = {
@@ -69,11 +74,15 @@ PageWithMargin.args = {
   }
 }
 
-export const PageWithColumns = (props: PageProps & { columns: number, gutter: number }) => {
+export const PageWithColumns = (
+  props: PageProps & { columns: number; gutter: number }
+) => {
   const PageWithColumnsComponent = withColumns(Page)
-  return <Container>
-    <PageWithColumnsComponent {...props} />
-  </Container>
+  return (
+    <Container>
+      <PageWithColumnsComponent {...props} />
+    </Container>
+  )
 }
 
 PageWithColumns.args = {
@@ -84,13 +93,17 @@ PageWithColumns.args = {
   gutter: 5
 }
 
-
-export const PageWithColumnsAndMargin = (props: PageProps & { columns: number, gutter: number, margin: Margin }) => {
+export const PageWithColumnsAndMargin = (
+  props: PageProps & { columns: number; gutter: number; margin: Margin }
+) => {
   const PageWithMarginAndColumnsComponent = withColumns(withMargin(Page))
-  return <Container>
-    <PageWithMarginAndColumnsComponent {...props}>
-    </PageWithMarginAndColumnsComponent>
-  </Container>
+  return (
+    <Container>
+      <PageWithMarginAndColumnsComponent
+        {...props}
+      ></PageWithMarginAndColumnsComponent>
+    </Container>
+  )
 }
 
 PageWithColumnsAndMargin.args = {
@@ -105,4 +118,30 @@ PageWithColumnsAndMargin.args = {
     inside: 10,
     outside: 10
   }
+}
+
+export const PageWithImage = (
+  props: PageProps & {
+    url: string
+    minWidth: number
+    minHeight: number
+    height: number
+    width: number
+  }
+) => {
+  const PageWithImage = withImage(Page)
+
+  return (
+    <Container>
+      <PageWithImage {...props} />
+    </Container>
+  )
+}
+
+PageWithImage.args = {
+  zoomLevel: 1,
+  url:
+    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1738&q=80',
+  width: 400,
+  height: 400
 }
