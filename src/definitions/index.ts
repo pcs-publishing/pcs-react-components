@@ -104,3 +104,15 @@ export interface Margin {
   inside: number
   outside: number
 }
+
+export type AnnotationType = 'comment'
+
+export type AnnotationColor = 'yellow' | 'magenta' | 'black' | 'cyan'
+
+export interface Annotation {
+  x: number
+  y: number
+  content: string
+  type: AnnotationType
+  color: AnnotationColor
+}

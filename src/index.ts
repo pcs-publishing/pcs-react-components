@@ -119,6 +119,7 @@ import { ActionNotificationProvider as P_ActionNotificationProvider } from './pr
 //#region plugin imports
 import P_withColumns from './components/Page/plugins/withColumns'
 import P_withMargin from './components/Page/plugins/withMargin'
+import P_withImage from './components/Page/plugins/withImage'
 //#endregion
 
 //#region component exports
@@ -242,4 +243,5 @@ export const AppInfoContext = P_AppInfoProvider.AppInfoContext
 //#region plugin exports
 export const withColumns = P_withColumns
 export const withMargin = P_withMargin
+export const withImage = P_withImage
 //#endregion

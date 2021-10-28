@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Page, { PageProps } from './Page'
 import styled from '../../theme-styled'
-import { Margin } from '../../definitions'
+import { Margin, Annotation, AnnotationType } from '../../definitions'
 import withMargin from './plugins/withMargin'
 import withColumns from './plugins/withColumns'
+import withImage from './plugins/withImage'
+import ActionNotification from '../Popups/ActionNotification'
+import Button from '../Buttons/Button'
+import getPageSizeFromImageUrl from './util/getPageSizeFromImageUrl'
 
 export default {
   title: 'Page',
@@ -39,9 +43,11 @@ const Container = styled.div`
 `
 
 export const BasePage = (props: PageProps) => {
-  return <Container>
-    <Page {...props} />
-  </Container>
+  return (
+    <Container>
+      <Page {...props} />
+    </Container>
+  )
 }
 
 BasePage.args = {
@@ -52,9 +58,11 @@ BasePage.args = {
 
 export const PageWithMargin = (props: PageProps & { margin: Margin }) => {
   const PageWithMarginComponent = withMargin(Page)
-  return <Container>
-    <PageWithMarginComponent {...props} />
-  </Container>
+  return (
+    <Container>
+      <PageWithMarginComponent {...props} />
+    </Container>
+  )
 }
 
 PageWithMargin.args = {
@@ -69,11 +77,15 @@ PageWithMargin.args = {
   }
 }
 
-export const PageWithColumns = (props: PageProps & { columns: number, gutter: number }) => {
+export const PageWithColumns = (
+  props: PageProps & { columns: number; gutter: number }
+) => {
   const PageWithColumnsComponent = withColumns(Page)
-  return <Container>
-    <PageWithColumnsComponent {...props} />
-  </Container>
+  return (
+    <Container>
+      <PageWithColumnsComponent {...props} />
+    </Container>
+  )
 }
 
 PageWithColumns.args = {
@@ -84,13 +96,17 @@ PageWithColumns.args = {
   gutter: 5
 }
 
-
-export const PageWithColumnsAndMargin = (props: PageProps & { columns: number, gutter: number, margin: Margin }) => {
+export const PageWithColumnsAndMargin = (
+  props: PageProps & { columns: number; gutter: number; margin: Margin }
+) => {
   const PageWithMarginAndColumnsComponent = withColumns(withMargin(Page))
-  return <Container>
-    <PageWithMarginAndColumnsComponent {...props}>
-    </PageWithMarginAndColumnsComponent>
-  </Container>
+  return (
+    <Container>
+      <PageWithMarginAndColumnsComponent
+        {...props}
+      ></PageWithMarginAndColumnsComponent>
+    </Container>
+  )
 }
 
 PageWithColumnsAndMargin.args = {
@@ -105,4 +121,114 @@ PageWithColumnsAndMargin.args = {
     inside: 10,
     outside: 10
   }
+}
+
+const ToolbarHolder = styled.div`
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+`
+
+export const PageWithImage = (
+  props: PageProps & {
+    url: string
+    minWidth: number
+    minHeight: number
+    height: number
+    width: number
+  }
+) => {
+  const [annotations, setAnnotations] = useState<Annotation[]>([])
+  const [pageSize, setPageSize] = useState<
+    undefined | { height: number; width: number }
+  >()
+  const [error, setError] = useState(false)
+  const PageWithImage = withImage(Page)
+
+  const onAddAnnotation = useCallback(
+    (type: AnnotationType, defaultPosition?: { x: number; y: number }) => {
+      const canAddAnnotation =
+        annotations.findIndex((annotation) => annotation.content === '') === -1
+
+      if (!canAddAnnotation) {
+        setError(true)
+        return
+      }
+
+      setAnnotations((prevState) => [
+        ...prevState,
+        {
+          content: '',
+          x: defaultPosition?.x ?? 0,
+          y: defaultPosition?.y ?? 0,
+          type,
+          color: 'black'
+        }
+      ])
+    },
+    [setAnnotations, annotations, setError]
+  )
+
+  const onUpdateAnnotations = useCallback(
+    (index: number, newAnnotation: Partial<Annotation>) => {
+      const newAnnotations = annotations.map((annotation, i) =>
+        i === index ? { ...annotation, ...newAnnotation } : annotation
+      )
+      setAnnotations(newAnnotations)
+    },
+    [setAnnotations, annotations]
+  )
+
+  const onChange = useCallback(
+    (index: number, annotation: Partial<Annotation>) => {
+      onUpdateAnnotations(index, annotation)
+    },
+    [onUpdateAnnotations]
+  )
+
+  const onDelete = useCallback(
+    (index: number) => {
+      setAnnotations((prevState) => prevState.filter((_, i) => i !== index))
+    },
+    [setAnnotations]
+  )
+
+  return (
+    <Container>
+      <PageWithImage
+        onSetInitialPageSize={(pageSize, _) => setPageSize(pageSize)}
+        pageSize={pageSize ?? { width: 0, height: 0 }}
+        onAddAnnotation={onAddAnnotation}
+        onDelete={onDelete}
+        onChange={onChange}
+        annotations={annotations}
+        toolBar={
+          <ToolbarHolder>
+            <Button
+              icon="comment"
+              color="green"
+              onClick={() => onAddAnnotation('comment')}
+            />
+          </ToolbarHolder>
+        }
+        {...props}
+      />
+      <ActionNotification
+        displaying="error"
+        message="Please make sure all annotations have some content before adding a new one."
+        show={error}
+        close={() => setError(false)}
+      />
+    </Container>
+  )
+}
+
+PageWithImage.args = {
+  zoomLevel: 1,
+  url:
+    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1738&q=80',
+  minWidth: 400,
+  minHeight: 500,
+  width: 750,
+  height: 750
 }

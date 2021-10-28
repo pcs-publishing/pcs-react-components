@@ -1,10 +1,13 @@
 import React, { useState, ChangeEvent } from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Icon, TextArea } from 'semantic-ui-react'
 import styled from '../../theme-styled'
 
 export interface EditableLabelProps {
   value: string
   onChange?: (value: string) => void
+  asTextArea?: boolean
+  defaultOpen?: boolean
+  canResize?: boolean
 }
 
 const InputContainer = styled.div``
@@ -13,6 +16,11 @@ const TextContainer = styled.div`
   padding: 10px;
   padding-left: 15px;
   display: inline-block;
+  white-space: pre-line;
+`
+
+const StyledTextArea = styled(TextArea)<{ $resize?: boolean }>`
+  ${(props) => (props.$resize ? 'resize: none !important;' : '')}
 `
 
 const EditIcon = styled(Icon)`
@@ -20,7 +28,7 @@ const EditIcon = styled(Icon)`
 `
 
 const EditableLabel = (props: EditableLabelProps) => {
-  const [editing, setEditing] = useState(false)
+  const [editing, setEditing] = useState(props.defaultOpen ?? false)
   const [value, setValue] = useState(props.value)
   const [showIcon, setShowIcon] = useState(false)
 
@@ -30,7 +38,19 @@ const EditableLabel = (props: EditableLabelProps) => {
   }
 
   if (editing) {
-    return (
+    return props.asTextArea ? (
+      <StyledTextArea
+        $resize={props.canResize}
+        autoFocus
+        value={value}
+        onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
+          setShowIcon(false)
+          setValue(event.target.value)
+        }}
+        onBlur={onBlur}
+        rows={4}
+      />
+    ) : (
       <InputContainer className="ui input">
         <input
           type="text"
