@@ -1,7 +1,7 @@
-import * as d3 from 'd3'
+import * as d3Drag from 'd3-drag'
+import * as d3Select from 'd3-selection'
 import _ from 'lodash'
-import { ReactInstance, useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom'
+import { useCallback } from 'react'
 
 const useDrag = (
   xProperty: string,
@@ -13,8 +13,6 @@ const useDrag = (
   onDrag?: (x: number, y: number) => void,
   onDragEnd?: (x: number, y: number) => void
 ) => {
-  const ref = useRef<any>(null)
-
   const isInBounds = (x: number, y: number) =>
     !_.isUndefined(keepInBounds) &&
     x >= 0 &&
@@ -22,14 +20,14 @@ const useDrag = (
     x <= keepInBounds.container.width - keepInBounds.element.width &&
     y <= keepInBounds.container.height - keepInBounds.element.height
 
-  const onHandleDrag = d3
+  const onHandleDrag = d3Drag
     .drag()
     .subject(function () {
-      const me = d3.select(this)
+      const me = d3Select.select(this)
       return { x: me.attr(xProperty), y: me.attr(yProperty) }
     })
     .on('drag', function (e) {
-      const me = d3.select(this)
+      const me = d3Select.select(this)
       let canDrag = true
       if (keepInBounds) {
         canDrag = isInBounds(e.x, e.y)
@@ -56,14 +54,16 @@ const useDrag = (
       }
     })
 
-  useEffect(() => {
-    if (ref.current) {
-      const node = ReactDOM.findDOMNode(ref.current as ReactInstance) as Element
-      onHandleDrag(d3.select(node))
-    }
-  }, [ref.current, onHandleDrag])
+  const setRef = useCallback(
+    (node) => {
+      if (node) {
+        onHandleDrag(d3Select.select(node))
+      }
+    },
+    [onHandleDrag]
+  )
 
-  return { ref }
+  return setRef
 }
 
 export default useDrag

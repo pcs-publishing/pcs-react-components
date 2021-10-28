@@ -85,6 +85,7 @@ import H_useDebouncedCallback from './hooks/useDebouncedCallback'
 import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
 import H_useTheme from './hooks/useTheme'
+import H_useDrag from './hooks/useDrag'
 import { useContextMenu as H_useContextMenu } from 'react-contexify'
 import { useActionNotification as H_useActionNotification } from './providers/ActionNotificationProvider'
 //#endregion
@@ -207,6 +208,7 @@ export const useCallOnKeyDown = H_useCallOnKeyDown
 export const useIsKeyDown = H_useIsKeyDown
 export const useRecordSelection = H_useRecordSelection
 export const useTheme = H_useTheme
+export const useDrag = H_useDrag
 export const useDebouncedCallback = H_useDebouncedCallback
 export const useDelayedFunction = H_useDelayedFunction
 export const useContextMenu = H_useContextMenu
