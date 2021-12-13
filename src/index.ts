@@ -30,7 +30,6 @@ import C_LazyDropdown from './components/LazyDropdown'
 import C_LoadingMask from './components/LoadingMask'
 import C_NoRecordsToDisplay from './components/NoRecordsToDisplay'
 import C_PageBar from './components/PageBar'
-import C_PdfViewerWindow from './components/PdfViewerWindow'
 import C_ActionNotification from './components/Popups/ActionNotification'
 import C_Alert from './components/Popups/Alert'
 import C_Confirm from './components/Popups/Confirm'
@@ -155,7 +154,6 @@ export const LazyDropdown = C_LazyDropdown
 export const LoadingMask = C_LoadingMask
 export const NoRecordsToDisplay = C_NoRecordsToDisplay
 export const PageBar = C_PageBar
-export const PdfViewerWindow = C_PdfViewerWindow
 export const ActionNotification = C_ActionNotification
 export const Alert = C_Alert
 export const Confirm = C_Confirm

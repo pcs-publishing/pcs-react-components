@@ -1,5 +1,4 @@
 import React from 'react'
-import PdfViewerWindow from '../PdfViewerWindow/PdfViewerWindow'
 import ImageLightbox from '../Image/ImageLightbox'
 import Alert from '../Popups/Alert'
 import TextViewer from './components/TextViewer'
@@ -22,9 +21,6 @@ const ViewFileWindow = (props: ViewFileWindowProps) => {
   }
   if (isTextDocument(file)) {
     return getTextViewer(file, onClose)
-  }
-  if (isPdf(file)) {
-    return getPdfViewer(file, onClose)
   }
 
   return (
@@ -57,26 +53,8 @@ function getTextViewer(
   )
 }
 
-function getPdfViewer(
-  file: FileRecord,
-  onClose: () => void
-): React.ReactElement {
-  return (
-    <PdfViewerWindow
-      title={file.name}
-      url={file.url}
-      open={true}
-      close={onClose}
-    />
-  )
-}
-
 function isImage(file: FileRecord): boolean {
   return file.mimeType.startsWith('image/')
-}
-
-function isPdf(file: FileRecord): boolean {
-  return file.mimeType === 'application/pdf'
 }
 
 function isTextDocument(file: FileRecord): boolean {
