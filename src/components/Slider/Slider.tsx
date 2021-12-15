@@ -9,11 +9,8 @@ export interface SliderProps {
   value?: number
   step?: number
   onChange?: (value: number) => void
+  className?: string
 }
-
-const Container = styled.div`
-  width: 250px;
-`
 
 const SliderCmp = (props: SliderProps) => {
   const settings = {
@@ -25,9 +22,9 @@ const SliderCmp = (props: SliderProps) => {
   const theme = useTheme()
   const style = { trackFill: { backgroundColor: theme.colors.primary } }
 
-  return <Container>
+  return <div className={props.className}>
     <Slider value={props.value} settings={settings} style={style} />
-  </Container>
+  </div>
 }
 
 export default React.memo(SliderCmp)
