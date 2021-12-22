@@ -4,7 +4,7 @@ import Dropdown from '../../../Dropdown'
 
 const DropdownField = (props: FieldProps) => {
   const { onChange, field, defaultValue, value, allValues } = props
-  const { options, label, autoFocus, multiple } = field
+  const { options, label, autoFocus, multiple, disabled } = field
   const onValueChange = useCallback(
     (value: any) => {
       onChange(field.key, value || undefined)
@@ -27,7 +27,8 @@ const DropdownField = (props: FieldProps) => {
         defaultValue: defaultValue as string | string[] | number,
         clearable: true,
         error: error ? true : false,
-        multiple: multiple
+        multiple: multiple,
+        disabled
       }}
     />
   )

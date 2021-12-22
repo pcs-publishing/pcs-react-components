@@ -1,5 +1,5 @@
 import React, { useState, useCallback, ReactNode } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Popup } from 'semantic-ui-react'
 import Button from '../../Buttons/Button'
 import TextField from './fields/TextField'
 import ColorField from './fields/ColorField'
@@ -29,6 +29,7 @@ const AutoForm = (props: AutoFormProps) => {
   const [formValue, setFormValue] = useState<FormValue>(
     props.defaultValue ?? {}
   )
+  const [popups, setPopups] = useState<string[]>([])
   const { onSave, onCancel, fields } = props
 
   const setFormFieldValue = useCallback(
@@ -53,12 +54,27 @@ const AutoForm = (props: AutoFormProps) => {
     }
   }
 
+  const onOpenPopup = useCallback(
+    (open: boolean, key: string) => {
+      setPopups((prevState) =>
+        open ? [key, ...prevState] : prevState.filter((value) => value !== key)
+      )
+    },
+    [setPopups]
+  )
+
   const isValid = validateForm(fields, formValue)
   const size = props.size || 'tiny'
 
   return (
     <Form onSubmit={onFormSubmit} size={size}>
-      {generateFields(fields, formValue, setFormFieldValue)}
+      {generateFields(
+        fields,
+        formValue,
+        setFormFieldValue,
+        onOpenPopup,
+        popups
+      )}
       <ButtonContainer>
         <Button
           type="submit"
@@ -89,44 +105,86 @@ export default AutoForm
 function generateFields(
   fields: FieldDefinition[],
   formValue: FormValue,
-  setFormValue: FormFieldSetter
+  setFormValue: FormFieldSetter,
+  onOpenPopup: (open: boolean, key: string) => void,
+  popups: string[]
 ): ReactNode[] {
-  return fields.map((fieldDefinition) =>
-    generateField(fieldDefinition, formValue, setFormValue)
-  )
+  return fields.map((fieldDefinition) => {
+    const isPopupOpen = !!popups.find((value) => value === fieldDefinition.key)
+    return generateField(
+      fieldDefinition,
+      formValue,
+      setFormValue,
+      onOpenPopup,
+      isPopupOpen
+    )
+  })
 }
 
 function generateField(
   field: FieldDefinition,
   formValue: FormValue,
-  setFormValue: FormFieldSetter
+  setFormValue: FormFieldSetter,
+  onOpenPopup: (oepn: boolean, key: string) => void,
+  isPopupOpen: boolean
 ): ReactNode {
+  let fieldComponent: React.ReactNode | null = null
+
   switch (field.type) {
     case 'text':
-      return generateTextField(field, formValue, setFormValue)
+      fieldComponent = generateTextField(field, formValue, setFormValue)
+      break
     case 'color':
-      return generateColorField(field, formValue, setFormValue)
+      fieldComponent = generateColorField(field, formValue, setFormValue)
+      break
     case 'boolean':
-      return generateBooleanField(field, formValue, setFormValue)
+      fieldComponent = generateBooleanField(field, formValue, setFormValue)
+      break
     case 'dropdown':
-      return generateDropdownField(field, formValue, setFormValue)
+      fieldComponent = generateDropdownField(field, formValue, setFormValue)
+      break
     case 'number':
-      return generateNumberField(field, formValue, setFormValue)
+      fieldComponent = generateNumberField(field, formValue, setFormValue)
+      break
     case 'filename':
-      return generateFileNameField(field, formValue, setFormValue)
+      fieldComponent = generateFileNameField(field, formValue, setFormValue)
+      break
     case 'date':
-      return generateDateField(field, formValue, setFormValue)
+      fieldComponent = generateDateField(field, formValue, setFormValue)
+      break
     case 'time':
-      return generateTimeField(field, formValue, setFormValue)
+      fieldComponent = generateTimeField(field, formValue, setFormValue)
+      break
     case 'daterange':
-      return generateDateRangeField(field, formValue, setFormValue)
+      fieldComponent = generateDateRangeField(field, formValue, setFormValue)
+      break
     case 'textarea':
-      return generateTextAreaField(field, formValue, setFormValue)
+      fieldComponent = generateTextAreaField(field, formValue, setFormValue)
+      break
     case 'file':
-      return generateFileField(field, formValue, setFormValue)
+      fieldComponent = generateFileField(field, formValue, setFormValue)
+      break
     default:
-      return null
+      fieldComponent = null
+      break
   }
+
+  return field.popupContent ? (
+    <Popup
+      content={field.popupContent}
+      trigger={
+        <span
+          onMouseOver={() => onOpenPopup(true, field.key)} // have to manually control when popup is open otherwise it does not show
+          onMouseLeave={() => onOpenPopup(false, field.key)}
+        >
+          {fieldComponent}
+        </span>
+      }
+      open={isPopupOpen}
+    />
+  ) : (
+    fieldComponent
+  )
 }
 
 function generateDateField(
