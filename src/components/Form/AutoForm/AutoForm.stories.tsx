@@ -37,7 +37,8 @@ Example.args = {
         key: v,
         text: v,
         value: v
-      }))
+      })),
+      popupContent: 'Please select a title'
     },
     {
       key: 'forename',
