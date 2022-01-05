@@ -70,6 +70,7 @@ export interface FieldDefinition {
   onChange?: (value: FormFieldValue) => void
   allowedMimeTypes?: string[]
   multiple?: boolean
+  popupContent?: string
 }
 
 export interface FieldProps {
