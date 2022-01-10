@@ -11,9 +11,14 @@ export default {
   argTypes: {}
 }
 
+const commonProps = {
+  onForgottenPasswordClick: () => undefined,
+  onSignUpClick: () => undefined
+}
+
 const Template = (props: LoginProps & { appInfo: AppInfo }) => {
   return <AppInfoProvider appInfo={props.appInfo}>
-    <Login {...props} />
+    <Login {...commonProps} {...props} />
   </AppInfoProvider>
 }
 

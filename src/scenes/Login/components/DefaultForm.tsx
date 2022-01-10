@@ -7,8 +7,9 @@ import { ActionNotification } from '../../..';
 
 export interface LoginFormProps {
   className?: string
-  onLogin: (username: string, password: string) => Promise<void>
-  onForgottenPasswordClick: () => void
+  onLogin?: (username: string, password: string) => Promise<void>
+  onForgottenPasswordClick?: () => void
+  onSignUpClick?: () => void
   appName: string
   message?: string
   messageLevel?: 'error' | 'warning' | 'message'
@@ -48,6 +49,7 @@ const DefaultForm = (props: LoginFormProps) => {
 
   const submitForm = () => {
     setLoading(true)
+    if (!props.onLogin) return
     props.onLogin(username, password).finally(() => {
       setLoading(false)
     })
@@ -90,9 +92,10 @@ const DefaultForm = (props: LoginFormProps) => {
     {getMessage(props.message, props.messageLevel, props.onCloseMessage)}
     <ButtonContainer>
       <Button primary size="large" loading={loading} type="submit" content={`Login to ${props.appName}`} />
+      <Button size="large" type="button" content="Sign Up" onClick={() => (props.onSignUpClick as () => void)()} />
     </ButtonContainer>
     <LinkContainer>
-      <StyledLink onClick={() => props.onForgottenPasswordClick()}>Forgot Your Password?</StyledLink>
+      {props.onForgottenPasswordClick && (<StyledLink onClick={() => (props.onForgottenPasswordClick as () => void)()}>Forgot Your Password?</StyledLink>)}
     </LinkContainer>
   </StyledForm>
 }

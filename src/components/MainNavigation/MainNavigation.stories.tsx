@@ -8,7 +8,8 @@ export default {
   component: MainNavigation,
   argTypes: {
     onNavigate: { action: 'navigate' },
-    onUserClick: { action: 'userClick' }
+    onUserClick: { action: 'userClick' },
+    orientation: { options: ['horizontal', 'vertical'], control: { type: 'radio' } }
   }
 }
 
