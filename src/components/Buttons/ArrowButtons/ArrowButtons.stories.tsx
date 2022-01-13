@@ -17,4 +17,6 @@ const Template = (props: ArrowButtonsProps) => {
 }
 
 export const Example = Template.bind({})
-Example.args = {}
+Example.args = {
+  inverted: false
+}

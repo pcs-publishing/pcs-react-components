@@ -27,6 +27,7 @@ export interface ArrowButtonsProps {
   onRight: () => void
   size?: ButtonProps['size']
   className?: string
+  inverted?: boolean
 }
 
 const KEY_CODES = {
@@ -57,12 +58,12 @@ const ArrowButtons = (props: ArrowButtonsProps) => {
 
   return <ButtonContainer className={props.className}>
     <ButtonRow>
-      <ArrowButton icon="arrow up" primary={arrowUpIsDown} basic={!arrowUpIsDown} onClick={onUp} {...commonButtonProps} />
+      <ArrowButton inverted={props.inverted} icon="arrow up" primary={arrowUpIsDown} basic={!arrowUpIsDown} onClick={onUp} {...commonButtonProps} />
     </ButtonRow >
     <ButtonRow>
-      <ArrowButton icon="arrow left" primary={arrowLeftIsDown} basic={!arrowLeftIsDown} onClick={onLeft} {...commonButtonProps} />
-      <ArrowButton icon="arrow down" primary={arrowDownIsDown} basic={!arrowDownIsDown} onClick={onDown} {...commonButtonProps} />
-      <ArrowButton icon="arrow right" primary={arrowRightIsDown} basic={!arrowRightIsDown} onClick={onRight} {...commonButtonProps} />
+      <ArrowButton inverted={props.inverted} icon="arrow left" primary={arrowLeftIsDown} basic={!arrowLeftIsDown} onClick={onLeft} {...commonButtonProps} />
+      <ArrowButton inverted={props.inverted} icon="arrow down" primary={arrowDownIsDown} basic={!arrowDownIsDown} onClick={onDown} {...commonButtonProps} />
+      <ArrowButton inverted={props.inverted} icon="arrow right" primary={arrowRightIsDown} basic={!arrowRightIsDown} onClick={onRight} {...commonButtonProps} />
     </ButtonRow>
   </ButtonContainer >
 }
