@@ -4,6 +4,7 @@ import ImageLoader from '../ImageLoader'
 
 export interface CenteredImageProps {
   className?: string
+  imageClassName?: string
   src?: string
   alt: string
   title?: string
@@ -11,6 +12,7 @@ export interface CenteredImageProps {
   maxWidth: number | string
   maxHeight: number | string
   onClick?: () => void
+  forwardRef?: React.Ref<HTMLImageElement>
 }
 
 const getSizeValue = (value: number | string): string => {
@@ -24,7 +26,7 @@ const Container = styled.div<CenteredImageProps>`
   height: ${(props) => getSizeValue(props.maxHeight)};
 `
 
-const Image = styled(ImageLoader)<{ onClick?: () => void }>`
+const Image = styled(ImageLoader) <{ onClick?: () => void }>`
   max-width: 100%;
   max-height: 100%;
   width: auto;
@@ -60,9 +62,12 @@ const CenteredImage = (props: CenteredImageProps) => {
       <Image
         src={src as string}
         alt={alt as string}
+        className={props.className}
+        imageClassName={props.imageClassName}
         title={title}
         onError={onError}
         onClick={props.onClick}
+        forwardRef={props.forwardRef}
       />
     )
 

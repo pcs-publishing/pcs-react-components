@@ -7,14 +7,11 @@ export interface ImageLoaderProps {
   alt: string
   title?: string
   className?: string
+  imageClassName?: string
   onError?: () => void
   onClick?: () => void
+  forwardRef?: React.Ref<HTMLImageElement>
 }
-
-const Image = styled.img<{ $visible: boolean }>`
-  opacity: ${(props) => (props.$visible ? '1' : '0')};
-  transition: opacity 250ms ease-in;
-`
 
 const ImageLoader = (props: ImageLoaderProps) => {
   const [loading, setLoading] = useState(true)
@@ -32,7 +29,10 @@ const ImageLoader = (props: ImageLoaderProps) => {
 
   return (
     <LoadingMask active={loading} message="" loaderProps={{ size: 'small' }}>
-      <Image {...props} onLoad={onLoad} onError={onError} $visible={!loading} />
+      <img {...props} ref={props.forwardRef} className={props.imageClassName} onLoad={onLoad} onError={onError} style={{
+        opacity: loading ? 0 : 1,
+        transition: 'opacity 250ms ease-in'
+      }} />
     </LoadingMask>
   )
 }
