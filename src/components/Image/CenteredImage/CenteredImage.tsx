@@ -37,14 +37,14 @@ const Image = styled(ImageLoader) <{ onClick?: () => void }>`
   left: 0;
   right: 0;
   margin: auto;
-  cursor: ${(props) => (props.onClick ? 'pointer' : 'default')} !important;
+  ${props => props.onClick ? 'cursor: pointer;' : ''}
 `
 
 const CenteredImage = (props: CenteredImageProps) => {
   const { fallback, src, alt, title } = props
   const [useFallback, setUseFallback] = useState(false)
 
-  const { onClick, ...otherProps } = props
+  const { onClick, className, ...otherProps } = props
 
   const onError = useCallback(() => {
     if (fallback) setUseFallback(true)
@@ -62,8 +62,7 @@ const CenteredImage = (props: CenteredImageProps) => {
       <Image
         src={src as string}
         alt={alt as string}
-        className={props.className}
-        imageClassName={props.imageClassName}
+        className={className}
         title={title}
         onError={onError}
         onClick={props.onClick}
