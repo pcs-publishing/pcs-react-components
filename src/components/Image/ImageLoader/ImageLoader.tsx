@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import LoadingMask from '../../LoadingMask'
 import { omit } from 'lodash'
+import styled from 'styled-components'
 
 export interface ImageLoaderProps {
   src: string
@@ -11,6 +12,11 @@ export interface ImageLoaderProps {
   onClick?: () => void
   forwardRef?: React.Ref<HTMLImageElement>
 }
+
+const Image = styled.img<{ $loading: boolean }>`
+  opacity: ${props => props.$loading ? 0 : 1};
+  transition: opacity 250ms ease-in;
+`
 
 const ImageLoader = (props: ImageLoaderProps) => {
   const [loading, setLoading] = useState(true)
@@ -26,12 +32,11 @@ const ImageLoader = (props: ImageLoaderProps) => {
     }
   }, [props, setLoading])
 
+  console.log('ImageLoader className: ', props.className)
+
   return (
     <LoadingMask active={loading} message="" loaderProps={{ size: 'small' }}>
-      <img {...omit(props, ['forwardRef'])} ref={props.forwardRef} className={props.className} onLoad={onLoad} onError={onError} style={{
-        opacity: loading ? 0 : 1,
-        transition: 'opacity 250ms ease-in'
-      }} />
+      <Image {...omit(props, ['forwardRef', 'className'])} ref={props.forwardRef} className={props.className} onLoad={onLoad} onError={onError} $loading={loading} />
     </LoadingMask>
   )
 }

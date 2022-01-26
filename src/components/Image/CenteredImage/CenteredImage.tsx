@@ -4,7 +4,6 @@ import ImageLoader from '../ImageLoader'
 
 export interface CenteredImageProps {
   className?: string
-  imageClassName?: string
   src?: string
   alt: string
   title?: string
@@ -62,7 +61,7 @@ const CenteredImage = (props: CenteredImageProps) => {
       <Image
         src={src as string}
         alt={alt as string}
-        className={className}
+        // className={className}
         title={title}
         onError={onError}
         onClick={props.onClick}
