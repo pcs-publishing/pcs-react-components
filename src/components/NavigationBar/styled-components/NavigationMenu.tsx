@@ -17,7 +17,6 @@ const StyledMenu = styled(Menu) <{ vertical: boolean, $compact: boolean }>`
       width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
       ` : ``
   }
   }
