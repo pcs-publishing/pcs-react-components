@@ -4,8 +4,6 @@ import { NavigationItemProps } from '..'
 import styled from '../../../theme-styled'
 
 const IconContainer = styled.div<{ $active: boolean }>`
-  width: 100%;
-  margin-bottom: 10px;
   border-radius: 3px;
   padding: 10px;
 
@@ -27,7 +25,7 @@ const Central = styled.div`
 
 const CollapsedNavigationItem = (props: NavigationItemProps) => {
   return <IconContainer $active={props.active} onClick={() => props.onClick(props.item)}>
-    <Popup content={props.item.title} position="right center" trigger={
+    <Popup content={props.item.title} position={props.orientation === 'vertical' ? 'right center' : 'bottom center'} trigger={
       <Central>
         <Icon
           name={props.item.icon}

@@ -18,6 +18,7 @@ export interface MainNavigationProps {
   lastItem?: AdditionalItem
   className?: string
   expandedWidth?: number
+  compact?: boolean
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
@@ -32,6 +33,7 @@ const MainNavigation = (props: MainNavigationProps) => {
     lastItem={(itemProps: AdditionalItemProps) => getLastItem(props, itemProps)}
     expandedWidth={props.expandedWidth}
     className={props.className}
+    compact={props.compact}
   />
 }
 
@@ -40,7 +42,8 @@ function getStartItem(props: MainNavigationProps, itemProps: AdditionalItemProps
     onLogoClick={() => props.onNavigate('/')}
     logo={props.logo}
     user={props.user}
-    onUserClick={props.onUserClick}>
+    onUserClick={props.onUserClick}
+    compact={props.compact}>
     {props.startItem ? props.startItem(itemProps) : null}
   </StartItem>
 }
@@ -51,6 +54,7 @@ function getLastItem(props: MainNavigationProps, itemProps: AdditionalItemProps)
     version={props.version}
     user={props.user}
     onUserClick={props.onUserClick}
+    compact={props.compact}
   >
     {props.lastItem ? props.lastItem(itemProps) : null}
   </LastItem>

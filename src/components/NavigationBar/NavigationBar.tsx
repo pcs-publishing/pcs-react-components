@@ -14,6 +14,7 @@ export interface NavigationBarProps {
   lastItem?: AdditionalItem
   className?: string
   expandedWidth?: number
+  compact?: boolean
 }
 
 const NavigationBar = (props: NavigationBarProps) => {
@@ -21,7 +22,7 @@ const NavigationBar = (props: NavigationBarProps) => {
   const onNavigateItemClick = useCallback((item: NavigationItem) => props.onNavigate(item.path), [props.onNavigate])
   const StartItem = props.startItem
   const LastItem = props.lastItem
-  const commonProps = { orientation: props.orientation, collapsed }
+  const commonProps = { orientation: props.orientation, collapsed, compact: props.compact }
 
   const toggleCollapsed = () => {
     setCollapsed(collapsed => !collapsed)

@@ -95,3 +95,17 @@ VerticalWithExtraItems.args = {
   startItem: () => <p>Extra item at the start</p>,
   lastItem: () => <LastItem><StyledInput value="text field at the end" fluid /></LastItem>
 }
+
+
+export const CompactHorizontal = Template.bind({})
+CompactHorizontal.args = {
+  ...defaultProps,
+  orientation: 'horizontal',
+  version: '1.0.5',
+  compact: true,
+  user: {
+    firstname: 'Christopher',
+    surname: 'Train',
+    avatar: '/avatar.png'
+  },
+}

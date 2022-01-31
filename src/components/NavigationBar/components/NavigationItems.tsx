@@ -12,24 +12,27 @@ interface NavigationItemsProps {
   orientation: Orientation
   onClick: (item: NavigationItem) => void
   currentLocation: string
+  compact?: boolean
 }
 
 
 const NavigationItems = (props: NavigationItemsProps) => {
-  const NavigationItemComponent = props.orientation === 'vertical' && props.collapsed ? CollapsedNavigationItem : ExpandedNavigationItem
+
+  console.log('COMPACT: ', props.compact)
+  const NavigationItemComponent = (props.orientation === 'vertical' && props.collapsed) || props.compact ? CollapsedNavigationItem : ExpandedNavigationItem
   const activeItem = getActiveItem(props.items, props.currentLocation)
   const loader = <Loader active inline='centered' />
   const items = props.items.map(item => (<NavigationItemComponent active={activeItem?.path === item.path} key={item.path} orientation={props.orientation} item={item} onClick={props.onClick} />))
 
   const children = props.loading ? loader : items
 
-  if (props.collapsed) {
+  if (props.collapsed || props.collapsed) {
     return <>
       {children}
     </>
   }
 
-  return <NavigationMenu orientation={props.orientation}>{children}</NavigationMenu>
+  return <NavigationMenu orientation={props.orientation} compact={props.compact}>{children}</NavigationMenu>
 
 }
 

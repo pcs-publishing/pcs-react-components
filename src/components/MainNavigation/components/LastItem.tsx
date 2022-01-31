@@ -9,6 +9,7 @@ interface LastItemProps extends AdditionalItemProps {
   user?: MainNavigationUser
   onUserClick?: () => void
   version: string
+  compact?: boolean
 }
 
 const Container = styled.div < { $orientation: Orientation }>`
@@ -33,7 +34,7 @@ const LastItem: React.FunctionComponent<LastItemProps> = (props) => {
 
   return <Container $orientation={props.orientation}>
     {props.children}
-    <Version {...props} />
+    {!props.compact ? <Version {...props} /> : null}
     {showUser ? <ProfilePicture {...(props.user as MainNavigationUser)} size={40} onClick={props.onUserClick} /> : null}
   </Container>
 }

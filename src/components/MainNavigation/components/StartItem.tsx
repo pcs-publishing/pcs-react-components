@@ -10,6 +10,7 @@ interface StartItemProps extends AdditionalItemProps {
   logo: string
   onLogoClick: () => void
   onUserClick?: () => void
+  compact?: boolean
   user?: MainNavigationUser
 }
 
