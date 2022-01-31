@@ -17,8 +17,6 @@ interface NavigationItemsProps {
 
 
 const NavigationItems = (props: NavigationItemsProps) => {
-
-  console.log('COMPACT: ', props.compact)
   const NavigationItemComponent = (props.orientation === 'vertical' && props.collapsed) || props.compact ? CollapsedNavigationItem : ExpandedNavigationItem
   const activeItem = getActiveItem(props.items, props.currentLocation)
   const loader = <Loader active inline='centered' />

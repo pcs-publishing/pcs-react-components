@@ -69,7 +69,6 @@ const AvatarUploader = (props: AvatarUploaderProps) => {
 
     const initialCrop = getInitialCrop(img)
 
-    console.log('initial crop: ', initialCrop)
     setTimeout(() => {
       setCrop({ unit: 'px', aspect: 1, ...initialCrop })
     }, 0)

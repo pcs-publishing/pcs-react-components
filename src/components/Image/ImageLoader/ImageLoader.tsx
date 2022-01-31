@@ -32,8 +32,6 @@ const ImageLoader = (props: ImageLoaderProps) => {
     }
   }, [props, setLoading])
 
-  console.log('ImageLoader className: ', props.className)
-
   return (
     <LoadingMask active={loading} message="" loaderProps={{ size: 'small' }}>
       <Image {...omit(props, ['forwardRef', 'className'])} ref={props.forwardRef} className={props.className} onLoad={onLoad} onError={onError} $loading={loading} />
