@@ -2,7 +2,7 @@ import React from 'react'
 import ContextMenu, { ContextMenuProps, ContextMenuItems } from './ContextMenu'
 import styled from 'styled-components'
 import { useContextMenu, Separator } from 'react-contexify'
-import { Modal } from 'semantic-ui-react'
+import Modal, { ModalContent } from '../Semantic-Themed/Modal'
 import 'react-contexify/dist/ReactContexify.css'
 
 export default {
@@ -128,12 +128,12 @@ export const InAModal = (props: ContextMenuProps<string>) => {
 
   return (
     <Modal open>
-      <Modal.Content>
+      <ModalContent>
         <ContextMenu id={menuId} items={items} onAction={props.onAction} />
         <StyledDiv onContextMenu={show}>
           Right-click to open the context-menu
         </StyledDiv>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }

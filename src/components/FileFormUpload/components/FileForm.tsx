@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import Form from '../../Semantic-Themed/Form'
 import Dropdown from '../../Dropdown'
 import Input from '../../Input'
 import TextArea from '../../TextArea'

@@ -16,7 +16,7 @@ import {
   SubType
 } from '../../definitions'
 
-import { Table } from 'semantic-ui-react'
+import Table from '../Semantic-Themed/Table'
 import { sortData } from '../../services/SortService'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
 import HeaderRow from './HeaderRow'
@@ -56,6 +56,8 @@ const Container = styled.div`
     width: 100%;
     table-layout: fixed;
   }
+
+  ${props => props.theme.datagrid || ''}
 `
 
 const TableCmp = styled(Table)`

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Modal, TextArea, Label } from 'semantic-ui-react'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 import styled from '../../../theme-styled'
 import { isEmpty } from 'lodash'
 
-const CustomTextArea = styled(TextArea)<{ height: number }>`
+const CustomTextArea = styled(TextArea) <{ height: number }>`
   ${(props) => `height: ${props.height}px !important;`}
   width: 100%;
   resize: none !important;

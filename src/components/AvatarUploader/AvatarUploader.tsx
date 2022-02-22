@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import Uploader from '../Uploader'
-import { Modal } from 'semantic-ui-react'
-import Button from '../Buttons/Button'
+import Modal, { ModalHeader, ModalContent, ModalActions } from '../Semantic-Themed/Modal'
+import Button from '../Semantic-Themed/Button'
 import ReactCrop, { Crop } from 'react-image-crop'
 
 
@@ -21,7 +21,7 @@ const StyledCrop = styled(ReactCrop)`
   }
 `
 
-const ModalContent = styled(Modal.Content)`
+const StyledModalContent = styled(ModalContent)`
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -83,8 +83,8 @@ const AvatarUploader = (props: AvatarUploaderProps) => {
   return <Container>
     <Uploader onDrop={onChangeFile} uploadType="avatar" acceptMimeTypes={['image/jpeg', 'image/png']} multiple={false} maxFileSize={50_000_000} size={50} />
     <Modal open={!!fileSrc} onClose={clearFile} closeIcon>
-      <Modal.Header>Choose Your Avatar</Modal.Header>
-      <ModalContent>
+      <ModalHeader>Choose Your Avatar</ModalHeader>
+      <StyledModalContent>
         {fileSrc ? (
           <StyledCrop
             src={fileSrc as string}
@@ -98,11 +98,11 @@ const AvatarUploader = (props: AvatarUploaderProps) => {
             onChange={newCrop => setCrop(newCrop)}
           />
         ) : null}
-      </ModalContent>
-      <Modal.Actions>
+      </StyledModalContent>
+      <ModalActions>
         <Button primary onClick={onPerformCrop}>Save</Button>
         <Button onClick={clearFile}>Cancel</Button>
-      </Modal.Actions>
+      </ModalActions>
     </Modal>
   </Container>
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import useCallOnKeyUp from '../../../hooks/useCallOnKeyUp'
 import useIsKeyDown from '../../../hooks/useIsKeyDown'
 import styled from '../../../theme-styled'
-import Button from '../Button'
+import Button from '../../Semantic-Themed/Button'
 import { ButtonProps } from 'semantic-ui-react'
 
 const ButtonContainer = styled.div`

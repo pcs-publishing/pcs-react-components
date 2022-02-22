@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Alert, { AlertProps } from './Alert'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 
 export default {
   title: 'Popups/Alert',

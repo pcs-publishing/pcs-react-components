@@ -1,9 +1,10 @@
 import React from 'react'
-import CollapsedNavigationItem from './CollapsedNavigationItem';
+import CollapsedNavigationItem from './CollapsedNavigationItem'
 import ExpandedNavigationItem from './ExpandedNavigationItem'
-import { NavigationItem, Orientation } from '..';
-import NavigationMenu from '../styled-components/NavigationMenu';
-import { Loader } from 'semantic-ui-react'
+import { NavigationItem, Orientation } from '..'
+import NavigationMenu from '../styled-components/NavigationMenu'
+import Loader from '../../Semantic-Themed/Loader'
+import { sortBy, last } from 'lodash'
 
 interface NavigationItemsProps {
   items: NavigationItem[],
@@ -41,7 +42,14 @@ function getActiveItem(items: NavigationItem[], currentLocation: string | undefi
     return exactMatch
   }
 
-  return items.find(item => currentLocation?.startsWith(item.path))
+  const matches = items.filter(item => currentLocation?.startsWith(item.path))
+
+  const sortedMatches = sortBy(matches, (partialMatch) => {
+    return partialMatch.path.length
+  }, '')
+
+  // Return the match that has the longest path
+  return last(sortedMatches)
 }
 
 export default NavigationItems

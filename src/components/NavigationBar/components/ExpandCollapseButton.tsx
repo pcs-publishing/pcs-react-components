@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, Popup, SemanticICONS } from 'semantic-ui-react';
+import { SemanticICONS } from 'semantic-ui-react';
 import { Orientation } from '..'
 import styled from '../../../theme-styled'
-
+import Button from '../../Semantic-Themed/Button'
+import Popup from '../../Semantic-Themed/Popup'
 
 interface CollapseButtonProps {
   collapsed: boolean

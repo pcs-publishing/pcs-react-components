@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, Progress } from 'semantic-ui-react'
+import { Progress } from 'semantic-ui-react'
+import Modal, { ModalContent } from '../../Semantic-Themed/Modal'
 import { ProcessingState } from '../../../definitions'
 import styled from '../../../theme-styled'
 import Alert from '../Alert'
@@ -45,7 +46,7 @@ const LoadingModal = (props: LoadingModalProps) => {
   )
   return (
     <Modal open={true} closeOnDimmerClick={false} size="tiny">
-      <Modal.Content>
+      <ModalContent>
         <StyledProgress
           percent={percent}
           autoSuccess
@@ -55,7 +56,7 @@ const LoadingModal = (props: LoadingModalProps) => {
         >
           {props.loadingMessage || 'Loading'}
         </StyledProgress>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }

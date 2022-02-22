@@ -1,6 +1,7 @@
 import React from 'react'
-import { Modal, Header } from 'semantic-ui-react'
-import Button from '../../Buttons/Button'
+import Modal, { ModalContent, ModalActions, ModalHeader } from '../../Semantic-Themed/Modal'
+import Header from '../../Semantic-Themed/Header'
+import Button from '../../Semantic-Themed/Button'
 import { isString } from 'lodash'
 import useCallOnEnterUp from '../../../hooks/useCallOnEnterUp'
 
@@ -21,15 +22,17 @@ const Alert = (props: AlertProps) => {
 
   return (
     <Modal size="tiny" open={props.open} onClose={props.close}>
-      <Header content={props.title} />
-      <Modal.Content>
+      <ModalHeader>
+        <Header content={props.title} />
+      </ModalHeader>
+      <ModalContent>
         {isString(message) ? <p>{props.message}</p> : message}
-      </Modal.Content>
-      <Modal.Actions>
+      </ModalContent>
+      <ModalActions>
         <Button primary onClick={props.close}>
           OK
         </Button>
-      </Modal.Actions>
+      </ModalActions>
     </Modal>
   )
 }

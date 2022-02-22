@@ -1,9 +1,11 @@
 import React from 'react'
-import { Modal, Header, SemanticCOLORS } from 'semantic-ui-react'
-import Button from '../../Buttons/Button'
+import { SemanticCOLORS } from 'semantic-ui-react'
+import Button from '../../Semantic-Themed/Button'
 import useCallOnEnterUp from '../../../hooks/useCallOnEnterUp'
 import useCallOnEscapeUp from '../../../hooks/useCallOnEscapeUp'
 import { isString } from 'lodash'
+import Modal, { ModalActions, ModalContent, ModalHeader } from '../../Semantic-Themed/Modal'
+import Header from '../../Semantic-Themed/Header'
 
 export interface ConfirmProps {
   title: string
@@ -35,11 +37,13 @@ const Confirm = (props: ConfirmProps) => {
 
   return (
     <Modal size="tiny" open={props.open} onClose={props.close}>
-      <Header content={props.title} />
-      <Modal.Content>
+      <ModalHeader>
+        <Header content={props.title} />
+      </ModalHeader>
+      <ModalContent>
         {isString(props.message) ? <p>{props.message}</p> : props.message}
-      </Modal.Content>
-      <Modal.Actions>
+      </ModalContent>
+      <ModalActions>
         <Button
           primary={!props.confirmButtonColor}
           color={props.confirmButtonColor}
@@ -48,7 +52,7 @@ const Confirm = (props: ConfirmProps) => {
           {props.confirmButtonText || 'Yes'}
         </Button>
         <Button color={props.cancelButtonColor} onClick={onCancel}>{props.cancelButtonText || 'No'}</Button>
-      </Modal.Actions>
+      </ModalActions>
     </Modal>
   )
 }

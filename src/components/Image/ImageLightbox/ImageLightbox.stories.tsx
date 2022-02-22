@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 import ImageLightbox, { ImageLightboxProps } from './ImageLightbox';
 
 

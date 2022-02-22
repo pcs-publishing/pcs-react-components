@@ -1,7 +1,7 @@
 import React from 'react'
 import PopoverButton, { PopoverButtonProps } from './PopoverButton'
 import CenteredImage from '../../Image/CenteredImage'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 
 export default {
   title: 'Popups/Popover Button',

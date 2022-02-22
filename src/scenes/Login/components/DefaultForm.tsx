@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Form, Header, Message, SemanticCOLORS } from 'semantic-ui-react';
+import { Form, Header } from 'semantic-ui-react'
 import styled from '../../../theme-styled'
-import Button from '../../../components/Buttons/Button'
-import { ReactElement } from 'react';
-import { ActionNotification } from '../../..';
+import Button from '../../../components/Semantic-Themed/Button'
+import { ReactElement } from 'react'
+import { ActionNotification } from '../../..'
 
 export interface LoginFormProps {
   className?: string

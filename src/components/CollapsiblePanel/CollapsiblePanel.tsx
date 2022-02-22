@@ -1,7 +1,7 @@
 import React, { useState, useCallback, ReactNode } from 'react'
 import styled from 'styled-components'
-import { Header } from 'semantic-ui-react'
-import Button from '../Buttons/Button'
+import Header from '../Semantic-Themed/Header'
+import Button from '../Semantic-Themed/Button'
 
 export interface CollapsiblePanelProps {
   children: ReactNode
@@ -84,13 +84,13 @@ const CollapsiblePanel = (props: CollapsiblePanelProps) => {
         {collapsed ? (
           <CollapsedTitle>{props.title}</CollapsedTitle>
         ) : (
-            <>
-              {!!props.title ? (
-                <ExpandedTitle>{props.title}</ExpandedTitle>
-              ) : null}
-              {props.header}
-            </>
-          )}
+          <>
+            {!!props.title ? (
+              <ExpandedTitle>{props.title}</ExpandedTitle>
+            ) : null}
+            {props.header}
+          </>
+        )}
       </HeaderContainer>
       <ChildrenContainer collapsed={collapsed}>
         {collapsed ? null : props.children}

@@ -5,7 +5,7 @@ import DataGrid, { DataGridProps } from '../../DataGrid/DataGrid'
 import styled from '../../../theme-styled'
 import GridControls from './components/GridControls'
 import CreateEditFormModal from './components/CreateEditFormModal'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 import { FieldDefinition } from '../../Form/AutoForm/definitions'
 import SearchBar from '../../SearchBar'
 

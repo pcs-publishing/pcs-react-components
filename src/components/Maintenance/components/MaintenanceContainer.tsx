@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '../../../theme-styled'
-import { Header } from 'semantic-ui-react'
+import Header from '../../Semantic-Themed/Header'
 
 interface MaintenanceContainerProps {
   name: string

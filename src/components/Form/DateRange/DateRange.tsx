@@ -3,7 +3,7 @@ import { DateRange } from 'react-date-range'
 import useTheme from '../../../hooks/useTheme'
 import styled from '../../../theme-styled'
 import { Form } from 'semantic-ui-react'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 import { startOfDay, endOfDay } from 'date-fns'
 import { isValidDate } from '../../../util/date'
 

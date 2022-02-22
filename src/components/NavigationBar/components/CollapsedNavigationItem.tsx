@@ -1,6 +1,7 @@
 import React from 'react'
-import { Popup, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 import { NavigationItemProps } from '..'
+import Popup from '../../Semantic-Themed/Popup'
 import styled from '../../../theme-styled'
 
 const IconContainer = styled.div<{ $active: boolean }>`

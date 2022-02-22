@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Input from './Input'
-import { Form } from 'semantic-ui-react'
+import Form from '../Semantic-Themed/Form'
 
 export default {
   title: 'Input',

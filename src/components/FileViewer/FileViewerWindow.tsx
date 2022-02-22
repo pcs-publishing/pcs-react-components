@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from '../../theme-styled'
-import { Modal } from 'semantic-ui-react'
+import Modal, { ModalContent, ModalHeader } from '../Semantic-Themed/Modal'
 import { FileViewerProps } from './definitions'
 import FileViewer from './FileViewer'
 
-const ModalContent = styled(Modal.Content)`
+const StyledModalContent = styled(ModalContent)`
   padding: 0 !important;
 `
 
@@ -18,7 +18,7 @@ const FileViewerWindow = <T extends any>(props: FileViewerWindowProps<T>) => {
   const { title, open, close, ...otherProps } = props
   return (
     <Modal open={open} onClose={close} size="large" closeIcon centered={false}>
-      <Modal.Header>{title}</Modal.Header>
+      <ModalHeader>{title}</ModalHeader>
       <ModalContent>
         <FileViewer {...otherProps} />
       </ModalContent>

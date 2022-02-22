@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from '../../../theme-styled'
-import { Segment, Header, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 import LoadingMask from '../../LoadingMask'
 import { FileViewerGridProps } from '../definitions'
+import Segment from '../../Semantic-Themed/Segment'
+import Header from '../../Semantic-Themed/Header'
 
 const Container = styled.div`
   display: flex;

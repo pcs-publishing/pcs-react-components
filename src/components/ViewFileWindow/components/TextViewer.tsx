@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from 'semantic-ui-react'
+import Modal, { ModalHeader, ModalContent } from '../../Semantic-Themed/Modal'
 import styled from '../../../theme-styled'
 
 export interface TextViewerProps {
@@ -26,10 +26,10 @@ const TextViewer = ({ name, onClose, textContent, width }: TextViewerProps) => {
       onClose={onClose}
       closeIcon
     >
-      <Modal.Header>Text for file: {name}</Modal.Header>
-      <Modal.Content>
+      <ModalHeader>Text for file: {name}</ModalHeader>
+      <ModalContent>
         <Text>{textContent}</Text>
-      </Modal.Content>
+      </ModalContent>
     </StyledModal>
   )
 }

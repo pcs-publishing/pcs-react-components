@@ -1,7 +1,7 @@
 import React from 'react'
 import { ColumnDefinition } from '../../definitions'
 import styled, { FlattenSimpleInterpolation } from 'styled-components'
-import { Table } from 'semantic-ui-react'
+import { TableBody } from '../Semantic-Themed/Table'
 import DataRow from './DataRow'
 import _ from 'lodash'
 
@@ -23,7 +23,7 @@ interface DataBodyProps<T> {
   autoSize?: boolean
 }
 
-const TableBody = styled(Table.Body) <TableBodyProps>`
+const StyledTableBody = styled(TableBody) <TableBodyProps>`
   display: block;
   overflow-y: auto;
   width: 100%;
@@ -45,7 +45,7 @@ const DataBody = <T extends any>(props: DataBodyProps<T>) => {
   ])
 
   return (
-    <TableBody $height={height}>
+    <StyledTableBody $height={height}>
       {records.map((record, index) => {
         const selected = isRecordSelected(record)
         return (
@@ -58,7 +58,7 @@ const DataBody = <T extends any>(props: DataBodyProps<T>) => {
           />
         )
       })}
-    </TableBody>
+    </StyledTableBody>
   )
 }
 

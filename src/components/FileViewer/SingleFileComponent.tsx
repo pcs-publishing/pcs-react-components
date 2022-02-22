@@ -1,10 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import styled, { css } from '../../theme-styled'
 import {
-  Card,
-  Button,
   Icon,
-  Popup,
   SemanticICONS,
   SemanticCOLORS
 } from 'semantic-ui-react'
@@ -13,6 +10,9 @@ import { getFilenameInfo } from '../../util/filename'
 import AutoForm from '../Form/AutoForm'
 import { FieldDefinition, FormValue } from '../Form/AutoForm/definitions'
 import { SingleFileComponentProps } from './definitions'
+import Button from '../Semantic-Themed/Button'
+import { CardContent, CardMeta, CardHeader } from '../Semantic-Themed/Card'
+import Popup from '../Semantic-Themed/Popup'
 
 const FileCard = styled.div<{ selected: boolean }>`
   margin: 10px !important;
@@ -38,12 +38,11 @@ const FileCard = styled.div<{ selected: boolean }>`
       : ''};
 `
 
-const Header = styled(Card.Header)`
+const Header = styled(CardHeader)`
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 1.1em !important;
   white-space: nowrap;
-  color: black !important;
   font-weight: bolder;
 `
 
@@ -177,7 +176,7 @@ const SingleFileComponent = <T extends any>(
         </ImageContainer>
 
         {inEditMode && editFields ? (
-          <Card.Content>
+          <CardContent>
             <AutoForm
               fields={editFields}
               onSave={async (value: unknown) => {
@@ -189,7 +188,7 @@ const SingleFileComponent = <T extends any>(
               size="small"
               compact
             />
-          </Card.Content>
+          </CardContent>
         ) : (
           getMainContent(props, openButton, switchToEditMode, canEdit)
         )}
@@ -208,7 +207,7 @@ function getMainContent<T>(
 ) {
   return (
     <>
-      <Card.Content>
+      <CardContent>
         <Popup
           content={props.title}
           trigger={
@@ -221,13 +220,13 @@ function getMainContent<T>(
         {props.text &&
           props.text.map((textItem) => {
             return (
-              <Card.Meta key={textItem.label} className={textItem.className}>
+              <CardMeta key={textItem.label} className={textItem.className}>
                 {textItem.label}: {textItem.value}
-              </Card.Meta>
+              </CardMeta>
             )
           })}
-      </Card.Content>
-      <Card.Content extra>
+      </CardContent>
+      <CardContent extra>
         {openButton}
         {canEdit ? (
           <Button compact size="small" onClick={switchToEditMode}>
@@ -248,7 +247,7 @@ function getMainContent<T>(
             Delete
           </Button>
         ) : null}
-      </Card.Content>
+      </CardContent>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState, FunctionComponent } from 'react'
 import styled from '../../../theme-styled'
 import Box from '../../Styled/Box'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 import { ButtonProps } from 'semantic-ui-react'
 import { omit } from 'lodash'
 

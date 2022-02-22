@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
-import { Dimmer, Loader, Segment, LoaderProps } from 'semantic-ui-react'
+import { Dimmer, LoaderProps } from 'semantic-ui-react'
+import Loader from '../Semantic-Themed/Loader'
+import Segment from '../Semantic-Themed/Segment'
 import styled from 'styled-components'
 
 export interface LoadingMaskProps {

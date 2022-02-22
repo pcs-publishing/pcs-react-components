@@ -1,6 +1,6 @@
 import React from 'react'
 import { SemanticCOLORS } from 'semantic-ui-react'
-import Button from '../Button'
+import Button, { ButtonGroup } from '../../Semantic-Themed/Button'
 
 export interface SplitButtonProps<T> {
   primary?: boolean
@@ -36,7 +36,7 @@ const SplitButton = <T extends string>(props: SplitButtonProps<T>) => {
     )
   })
 
-  return <Button.Group>{buttons}</Button.Group>
+  return <ButtonGroup>{buttons}</ButtonGroup>
 }
 
 export default SplitButton

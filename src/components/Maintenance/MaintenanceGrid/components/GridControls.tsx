@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'semantic-ui-react'
+import Button from '../../../Semantic-Themed/Button'
 import { SubType } from '../../../../definitions'
 import styled from '../../../../theme-styled'
 import Confirm from '../../../Popups/Confirm'

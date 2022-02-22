@@ -3,7 +3,11 @@ import { css } from '../theme-styled'
 
 const COLORS = {
   BASE: '#ecf0f1',
+  BUTTON: '#d4d7df',
+  BUTTON_HOVER: '#e9ebef',
+  BUTTON_TEXT: '#191b20',
   PRIMARY: '#273c75',
+  PRIMARY_HOVER: '#7a92d2',
   BORDER: '#ddd',
   TEXT: '#2c3e50'
 }
@@ -13,11 +17,17 @@ const defaultTheme: Theme = {
   colors: {
     base: COLORS.BASE,
     primary: COLORS.PRIMARY,
+    primaryHover: COLORS.PRIMARY_HOVER,
     text: {
       onBase: COLORS.TEXT,
       onPrimary: COLORS.BASE,
       onNavigation: COLORS.BASE,
       onFullScreenScene: COLORS.BASE
+    },
+    button: {
+      standard: COLORS.BUTTON,
+      standardHover: COLORS.BUTTON_HOVER,
+      standardText: COLORS.BUTTON_TEXT
     }
   },
   backgrounds: {

@@ -5,7 +5,8 @@ import { DroppableId } from './DragDropAssignment'
 import DraggableElement from './DraggableElement'
 import { toString } from 'lodash'
 import { SubType } from '../../definitions'
-import { Header, Input } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
+import Header from '../Semantic-Themed/Header'
 
 const Container = styled.div<{ listWidth: number }>`
   width: ${(props) => props.listWidth}px;

@@ -1,7 +1,7 @@
 import React from 'react'
 import Steps from '../../Steps'
 import styled from '../../../theme-styled'
-import Button from '../../Buttons/Button'
+import Button from '../../Semantic-Themed/Button'
 import { Header } from 'semantic-ui-react'
 import { StepConfig } from '../../Steps/Steps'
 

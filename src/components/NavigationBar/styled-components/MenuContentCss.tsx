@@ -14,7 +14,7 @@ export const inactiveStyle = css`
 
 export default css<{ $active: boolean }>`
   ${inactiveStyle}
-  
+
   :hover {
     ${activeStyle}
   }

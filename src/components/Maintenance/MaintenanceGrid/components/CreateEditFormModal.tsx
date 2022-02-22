@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Modal } from 'semantic-ui-react'
+import Modal, { ModalHeader, ModalContent } from '../../../Semantic-Themed/Modal'
 import AutoForm from '../../../Form/AutoForm'
 import { SubType } from '../../../../definitions'
 import { FieldDefinition, FormValue } from '../../../Form/AutoForm/definitions'
@@ -43,12 +43,12 @@ const CreateEditFormModal = <T extends any>(props: CreatedEditFormModalProps<T>)
   const isCreate = !recordToEdit
 
   return <Modal open={open} size="tiny">
-    <Modal.Header>
+    <ModalHeader>
       {isCreate ? `Create ${name}` : `Edit ${name}`}
-    </Modal.Header>
-    <Modal.Content>
+    </ModalHeader>
+    <ModalContent>
       <AutoForm defaultValue={recordToEdit as FormValue} fields={fieldDefinition} onSave={onSave} onCancel={onClose} />
-    </Modal.Content>
+    </ModalContent>
   </Modal>
 }
 

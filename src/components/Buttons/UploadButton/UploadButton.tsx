@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react'
-import Button from '../Button'
+import Button from '../../Semantic-Themed/Button'
 import styled from '../../../theme-styled'
 
 const InvisibleInput = styled.input`
