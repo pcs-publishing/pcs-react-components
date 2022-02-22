@@ -1,6 +1,6 @@
 {
   "name": "@pcs/react-components",
-  "version": "1.3.26",
+  "version": "1.4.0",
   "description": "Generic components for use in PCS React applications",
   "homepage": "https://pcs-publishing.github.io/pcs-react-components",
   "repository": {
