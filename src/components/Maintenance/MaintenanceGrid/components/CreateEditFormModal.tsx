@@ -10,6 +10,7 @@ interface CreatedEditFormModalProps<T> {
   idField: keyof SubType<T, string | number>
   fieldDefinition: FieldDefinition[]
   recordToEdit: T | undefined
+  customForm?: (record: T | undefined, onSave: (record: FormValue) => void, onCancel: () => void) => React.ReactElement
   onOpen?: (value: T) => void
   onCreate?: (value: T) => Promise<void>
   onEdit?: (value: T) => Promise<void>
@@ -47,7 +48,8 @@ const CreateEditFormModal = <T extends any>(props: CreatedEditFormModalProps<T>)
       {isCreate ? `Create ${name}` : `Edit ${name}`}
     </ModalHeader>
     <ModalContent>
-      <AutoForm defaultValue={recordToEdit as FormValue} fields={fieldDefinition} onSave={onSave} onCancel={onClose} />
+      {props.customForm ? props.customForm(recordToEdit, onSave, onClose) :
+        <AutoForm defaultValue={recordToEdit as FormValue} fields={fieldDefinition} onSave={onSave} onCancel={onClose} />}
     </ModalContent>
   </Modal>
 }

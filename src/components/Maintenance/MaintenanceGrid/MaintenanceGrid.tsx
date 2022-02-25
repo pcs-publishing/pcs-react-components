@@ -6,7 +6,7 @@ import styled from '../../../theme-styled'
 import GridControls from './components/GridControls'
 import CreateEditFormModal from './components/CreateEditFormModal'
 import Button from '../../Semantic-Themed/Button'
-import { FieldDefinition } from '../../Form/AutoForm/definitions'
+import { FieldDefinition, FormValue } from '../../Form/AutoForm/definitions'
 import SearchBar from '../../SearchBar'
 
 export interface MaintenanceGridProps<T> {
@@ -27,6 +27,7 @@ export interface MaintenanceGridProps<T> {
   onSortChange?: (column: ColumnDefinition<T>, direction: SortDirection) => void
   onRefreshClick?: () => void
   formFieldDefinition?: FieldDefinition[]
+  customForm?: (record: T, onSave: (record: FormValue) => void, onCancel: () => void) => React.ReactElement
   toolbar?: React.ReactElement
   toolbarClassName?: string
 }
@@ -120,6 +121,7 @@ const MaintenanceGrid = <T extends any>(props: MaintenanceGridProps<T>) => {
       open={openCreateEditModal}
       onOpen={props.onFormOpen}
       onClose={() => setOpenCreateEditModal(false)}
+      customForm={props.customForm}
     />
   </>
 }
