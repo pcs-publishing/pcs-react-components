@@ -13,25 +13,41 @@ export default {
 }
 
 
-const Container = styled.div`
+const LargeContainer = styled.div`
   padding: 30px;
-  width: 350px;
+  width: 380px;
 `
 
-const Template = (props: MarginFieldsProps) => {
+const SmallContainer = styled.div`
+  padding: 30px;
+  width: 275px;
+`
+
+
+export const WithinLargeContainer = () => {
   const [value, setValue] = useState<Margin>({ top: 0, bottom: 0, inside: 0, outside: 0 })
 
   const onChange = (value: Margin) => {
     setValue(value)
-    props.onChange(value)
   }
 
-  return <Container>
+  return <LargeContainer>
     <Form>
-      <MarginFields {...props} value={value} onChange={onChange} />
+      <MarginFields value={value} onChange={onChange} />
     </Form>
-  </Container>
+  </LargeContainer>
 }
 
-export const Example = Template.bind({})
-Example.args = {}
+export const WithinSmallContainer = () => {
+  const [value, setValue] = useState<Margin>({ top: 0, bottom: 0, inside: 0, outside: 0 })
+
+  const onChange = (value: Margin) => {
+    setValue(value)
+  }
+
+  return <SmallContainer>
+    <Form>
+      <MarginFields value={value} onChange={onChange} />
+    </Form>
+  </SmallContainer>
+}

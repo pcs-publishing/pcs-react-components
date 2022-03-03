@@ -27,7 +27,7 @@ export interface MaintenanceGridProps<T> {
   onSortChange?: (column: ColumnDefinition<T>, direction: SortDirection) => void
   onRefreshClick?: () => void
   formFieldDefinition?: FieldDefinition[]
-  customForm?: (record: T, onSave: (record: FormValue) => void, onCancel: () => void) => React.ReactElement
+  customForm?: (record: T | undefined, onSave: (record: FormValue) => void, onCancel: () => void) => React.ReactElement
   toolbar?: React.ReactElement
   toolbarClassName?: string
 }

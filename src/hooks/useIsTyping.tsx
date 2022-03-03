@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-export function useIsTyping(value: unknown, delay: number): [isTyping: boolean, setIsTyping: (isTyping: boolean) => void] {
+
+function useIsTyping(value: unknown, delay: number): [isTyping: boolean, setIsTyping: (isTyping: boolean) => void] {
   const [isTyping, setIsTyping] = useState(false)
 
   useEffect(() => {
@@ -24,3 +25,5 @@ export function useIsTyping(value: unknown, delay: number): [isTyping: boolean, 
 
   return [isTyping, setIsTyping]
 }
+
+export default useIsTyping

@@ -95,6 +95,9 @@ import H_useDelayedFunction from './hooks/useDelayedFunction'
 import H_useRecordSelection from './hooks/useRecordSelection'
 import H_useTheme from './hooks/useTheme'
 import H_useDrag from './hooks/useDrag'
+import H_useElementSize from './hooks/useElementSize'
+import H_useEventListener from './hooks/useEventListener'
+import H_useIsomorphicLayoutEffect from './hooks/useIsomorphicLayoutEffect'
 import H_useFormValidation from './hooks/useFormValidation'
 import H_useInfiniteScroll from './hooks/useInfiniteScroll'
 import H_useScrollPosition from './hooks/useScrollPosition'
@@ -241,6 +244,9 @@ export const useInfiniteScroll = H_useInfiniteScroll
 export const useScrollPosition = H_useScrollPosition
 export const useWindowHeight = H_useWindowHeight
 export const useWindowWidth = H_useWindowWidth
+export const useElementSize = H_useElementSize
+export const useEventListener = H_useEventListener
+export const useIsomorphicLayoutEffect = H_useIsomorphicLayoutEffect
 //#endregion
 
 //#region service exports

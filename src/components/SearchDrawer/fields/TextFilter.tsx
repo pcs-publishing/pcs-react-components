@@ -7,7 +7,7 @@ import {
   FilterDefinition
 } from '../../../definitions/filter'
 import useDelayedFunction from '../../../hooks/useDelayedFunction'
-import { useIsTyping } from '../../../hooks/useIsTyping'
+import useIsTyping from '../../../hooks/useIsTyping'
 
 interface TextFilterProps<T, U extends string> {
   value?: unknown
@@ -40,7 +40,7 @@ const TextFilter = <T extends any, U extends string>(props: TextFilterProps<T, U
 
 
   const onChangeCallback = useCallback(
-    (_event, data: InputOnChangeData) => {
+    (_event: unknown, data: InputOnChangeData) => {
       let val = data.value
       if (filterDefinition.mask) {
         const regex = new RegExp(filterDefinition.mask)
