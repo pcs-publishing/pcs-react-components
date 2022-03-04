@@ -7,6 +7,7 @@ import styled from '../../../theme-styled'
 const IconContainer = styled.div<{ $active: boolean }>`
   border-radius: 3px;
   padding: 10px;
+  cursor: pointer;
 
   :hover {
     background: rgba(255, 255, 255, 0.1);
