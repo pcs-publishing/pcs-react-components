@@ -16,8 +16,6 @@ const columns: <T extends PageProps> (Page: React.FunctionComponent<T>) => React
 
   const innerWidth = width - margin.inside - margin.outside
 
-  if (!props.columns || props.columns <= 1) return
-
   const startingLineXPositions = generateColumnLineXPositions({
     innerWidth,
     gutter,
