@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { Form } from 'semantic-ui-react'
 import LinkButton from '../../Buttons/LinkButton'
 import NumberField from '../NumberField'
@@ -73,7 +73,7 @@ const MarginFields = (props: MarginFieldsProps) => {
     max: 100,
     fallbackValue: 0,
     unit: isLarge ? 'mm' : undefined,
-    size: "tiny"
+    size: 'small'
   }
 
   const getLabel = (value: string) => {
