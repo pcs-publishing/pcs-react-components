@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { AdditionalItem, NavigationItem, Orientation } from '.'
 import NavigationContainer from './styled-components/NavigationContainer'
 import NavigationItems from './components/NavigationItems'
@@ -17,12 +17,28 @@ export interface NavigationBarProps {
   compact?: boolean
 }
 
+const NAVIGATION_COLLAPSED_KEY = 'NAVIGATION_COLLAPSED'
+
 const NavigationBar = (props: NavigationBarProps) => {
   const [collapsed, setCollapsed] = useState(!!props.initiallyCollapsed)
   const onNavigateItemClick = useCallback((item: NavigationItem) => props.onNavigate(item.path), [props.onNavigate])
   const StartItem = props.startItem
   const LastItem = props.lastItem
   const commonProps = { orientation: props.orientation, collapsed, compact: props.compact }
+
+  useEffect(() => {
+    const value = localStorage.getItem(NAVIGATION_COLLAPSED_KEY)
+    if (value) {
+      setCollapsed(value === 'true')
+    }
+  }, [])
+
+  useEffect(() => {
+    const value = localStorage.getItem(NAVIGATION_COLLAPSED_KEY) === 'true'
+    if (value !== collapsed) {
+      localStorage.setItem(NAVIGATION_COLLAPSED_KEY, collapsed.toString())
+    }
+  }, [collapsed])
 
   const toggleCollapsed = () => {
     setCollapsed(collapsed => !collapsed)

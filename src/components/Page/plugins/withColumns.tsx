@@ -16,6 +16,8 @@ const columns: <T extends PageProps> (Page: React.FunctionComponent<T>) => React
 
   const innerWidth = width - margin.inside - margin.outside
 
+  if (!props.columns || props.columns <= 1) return
+
   const startingLineXPositions = generateColumnLineXPositions({
     innerWidth,
     gutter,
@@ -29,6 +31,9 @@ const columns: <T extends PageProps> (Page: React.FunctionComponent<T>) => React
     <g>{
       startingLineXPositions.map(lineXPosition => {
         const xPos = lineXPosition + (margin.inside)
+        if (isNaN(xPos) || isNaN(lineStartingY) || isNaN(lineEndingY)) {
+          return null
+        }
         return <ColumnLine key={lineXPosition.toString()} x1={xPos} x2={xPos} y1={lineStartingY} y2={lineEndingY} />
       })}
     </g>
